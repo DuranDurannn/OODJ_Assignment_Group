@@ -29,6 +29,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         login_btn = new javax.swing.JButton();
         password_txt = new javax.swing.JTextField();
@@ -47,6 +48,10 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(169, 68, 56));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(null);
+
+        jLabel2.setText("COMPANY NAME");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(110, 230, 160, 16);
 
         jPanel2.setBackground(new java.awt.Color(230, 186, 163));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -168,6 +173,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel email_lbl;
     private javax.swing.JTextField email_txt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel loginTitle_lbl;
