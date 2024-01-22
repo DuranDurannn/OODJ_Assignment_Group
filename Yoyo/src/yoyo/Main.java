@@ -18,6 +18,8 @@ public class Main {
         loginFrame.setVisible(true);
         loginFrame.pack();
         loginFrame.setLocationRelativeTo(null);
+        
+        System.out.println("Hi");
     }
     
 }
