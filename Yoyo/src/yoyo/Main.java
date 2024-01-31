@@ -1,25 +1,54 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package yoyo;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Eow
  */
-public class Main {
+public class main {
+     public static void main(String args[]) {
+        LoginUI LoginFrame = new LoginUI();
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null);
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Login loginFrame = new Login();
-        loginFrame.setVisible(true);
-        loginFrame.pack();
-        loginFrame.setLocationRelativeTo(null);
-        
-        System.out.println("Hi");
-    }
+
+
+
     
+        // Call a method to open and read the user registration file
+        readUserRegistrationFile();
+    }
+
+    private static void readUserRegistrationFile() {
+        // Specify the file path
+        String filePath = "userRegistration.txt";
+        
+
+        // Open and read the file
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Display each line (user entry) in the console
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            // Handle the exception (e.g., show an error message)
+            e.printStackTrace();
+        }
+    }
 }
+
+        
+        
+            
+        
+    
+    
+
