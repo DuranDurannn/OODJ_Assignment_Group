@@ -11,7 +11,7 @@ import java.io.IOException;
  *
  * @author Eow
  */
-public class main {
+public class Main {
      public static void main(String args[]) {
         LoginUI LoginFrame = new LoginUI();
         LoginFrame.setVisible(true);
