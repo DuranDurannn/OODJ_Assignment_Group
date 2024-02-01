@@ -1,1 +1,5 @@
 001,Eow,1234,Eow@gmail.com,male,customer
+002,Duran,123,duran@gmail.com,female,customer
+001,Sean,123,sean@gmail.com,female,customer
+002,SUS,123,sus@gmail.com,female,customer
+001,berysus,123,berysus@gmail.com,male,customer
