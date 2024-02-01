@@ -30,7 +30,6 @@ public class LoginUI extends javax.swing.JFrame {
         right = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         email_txt = new javax.swing.JTextField();
-        password_txt = new javax.swing.JTextField();
         password_lbl = new javax.swing.JLabel();
         email_lbl = new javax.swing.JLabel();
         login_btn = new javax.swing.JButton();
@@ -39,6 +38,7 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         staff_btn = new javax.swing.JButton();
         staff_lbl = new javax.swing.JLabel();
+        password_txt = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +103,12 @@ public class LoginUI extends javax.swing.JFrame {
 
         staff_lbl.setText("Already a staff?");
 
+        password_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password_txtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -120,17 +126,16 @@ public class LoginUI extends javax.swing.JFrame {
                         .addGap(16, 16, 16))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(email_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(password_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(email_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(register_btn))))
+                    .addComponent(email_txt)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(register_btn))
+                    .addComponent(password_txt))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -217,6 +222,10 @@ public class LoginUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_email_txtActionPerformed
 
+    private void password_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password_txtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,7 +240,7 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JButton login_btn;
     private javax.swing.JLabel login_lbl;
     private javax.swing.JLabel password_lbl;
-    private javax.swing.JTextField password_txt;
+    private javax.swing.JPasswordField password_txt;
     private javax.swing.JButton register_btn;
     private javax.swing.JPanel right;
     private javax.swing.JButton staff_btn;
