@@ -17,11 +17,7 @@ public class Main {
         LoginFrame.setVisible(true);
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null);
-
-
-
-
-    
+        
         // Call a method to open and read the user registration file
         readUserRegistrationFile();
     }
