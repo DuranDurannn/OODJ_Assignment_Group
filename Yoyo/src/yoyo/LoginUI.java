@@ -28,18 +28,21 @@ public class LoginUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         right = new javax.swing.JPanel();
-        login_lbl = new javax.swing.JLabel();
-        email_lbl = new javax.swing.JLabel();
-        password_lbl = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         email_txt = new javax.swing.JTextField();
-        password_txt = new javax.swing.JTextField();
+        password_lbl = new javax.swing.JLabel();
+        email_lbl = new javax.swing.JLabel();
         login_btn = new javax.swing.JButton();
         register_btn = new javax.swing.JButton();
+        login_lbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         staff_btn = new javax.swing.JButton();
         staff_lbl = new javax.swing.JLabel();
+        password_txt = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(null);
 
@@ -60,22 +63,17 @@ public class LoginUI extends javax.swing.JFrame {
         jPanel1.add(right);
         right.setBounds(0, 0, 400, 500);
 
-        login_lbl.setFont(new java.awt.Font("Devanagari Sangam MN", 1, 36)); // NOI18N
-        login_lbl.setText("Login");
-        jPanel1.add(login_lbl);
-        login_lbl.setBounds(540, 40, 100, 40);
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
-        email_lbl.setText("Email:");
-        jPanel1.add(email_lbl);
-        email_lbl.setBounds(490, 120, 50, 14);
+        email_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                email_txtActionPerformed(evt);
+            }
+        });
 
         password_lbl.setText("Password:");
-        jPanel1.add(password_lbl);
-        password_lbl.setBounds(470, 170, 80, 14);
-        jPanel1.add(email_txt);
-        email_txt.setBounds(590, 120, 90, 18);
-        jPanel1.add(password_txt);
-        password_txt.setBounds(590, 170, 90, 18);
+
+        email_lbl.setText("Email:");
 
         login_btn.setText("Login");
         login_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,8 +81,6 @@ public class LoginUI extends javax.swing.JFrame {
                 login_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(login_btn);
-        login_btn.setBounds(480, 260, 64, 24);
 
         register_btn.setText("Register");
         register_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +88,11 @@ public class LoginUI extends javax.swing.JFrame {
                 register_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(register_btn);
-        register_btn.setBounds(610, 260, 78, 24);
+
+        login_lbl.setFont(new java.awt.Font("Devanagari Sangam MN", 1, 36)); // NOI18N
+        login_lbl.setText("Login");
+
+        jLabel1.setText("Don't have an account? Register here!");
 
         staff_btn.setText("Login here");
         staff_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -101,12 +100,72 @@ public class LoginUI extends javax.swing.JFrame {
                 staff_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(staff_btn);
-        staff_btn.setBounds(680, 460, 100, 24);
 
         staff_lbl.setText("Already a staff?");
-        jPanel1.add(staff_lbl);
-        staff_lbl.setBounds(580, 470, 100, 14);
+
+        password_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password_txtActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(login_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(staff_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(staff_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email_txt)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(register_btn))
+                    .addComponent(password_txt))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_btn)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(email_lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(password_lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(login_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staff_btn)
+                    .addComponent(staff_lbl))
+                .addGap(15, 15, 15))
+        );
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(440, 30, 330, 440);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,6 +218,14 @@ public class LoginUI extends javax.swing.JFrame {
         this.dispose();      
     }//GEN-LAST:event_staff_btnActionPerformed
 
+    private void email_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_email_txtActionPerformed
+
+    private void password_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password_txtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,11 +234,13 @@ public class LoginUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel email_lbl;
     private javax.swing.JTextField email_txt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton login_btn;
     private javax.swing.JLabel login_lbl;
     private javax.swing.JLabel password_lbl;
-    private javax.swing.JTextField password_txt;
+    private javax.swing.JPasswordField password_txt;
     private javax.swing.JButton register_btn;
     private javax.swing.JPanel right;
     private javax.swing.JButton staff_btn;
