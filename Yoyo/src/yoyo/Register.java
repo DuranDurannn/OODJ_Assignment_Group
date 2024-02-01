@@ -8,13 +8,34 @@ package yoyo;
  *
  * @author Eow
  */
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Register {
 
-    private static int nextUserId = 1; // Initialize the ID counter
+    private static int nextUserId; // Initialize the ID counter
+
+    static {
+        // Initialize nextUserId by reading the last ID from the file
+        try (BufferedReader reader = new BufferedReader(new FileReader("userRegistration.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length > 0) {
+                    int userId = Integer.parseInt(parts[0]);
+                    nextUserId = Math.max(nextUserId, userId);
+                }
+            }
+            // Increment the last ID read from the file
+            nextUserId++;
+        } catch (IOException e) {
+            // Handle the exception (e.g., show an error message)
+            e.printStackTrace();
+        }
+    }
 
     public static boolean registerUser(String username, String password, String confirmPassword, String email, String gender) {
         // Validate if all fields are filled
@@ -54,7 +75,6 @@ public class Register {
     private static void incrementUserId() {
         nextUserId++;
     }
-
 }
 
 
