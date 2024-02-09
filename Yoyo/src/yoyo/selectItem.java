@@ -4,6 +4,7 @@
  */
 package yoyo;
 
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -11,11 +12,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -31,6 +36,7 @@ public class selectItem extends javax.swing.JFrame {
         loadTableData();
         setupListeners();
     }
+    
     private void setupListeners() {
         // Add a listener to the selectItem_tbl for row selection
         selectItem_tbl.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -41,16 +47,12 @@ public class selectItem extends javax.swing.JFrame {
                     handleRowSelection();
                 }
             }
-        });
 
-        // Add an action listener to the addToCart_btn
-        addToCart_btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Call a method to handle adding to cart
-                addToCart();
+            private void handleRowSelection() {
+                selectItem_tbl.setRowSelectionAllowed(true);
             }
         });
+}
 
     private void loadTableData() {
         String FILE_PATH = "furnitureDetails.txt";
@@ -65,17 +67,44 @@ public class selectItem extends javax.swing.JFrame {
 
             Object[] tableLines = br.lines().toArray();
 
-            for (int i = 0; i < tableLines.length; i++) {
-                String line = tableLines[i].toString().trim();
+            for (Object tableLine : tableLines) {
+                String line = tableLine.toString().trim();
                 String[] dataRow = line.split(",");
                 table.addRow(dataRow);
             }
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             Logger.getLogger(selectItem.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         selectItem_tbl.setDefaultEditor(Object.class, null);
     }
+    
+    private void filterTableData(String furnitureType, String priceRange) {
+        // Get the DefaultTableModel of the selectItem_tbl
+        DefaultTableModel selectItemModel = (DefaultTableModel) selectItem_tbl.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(selectItemModel);
+        selectItem_tbl.setRowSorter(sorter);
+
+        List<RowFilter<Object,Object>> filters = new ArrayList<>();
+
+        // Filter by furniture type
+        if (furnitureType != null && !furnitureType.isEmpty() && !furnitureType.equals("All")) {
+            filters.add(RowFilter.regexFilter(furnitureType, 2));
+        }
+
+        // Filter by price range
+        if (priceRange != null && !priceRange.isEmpty() && !priceRange.equals("None")) {
+            String[] range = priceRange.split(" - ");
+            double lowerBound = Double.parseDouble(range[0]);
+            double upperBound = Double.parseDouble(range[1]);
+            filters.add(RowFilter.numberFilter(RowFilter.ComparisonType.AFTER, lowerBound, 3));
+            filters.add(RowFilter.numberFilter(RowFilter.ComparisonType.BEFORE, upperBound, 3));
+        }
+
+        RowFilter<Object,Object> combinedFilter = RowFilter.andFilter(filters);
+        sorter.setRowFilter(combinedFilter);
+}
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,7 +147,7 @@ public class selectItem extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 500));
 
         jLabel1.setText("selectItem");
@@ -127,9 +156,19 @@ public class selectItem extends javax.swing.JFrame {
 
         jLabel3.setText("Price Range");
 
-        furnitureType_cbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        furnitureType_cbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Modern Home", "General", "TV Cover Protector" }));
+        furnitureType_cbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                furnitureType_cboxActionPerformed(evt);
+            }
+        });
 
-        priceRange_cbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "0 - 1999", "2000 - 3999", "4000 - 5999" }));
+        priceRange_cbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "0-1999", "2000-3999", "4000-5999" }));
+        priceRange_cbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priceRange_cboxActionPerformed(evt);
+            }
+        });
 
         selectItem_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,10 +210,17 @@ public class selectItem extends javax.swing.JFrame {
         jLabel5.setText("Total Item");
 
         totalItem_text.setEditable(false);
+        totalItem_text.setText("0");
 
         totalPrice_text.setEditable(false);
+        totalPrice_text.setText("0");
 
         removeFromCart_btn.setText("Remove From Cart");
+        removeFromCart_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFromCart_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -282,12 +328,78 @@ public class selectItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addToCart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCart_btnActionPerformed
-        // TODO add your handling code here:
+            // Get the selected row index from the selectItem_tbl
+        int selectedRowIndex = selectItem_tbl.getSelectedRow();
+
+        // Check if a row is selected
+        if (selectedRowIndex != -1) {
+            // Get the DefaultTableModel of the selectItem_tbl
+            DefaultTableModel selectItemModel = (DefaultTableModel) selectItem_tbl.getModel();
+
+            // Get the values from the selected row
+            String furnitureCode = selectItemModel.getValueAt(selectedRowIndex, 0).toString();
+            String furnitureName = selectItemModel.getValueAt(selectedRowIndex, 1).toString();
+            String type = selectItemModel.getValueAt(selectedRowIndex, 2).toString();
+            String price = selectItemModel.getValueAt(selectedRowIndex, 3).toString();
+
+            // Add the selected item to the cartItem_tbl
+            DefaultTableModel cartModel = (DefaultTableModel) cartItem_tbl.getModel();
+            cartModel.addRow(new Object[]{furnitureCode, furnitureName, type, price});
+
+            // Update total item count and total price
+            int totalItems = cartModel.getRowCount();
+            totalItem_text.setText(String.valueOf(totalItems));
+
+            // Calculate total price
+            int totalPrice = 0;
+            for (int i = 0; i < cartModel.getRowCount(); i++) {
+                totalPrice += Double.parseDouble(cartModel.getValueAt(i, 3).toString());
+            }
+            totalPrice_text.setText(String.valueOf(totalPrice));
+            
+            selectItem_tbl.clearSelection();
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Please select an item to add to cart", "Add To Cart", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_addToCart_btnActionPerformed
 
     private void checkOut_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOut_btnActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Checkout");
     }//GEN-LAST:event_checkOut_btnActionPerformed
+
+    private void removeFromCart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCart_btnActionPerformed
+        int selectedRowIndex = cartItem_tbl.getSelectedRow();
+        
+        if (selectedRowIndex != -1) {
+            DefaultTableModel cartModel = (DefaultTableModel) cartItem_tbl.getModel();
+            cartModel.removeRow(cartItem_tbl.getSelectedRow());
+            
+            // Update total item count and total price
+            int totalItems = cartModel.getRowCount();
+            totalItem_text.setText(String.valueOf(totalItems));
+            
+            // Calculate total price
+            int totalPrice = 0;
+            for (int i = 0; i < cartModel.getRowCount(); i++) {
+                totalPrice += Double.parseDouble(cartModel.getValueAt(i, 3).toString());
+            }
+            totalPrice_text.setText(String.valueOf(totalPrice));
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select an item to remove from cart", "Remove From Cart", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_removeFromCart_btnActionPerformed
+
+    private void furnitureType_cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_furnitureType_cboxActionPerformed
+        String selectedFurnitureType = furnitureType_cbox.getSelectedItem().toString();
+        filterTableData(selectedFurnitureType, null);
+    }//GEN-LAST:event_furnitureType_cboxActionPerformed
+
+    private void priceRange_cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceRange_cboxActionPerformed
+        String selectedPriceRange = furnitureType_cbox.getSelectedItem().toString();
+        filterTableData(selectedPriceRange, null);
+    }//GEN-LAST:event_priceRange_cboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,22 +417,16 @@ public class selectItem extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(selectItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(selectItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(selectItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(selectItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new selectItem().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new selectItem().setVisible(true);
         });
     }
 
