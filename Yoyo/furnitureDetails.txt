@@ -1,21 +1,32 @@
 Furniture ID,furniture,type,price
-F001,Bed Side Table With Double Storage Shelf,Home Decor,2500.0
-F002,Modern Zigzag TV Table,Modern Home,1099.0
-F003,Bedside Table With Storage Shelf,Modern Home,1200.0
-F004,Wall Mounted TV Unit with Cabinet TV Stand Unit with Shelves for Living Room (Brown with White),Modern Home,1400.0
-F005,Modern Home Modern Tv Table (Black Oak),Modern Home,2000.0
-F006,Modern Desk With Side Shelves,Modern Home,2000.0
-F007,Modern TV Table,Modern Home,2000.0
-F008,Side table With Removable Tray,Modern Home,900.0
-F009,Modern Side Table,Modern Home,1600.0
-F010,Modern Home Modern Table Light Brown,Modern Home,900.0
-F011,Contemporary Table,Modern Home,900.0
-F012,CM TV Table,Modern Home,3000.0
-F013,Modern TV and Coffee Table,Modern Home,2000.0
-F015,Rattan Folding Table,Folding Table,350.0
-F018,Medium coffee table,Modern Home,1800.0
-F020,Green black TV unit,Modern Home,2500.0
-F021,TV Covers Protector,Tech,589.0
-F022,LG TV,Tech,5000.0
-F023,Written by CMTV Brown in White,Modern Home,4500.0
-F024,Study desk with open drawer,Modern Home,1199.0
+F001,Bed two side table with storage shelf,Modern Home,2500.0
+F002,Bed side table with storage shelf,Modern Home,1200.0
+F003,Modern Zigzag TV Table,Modern Home,1099.0
+F004,Bedside table with storage shelf,Modern Home,1200.0
+F005,Wall Mounted TV Unit with Cabinet TV Stand Unit with Shelves for Living Room (Brown with White),Modern Home,1400.0
+F006,Modern Home Modern Tv Table - Black Oak,Modern Home,2000.0
+F007,Modern desk with side shelves,Modern Home,2000.0
+F008,Modern TV table,Modern Home,2000.0
+F009,Side table with removable tray,Modern Home,900.0
+F010,Modern Zigzag TV Table,Modern Home,1099.0
+F011,Modern side table,Modern Home,1600.0
+F012,Modern Home Table - 80*45*30cm - Light Brown,Modern Home,900.0
+F013,Contemporary table,Modern Home,900.0
+F014,cm TV table,Modern Home,3000.0
+F016,Modern TV and coffee table,Modern Home,2000.0
+F018,Rattan Folding Table - Biege,Folding Table,350.0
+F019,Modern Zigzag TV Table,Modern Home,1099.0
+F022,Medium coffee table,Modern Home,1800.0
+F023,Bed side table with storage shelf,General,1000.0
+F024,"Home Gallery TV unit made of natural wood,beige",17%
+F025,Green black TV unit,Sarcomisr,2500.0
+F026,tv covers Protector,tv covers Protector,589.0
+F027,Modern TV table,Gad Woods,1300.0
+F028,Contemporary table,Modern Home,1400.0
+F029,One TV from the first Lajshra,Modern Home,5000.0
+F030,cm TV table,Modern Home,3000.0
+F031,One TV from the first Lajshra,Modern Home,5000.0
+F032,cm TV table,Modern Home,3000.0
+F033,tv covers Protector,tv covers Protector,609.0
+F034,tv covers Protector,tv covers Protector,836.0
+F035,tv covers Protector,tv covers Protector,857.0
