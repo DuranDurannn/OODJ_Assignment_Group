@@ -60,9 +60,9 @@ public class EmployeeRegisterUI extends javax.swing.JFrame {
 
         role_lbl.setText("Role:");
 
-        gender_dbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--OPTION--", "male", "female" }));
+        gender_dbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--OPTION--", "Male", "Female" }));
 
-        role_dbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--OPTION--", "admin. officer", "salesperson" }));
+        role_dbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--OPTION--", "Admin", "Officer", "Salesperson" }));
 
         back_btn.setText("Back");
 
@@ -103,7 +103,7 @@ public class EmployeeRegisterUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(register_btn)
                                 .addComponent(role_dbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(username_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                .addComponent(username_txt)
                                 .addComponent(password_txt))
                             .addComponent(confirmPassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))

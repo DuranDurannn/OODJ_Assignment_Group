@@ -18,10 +18,6 @@ public class Main {
         LoginFrame.pack();
         LoginFrame.setLocationRelativeTo(null);
 
-
-
-
-    
         // Call a method to open and read the user registration file
         readUserRegistrationFile();
     }

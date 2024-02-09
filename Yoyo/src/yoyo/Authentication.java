@@ -14,24 +14,30 @@ import java.io.IOException;
 
 public class Authentication {
 
-    public static boolean authenticateUser(String userEmail, String userPassword) {
+    public static String authenticateUser(String userEmail, String userPassword) {
         try (BufferedReader reader = new BufferedReader(new FileReader("userRegistration.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Split the line into email and password
+                // Split the line into email, password and status
                 String[] userData = line.split(",");
-                String storedEmail = userData[3]; // Assuming email is at index 2
-                String storedPassword = userData[2]; // Assuming password is at index 3
+                String storedEmail = userData[3];
+                String storedPassword = userData[2];
+                String storedStatus = userData[5];
 
                 // Check if entered email and password match the stored values
-                if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword)) {
-                    return true; // Authentication successful
-                }
-            }
+                if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword) && storedStatus.equals("C")) {
+                    return "C"; // Authentication successful
+                } else if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword) && storedStatus.equals("S")){
+                    return "S";
+                } else if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword) && storedStatus.equals("O")){
+                    return "O";
+                } else if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword) && storedStatus.equals("A")){
+                    return "A";
+            }   }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false; // Authentication failed
+        return "None"; // Authentication failed
     }
 }
 
