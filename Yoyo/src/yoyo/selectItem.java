@@ -79,7 +79,7 @@ public class selectItem extends javax.swing.JFrame {
         selectItem_tbl.setDefaultEditor(Object.class, null);
     }
     
-    private void filterTableData(String furnitureType, String priceRange) {
+ private void filterTableData(String furnitureType, String priceRange) {
         // Get the DefaultTableModel of the selectItem_tbl
         DefaultTableModel selectItemModel = (DefaultTableModel) selectItem_tbl.getModel();
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(selectItemModel);
@@ -103,7 +103,10 @@ public class selectItem extends javax.swing.JFrame {
 
         RowFilter<Object,Object> combinedFilter = RowFilter.andFilter(filters);
         sorter.setRowFilter(combinedFilter);
-}
+        
+ }
+
+
 
     
     /**
@@ -147,7 +150,7 @@ public class selectItem extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 500));
 
         jLabel1.setText("selectItem");
@@ -214,6 +217,11 @@ public class selectItem extends javax.swing.JFrame {
 
         totalPrice_text.setEditable(false);
         totalPrice_text.setText("0");
+        totalPrice_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalPrice_textActionPerformed(evt);
+            }
+        });
 
         removeFromCart_btn.setText("Remove From Cart");
         removeFromCart_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +314,7 @@ public class selectItem extends javax.swing.JFrame {
                             .addComponent(checkOut_btn)
                             .addComponent(removeFromCart_btn))
                         .addGap(42, 42, 42)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -366,6 +374,13 @@ public class selectItem extends javax.swing.JFrame {
 
     private void checkOut_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOut_btnActionPerformed
         System.out.println("Checkout");
+        
+                                           
+
+
+
+
+
     }//GEN-LAST:event_checkOut_btnActionPerformed
 
     private void removeFromCart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCart_btnActionPerformed
@@ -397,9 +412,13 @@ public class selectItem extends javax.swing.JFrame {
     }//GEN-LAST:event_furnitureType_cboxActionPerformed
 
     private void priceRange_cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceRange_cboxActionPerformed
-        String selectedPriceRange = furnitureType_cbox.getSelectedItem().toString();
+     String selectedPriceRange = furnitureType_cbox.getSelectedItem().toString();
         filterTableData(selectedPriceRange, null);
     }//GEN-LAST:event_priceRange_cboxActionPerformed
+
+    private void totalPrice_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalPrice_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalPrice_textActionPerformed
 
     /**
      * @param args the command line arguments
