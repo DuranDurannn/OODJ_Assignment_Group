@@ -65,6 +65,11 @@ public class EmployeeRegisterUI extends javax.swing.JFrame {
         role_dbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--OPTION--", "Admin", "Officer", "Salesperson" }));
 
         back_btn.setText("Back");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_btnActionPerformed(evt);
+            }
+        });
 
         register_btn.setText("Register");
         register_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +175,13 @@ public class EmployeeRegisterUI extends javax.swing.JFrame {
         String email = email_txt.getText();
         String gender = (String) gender_dbox.getSelectedItem();
         String role = (String) role_dbox.getSelectedItem();
+        
+        username_txt.setText("");
+        password_txt.setText("");
+        confirmPassword_txt.setText("");
+        email_txt.setText("");
+        gender_dbox.setSelectedIndex(0);
+        role_dbox.setSelectedIndex(0);
 
         // Call the registerUser method from UserRegistration class
         boolean registrationSuccessful = EmployeeRegister.registerUser(username, password,confirmPassword, email, gender, role);
@@ -184,6 +196,14 @@ public class EmployeeRegisterUI extends javax.swing.JFrame {
     private void confirmPassword_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassword_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmPassword_txtActionPerformed
+
+    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+        AdminMainMenuUI adminMainMenu = new AdminMainMenuUI();
+        adminMainMenu.setVisible(true);
+        adminMainMenu.pack();
+        adminMainMenu.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_back_btnActionPerformed
 
     /**
      * @param args the command line arguments

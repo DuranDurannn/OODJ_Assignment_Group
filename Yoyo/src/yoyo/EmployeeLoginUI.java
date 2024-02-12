@@ -146,7 +146,7 @@ public class EmployeeLoginUI extends javax.swing.JFrame {
         String userEmail = email_txt.getText();
         String userPassword = password_txt.getText();
         
-        switch (Authentication.authenticateUser(userEmail, userPassword)) {
+        switch (Authentication.autheticateEmployee(userEmail, userPassword)) {
             case "S":{
                     SalespersonMainMenuUI mainMenu = new SalespersonMainMenuUI();
                     mainMenu.setVisible(true);

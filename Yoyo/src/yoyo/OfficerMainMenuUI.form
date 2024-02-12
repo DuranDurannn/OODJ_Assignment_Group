@@ -56,11 +56,26 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="347" max="-2" attributes="0"/>
-                          <Component id="logout_btn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="saleSubmition_btn" min="-2" max="-2" attributes="0"/>
+                              <Component id="personalProfile_btn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="saleApproval_btn" min="-2" max="-2" attributes="0"/>
+                              <Component id="saleStatus_btn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="generateReport_btn" min="-2" max="-2" attributes="0"/>
+                              <Component id="logout_btn" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="363" max="32767" attributes="0"/>
+                  <EmptySpace pref="269" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -69,9 +84,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="211" max="32767" attributes="0"/>
+                  <EmptySpace pref="93" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="personalProfile_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="saleApproval_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="saleSubmition_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="saleStatus_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="generateReport_btn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="logout_btn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,6 +116,31 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logout_btnActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="personalProfile_btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Personal Profile"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="saleApproval_btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sale Approval"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="saleSubmition_btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sale Submition"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="saleStatus_btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sale Status"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="generateReport_btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Generate Report"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -29,6 +29,11 @@ public class OfficerMainMenuUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         logout_btn = new javax.swing.JButton();
+        personalProfile_btn = new javax.swing.JButton();
+        saleApproval_btn = new javax.swing.JButton();
+        saleSubmition_btn = new javax.swing.JButton();
+        saleStatus_btn = new javax.swing.JButton();
+        generateReport_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +48,16 @@ public class OfficerMainMenuUI extends javax.swing.JFrame {
             }
         });
 
+        personalProfile_btn.setText("Personal Profile");
+
+        saleApproval_btn.setText("Sale Approval");
+
+        saleSubmition_btn.setText("Sale Submition");
+
+        saleStatus_btn.setText("Sale Status");
+
+        generateReport_btn.setText("Generate Report");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -53,18 +68,39 @@ public class OfficerMainMenuUI extends javax.swing.JFrame {
                         .addGap(337, 337, 337)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(347, 347, 347)
-                        .addComponent(logout_btn)))
-                .addContainerGap(363, Short.MAX_VALUE))
+                        .addGap(265, 265, 265)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(saleSubmition_btn)
+                            .addComponent(personalProfile_btn))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saleApproval_btn)
+                            .addComponent(saleStatus_btn)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(generateReport_btn)
+                            .addComponent(logout_btn))))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(personalProfile_btn)
+                    .addComponent(saleApproval_btn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saleSubmition_btn)
+                    .addComponent(saleStatus_btn))
+                .addGap(18, 18, 18)
+                .addComponent(generateReport_btn)
+                .addGap(21, 21, 21)
                 .addComponent(logout_btn)
-                .addGap(176, 176, 176))
+                .addGap(156, 156, 156))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,8 +130,13 @@ public class OfficerMainMenuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logout_btnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton generateReport_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logout_btn;
+    private javax.swing.JButton personalProfile_btn;
+    private javax.swing.JButton saleApproval_btn;
+    private javax.swing.JButton saleStatus_btn;
+    private javax.swing.JButton saleSubmition_btn;
     // End of variables declaration//GEN-END:variables
 }
