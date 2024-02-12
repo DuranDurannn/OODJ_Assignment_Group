@@ -42,9 +42,6 @@ public class RegisterUI extends javax.swing.JFrame {
         gender_dbox = new javax.swing.JComboBox<>();
         confirmPassword_txt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        address_txt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -74,7 +71,7 @@ public class RegisterUI extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        register_lbl.setFont(new java.awt.Font("Devanagari Sangam MN", 1, 36)); // NOI18N
+        register_lbl.setFont(new java.awt.Font("Devanagari Sangam MN", 0, 36)); // NOI18N
         register_lbl.setText("Customer Registration");
 
         username_lbl.setBackground(new java.awt.Color(255, 255, 255));
@@ -89,7 +86,7 @@ public class RegisterUI extends javax.swing.JFrame {
         gender_lbl.setBackground(new java.awt.Color(255, 255, 255));
         gender_lbl.setText("Gender:");
 
-        back_btn.setText("Back to Login");
+        back_btn.setText("Back");
         back_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back_btnActionPerformed(evt);
@@ -110,11 +107,6 @@ public class RegisterUI extends javax.swing.JFrame {
         });
 
         gender_dbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--OPTION--", "male", "female" }));
-        gender_dbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gender_dboxActionPerformed(evt);
-            }
-        });
 
         confirmPassword_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,130 +116,90 @@ public class RegisterUI extends javax.swing.JFrame {
 
         jLabel1.setText("Re-enter Password:");
 
-        jLabel2.setText("Address:");
-
-        jLabel3.setText("Already a member? ");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(back_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(120, 120, 120))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(register_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(221, 221, 221)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(password_lbl)
+                                    .addComponent(username_lbl)
+                                    .addComponent(email_lbl)
+                                    .addComponent(gender_lbl)
+                                    .addComponent(jLabel1))
+                                .addGap(128, 128, 128)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(password_txt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(username_txt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(gender_dbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(email_txt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(confirmPassword_txt, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(register_lbl)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(password_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(gender_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(6, 6, 6))
-                            .addComponent(email_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(confirmPassword_txt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(username_txt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(email_txt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(password_txt)
-                            .addComponent(gender_dbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(address_txt))))
-                .addGap(187, 187, 187))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(316, 316, 316)
-                .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(231, 231, 231)
+                        .addComponent(back_btn)
+                        .addGap(105, 105, 105)
+                        .addComponent(register_btn)))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(76, 76, 76)
                 .addComponent(register_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(username_lbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(password_lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(email_lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(gender_lbl))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(username_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(confirmPassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(gender_dbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back_btn)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(username_lbl)
-                    .addComponent(username_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password_lbl))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(confirmPassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email_lbl))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(address_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gender_dbox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gender_lbl))
-                .addGap(18, 18, 18)
-                .addComponent(register_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                    .addComponent(register_btn))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmPassword_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassword_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmPassword_txtActionPerformed
-
     private void username_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_username_txtActionPerformed
-
-    private void register_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_btnActionPerformed
-        String username = username_txt.getText();
-        String password = password_txt.getText();
-        String confirmPassword = confirmPassword_txt.getText();
-        String email = email_txt.getText();
-        String address = address_txt.getText();
-        String gender = (String) gender_dbox.getSelectedItem();
-
-        // Call the registerUser method from UserRegistration class
-        boolean registrationSuccessful = Register.registerUser(username, password, confirmPassword, email, address, gender);
-
-        if (registrationSuccessful) {
-            // Optionally, you can perform additional actions if registration is successful
-            // For example, show a success message, navigate to another screen, etc.
-            System.out.println("Registration successful! Additional actions can be performed here.");
-        }
-
-    }//GEN-LAST:event_register_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         LoginUI LoginFrame = new LoginUI();
@@ -257,9 +209,27 @@ public class RegisterUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_back_btnActionPerformed
 
-    private void gender_dboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gender_dboxActionPerformed
+    private void register_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_btnActionPerformed
+        String username = username_txt.getText();
+        String password = password_txt.getText();
+        String confirmPassword = confirmPassword_txt.getText();
+        String email = email_txt.getText();
+        String gender = (String) gender_dbox.getSelectedItem();
+
+        // Call the registerUser method from UserRegistration class
+        boolean registrationSuccessful = Register.registerUser(username, password, confirmPassword, email, gender);
+
+        if (registrationSuccessful) {
+            // Optionally, you can perform additional actions if registration is successful
+            // For example, show a success message, navigate to another screen, etc.
+            System.out.println("Registration successful! Additional actions can be performed here.");
+        }
+    
+    }//GEN-LAST:event_register_btnActionPerformed
+
+    private void confirmPassword_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassword_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gender_dboxActionPerformed
+    }//GEN-LAST:event_confirmPassword_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,7 +237,6 @@ public class RegisterUI extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField address_txt;
     private javax.swing.JButton back_btn;
     private javax.swing.JTextField confirmPassword_txt;
     private javax.swing.JLabel email_lbl;
@@ -277,8 +246,6 @@ public class RegisterUI extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel password_lbl;
     private javax.swing.JTextField password_txt;

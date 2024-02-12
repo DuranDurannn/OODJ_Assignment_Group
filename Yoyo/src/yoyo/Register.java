@@ -38,9 +38,9 @@ public class Register {
         }
     }
 
-    public static boolean registerUser(String username, String password, String confirmPassword, String email, String address, String gender) {
+    public static boolean registerUser(String username, String password, String confirmPassword, String email, String gender) {
         // Validate if all fields are filled
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || address.isEmpty() || gender.equals("--OPTION--")) {
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || gender.equals("--OPTION--")) {
             // Display an error message or handle it according to your requirements
             JOptionPane.showMessageDialog(null, "Registration fail, please fill in all the fields", "Uh-oh!", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -78,7 +78,7 @@ public class Register {
         // Save the data to the text file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("userRegistration.txt", true))) {
             // Append the new user data to the file with the formatted ID
-            writer.write(formattedUserId + "," + username + "," + password + "," + email + "," + address + "," + gender + "," + "customer");
+            writer.write(formattedUserId + "," + username + "," + password + "," + email + "," + gender + "," + "customer");
             writer.newLine(); // Add a new line for the next entry
             JOptionPane.showMessageDialog(null, "Registration Successfull!");
 
