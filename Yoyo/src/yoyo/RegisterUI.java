@@ -145,7 +145,7 @@ public class RegisterUI extends javax.swing.JFrame {
                         .addComponent(back_btn)
                         .addGap(105, 105, 105)
                         .addComponent(register_btn)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
