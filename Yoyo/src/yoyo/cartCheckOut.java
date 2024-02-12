@@ -4,25 +4,37 @@
  */
 package yoyo;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eow
  */
 public class cartCheckOut extends javax.swing.JFrame {
-
-    /**
-     * Creates new form cartCheckOut
-     * @param totalPrice
-     */
-    public cartCheckOut(java.lang.Double totalPrice) {
+    
+    public cartCheckOut(Object[][] data) {
         initComponents();
         
-        // Set the total price in the totalAmount_txt field
-        totalAmount_txt.setText(String.valueOf(totalPrice));
-        totalAmount_txt.setEditable(false); // Make it non-editable
-    
+        // Populate cartCheckOut_tbl with the data from cartItem_tbl
+        DefaultTableModel model = (DefaultTableModel) cartCheckOut_tbl.getModel();
+        for (Object[] row : data) {
+            model.addRow(row);
+        }
+        
+        // Calculate and set total amount
+        double totalAmount = 0;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            Object value = model.getValueAt(i, 3);
+            if (value != null) {
+                totalAmount += Double.parseDouble(value.toString());
+            }
+        }
+        totalAmount_txt.setText(String.valueOf(totalAmount));
+        totalAmount_txt.setEditable(false);
     }
-
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +52,8 @@ public class cartCheckOut extends javax.swing.JFrame {
         payAmount_lbl = new javax.swing.JLabel();
         payNow_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        cartCheckOut_tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,50 +73,74 @@ public class cartCheckOut extends javax.swing.JFrame {
         payAmount_lbl.setText("pay amount: RM");
 
         payNow_btn.setText("Pay now");
+        payNow_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payNow_btnActionPerformed(evt);
+            }
+        });
 
         back_btn.setText("Back");
+
+        cartCheckOut_tbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Furniture Code", "Furniture Name", "Type", "Price"
+            }
+        ));
+        jScrollPane1.setViewportView(cartCheckOut_tbl);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cartCheckout_lbl)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(payAmount_lbl)
-                                .addComponent(totalAmount_lbl))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(totalAmount_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                                .addComponent(payAmount_txt))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(back_btn)
-                        .addGap(74, 74, 74)
-                        .addComponent(payNow_btn)))
-                .addGap(323, 323, 323))
+                        .addGap(352, 352, 352)
+                        .addComponent(cartCheckout_lbl))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(back_btn)
+                                .addGap(31, 31, 31)
+                                .addComponent(payNow_btn))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(payAmount_lbl)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(payAmount_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(totalAmount_lbl)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(totalAmount_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(cartCheckout_lbl)
-                .addGap(70, 70, 70)
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalAmount_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalAmount_lbl))
-                .addGap(73, 73, 73)
+                    .addComponent(totalAmount_lbl)
+                    .addComponent(totalAmount_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(payAmount_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payAmount_lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                    .addComponent(payAmount_lbl)
+                    .addComponent(payAmount_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(payNow_btn)
-                    .addComponent(back_btn))
-                .addGap(173, 173, 173))
+                    .addComponent(back_btn)
+                    .addComponent(payNow_btn))
+                .addGap(121, 121, 121))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,6 +160,30 @@ public class cartCheckOut extends javax.swing.JFrame {
     private void totalAmount_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmount_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_totalAmount_txtActionPerformed
+
+    private void payNow_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payNow_btnActionPerformed
+                                              
+    // Get the pay amount entered by the user
+    double payAmount = Double.parseDouble(payAmount_txt.getText());
+    
+    // Get the total amount from the text field
+    double totalAmount = Double.parseDouble(totalAmount_txt.getText());
+    
+    // Check if pay amount is sufficient
+    if (payAmount >= totalAmount) {
+        // Perform payment processing here
+        // For example, display a message dialog
+        JOptionPane.showMessageDialog(this, "Payment successful! Thank you for your purchase.");
+        
+        // Close the cartCheckOut window after successful payment
+        dispose();
+    } else {
+        // If pay amount is insufficient, display an error message
+        JOptionPane.showMessageDialog(this, "Insufficient pay amount. Please enter a valid amount.");
+    }
+
+
+    }//GEN-LAST:event_payNow_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,8 +222,10 @@ public class cartCheckOut extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_btn;
+    private javax.swing.JTable cartCheckOut_tbl;
     private javax.swing.JLabel cartCheckout_lbl;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel payAmount_lbl;
     private javax.swing.JTextField payAmount_txt;
     private javax.swing.JButton payNow_btn;

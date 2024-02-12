@@ -375,14 +375,23 @@ public class selectItem extends javax.swing.JFrame {
     private void checkOut_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOut_btnActionPerformed
         System.out.println("Checkout");
                                                     
-    // Get the total price from the totalPrice_text field
-    Double totalPrice = Double.valueOf(totalPrice_text.getText());
+                 
+    // Get the data from cartItem_tbl
+    DefaultTableModel cartModel = (DefaultTableModel) cartItem_tbl.getModel();
+    Object[][] data = new Object[cartModel.getRowCount()][cartModel.getColumnCount()];
+    for (int i = 0; i < cartModel.getRowCount(); i++) {
+        for (int j = 0; j < cartModel.getColumnCount(); j++) {
+            data[i][j] = cartModel.getValueAt(i, j);
+        }
+    }
     
-    // Create an instance of the cartCheckOut frame and pass the total price to its constructor
-    cartCheckOut cartCheckoutFrame = new cartCheckOut(totalPrice);
+    // Create an instance of cartCheckOut and pass the data
+    cartCheckOut cartCheckoutFrame = new cartCheckOut(data);
     
     // Display the cartCheckOut frame
     cartCheckoutFrame.setVisible(true);
+
+
 
 
         
