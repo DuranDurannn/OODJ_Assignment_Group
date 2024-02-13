@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package yoyo;
 
-/**
- *
- * @author Eow
- */
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Authentication {
@@ -20,9 +14,14 @@ public class Authentication {
             while ((line = reader.readLine()) != null) {
                 // Split the line into email, password and status
                 String[] userData = line.split(",");
-                String storedEmail = userData[3];
+                String storedUsername = userData[1];
                 String storedPassword = userData[2];
+                String storedEmail = userData[3];
                 String storedStatus = userData[5];
+                
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("currentUser.txt"))) {
+                    writer.write(storedUsername + "," + storedPassword + "," + storedEmail + "," + storedStatus);
+                }
 
                 // Check if entered email and password match the stored values
                 if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword) && storedStatus.equals("C")) {
@@ -35,15 +34,21 @@ public class Authentication {
         return "None"; // Authentication failed
     }
     
-    public static String autheticateEmployee(String userEmail, String userPassword) {
+    public static String autheticateEmployee(String userEmail, String userPassword) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader("employeeRegistration.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 // Split the line into email, password and status
                 String[] userData = line.split(",");
-                String storedEmail = userData[3];
+                String storedUsername = userData[1];
                 String storedPassword = userData[2];
+                String storedEmail = userData[3];
+                String storedGender = userData[4];
                 String storedStatus = userData[5];
+                
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("currentUser.txt"))) {
+                    writer.write(storedUsername + "," + storedPassword + "," + storedEmail + "," + storedGender + "," + storedStatus);
+                }
 
                 // Check if entered email and password match the stored values
                 if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword) && storedStatus.equals("S")){
@@ -57,7 +62,7 @@ public class Authentication {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return "None"; // Authentication failed
     }
 }
-
