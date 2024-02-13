@@ -165,60 +165,56 @@ public class cartCheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_totalAmount_txtActionPerformed
 
     private void payNow_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payNow_btnActionPerformed
-                                         
-        // Get the pay amount entered by the user
-        double payAmount = Double.parseDouble(payAmount_txt.getText());
+                                            
+    // Get the pay amount entered by the user
+    double payAmount = Double.parseDouble(payAmount_txt.getText());
+    
+    // Get the total amount from the text field
+    double totalAmount = Double.parseDouble(totalAmount_txt.getText());
+    
+    // Check if pay amount is sufficient
+    if (payAmount >= totalAmount) {
+        // Perform payment processing here
+        // For example, display a message dialog
+        JOptionPane.showMessageDialog(this, "Payment successful! Thank you for your purchase.");
         
-        // Get the total amount from the text field
-        double totalAmount = Double.parseDouble(totalAmount_txt.getText());
-        
-        // Check if pay amount is sufficient
-        if (payAmount >= totalAmount) {
-            // Perform payment processing here
-            // For example, display a message dialog
-            JOptionPane.showMessageDialog(this, "Payment successful! Thank you for your purchase.");
-            
-            // Save data to pendingQuotation.txt
-            DefaultTableModel model = (DefaultTableModel) cartCheckOut_tbl.getModel();
-            int rowCount = model.getRowCount();
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("pendingQuotation.txt", true))) {
-                for (int i = 0; i < rowCount; i++) {
-                    String furnitureCode = model.getValueAt(i, 0).toString();
-                    String furnitureName = model.getValueAt(i, 1).toString();
-                    String type = model.getValueAt(i, 2).toString();
-                    double price = Double.parseDouble(model.getValueAt(i, 3).toString());
-                    writer.write(furnitureCode + "," + furnitureName + "," + type + "," + price);
-                    writer.newLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error saving data to pendingQuotation.txt");
-            }
-            
-            // Add data to SalesQuotation table
-            SalesQuotation salesQuotation = new SalesQuotation();
+        // Save data to pendingQuotation.txt
+        DefaultTableModel model = (DefaultTableModel) cartCheckOut_tbl.getModel();
+        int rowCount = model.getRowCount();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pendingQuotation.txt", true))) {
             for (int i = 0; i < rowCount; i++) {
-                Object[] rowData = {
-                    model.getValueAt(i, 0),
-                    model.getValueAt(i, 1),
-                    model.getValueAt(i, 2),
-                    model.getValueAt(i, 3)
-                };
-                salesQuotation.addRowToTable(rowData);
+                String furnitureCode = model.getValueAt(i, 0).toString();
+                String furnitureName = model.getValueAt(i, 1).toString();
+                String type = model.getValueAt(i, 2).toString();
+                double price = Double.parseDouble(model.getValueAt(i, 3).toString());
+                // Append ",pending" to the data before writing it to the file
+                String line = furnitureCode + "," + furnitureName + "," + type + "," + price + ",pending";
+                writer.write(line);
+                writer.newLine();
             }
-            
-            // Close the cartCheckOut window after successful payment
-            dispose();
-        } else {
-            // If pay amount is insufficient, display an error message
-            JOptionPane.showMessageDialog(this, "Insufficient pay amount. Please enter a valid amount.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error saving data to pendingQuotation.txt");
         }
-                                             
-
-   
-
-
-
+        
+        // Add data to SalesQuotation table
+        SalesQuotation salesQuotation = new SalesQuotation();
+        for (int i = 0; i < rowCount; i++) {
+            Object[] rowData = {
+                model.getValueAt(i, 0),
+                model.getValueAt(i, 1),
+                model.getValueAt(i, 2),
+                model.getValueAt(i, 3)
+            };
+            salesQuotation.addRowToTable(rowData);
+        }
+        
+        // Close the cartCheckOut window after successful payment
+        dispose();
+    } else {
+        // If pay amount is insufficient, display an error message
+        JOptionPane.showMessageDialog(this, "Insufficient pay amount. Please enter a valid amount.");
+    }
 
 
 

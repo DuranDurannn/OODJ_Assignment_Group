@@ -38,31 +38,25 @@ public class SalesQuotation extends javax.swing.JFrame {
      * Load data from pendingQuotation.txt and add it to the salesQuotation_tbl table
      */
     private void loadPendingQuotation() {
-        DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
-        String line;
-        try (BufferedReader reader = new BufferedReader(new FileReader("pendingQuotation.txt"))) {
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 4) {
-                    Object[] rowData = {parts[0], parts[1], parts[2], Double.parseDouble(parts[3])};
-                    model.addRow(rowData);
-                }
+    DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
+    String line;
+    try (BufferedReader reader = new BufferedReader(new FileReader("pendingQuotation.txt"))) {
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length == 5) { // Check if the line has 5 parts (assuming the last part is the status)
+                Object[] rowData = {parts[0], parts[1], parts[2], Double.parseDouble(parts[3]), parts[4]}; // Include the status in the last column
+                model.addRow(rowData);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error loading pending quotation data from file.");
         }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error loading pending quotation data from file.");
     }
-
-    // Existing code...
-
-
-
+}
 
     
 
-
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +70,7 @@ public class SalesQuotation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         salesQuotation_tbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        sendApproval_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,17 +82,17 @@ public class SalesQuotation extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Furniture Code", "Furniture Name", "Type", "Price"
+                "Furniture Code", "Furniture Name", "Type", "Price", "Status"
             }
         ));
         jScrollPane1.setViewportView(salesQuotation_tbl);
 
         jLabel1.setText("Sales quotation");
 
-        jButton1.setText("submit approval");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        sendApproval_btn.setText("Send Approval");
+        sendApproval_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                sendApproval_btnActionPerformed(evt);
             }
         });
 
@@ -113,9 +107,9 @@ public class SalesQuotation extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
-                .addComponent(jButton1)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGap(101, 101, 101)
+                .addComponent(sendApproval_btn)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,8 +122,8 @@ public class SalesQuotation extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(172, 172, 172))))
+                        .addComponent(sendApproval_btn)
+                        .addGap(187, 187, 187))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,9 +140,9 @@ public class SalesQuotation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void sendApproval_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendApproval_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_sendApproval_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,10 +180,10 @@ public class SalesQuotation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable salesQuotation_tbl;
+    private javax.swing.JButton sendApproval_btn;
     // End of variables declaration//GEN-END:variables
 }
