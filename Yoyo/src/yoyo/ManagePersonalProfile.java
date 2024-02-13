@@ -245,6 +245,12 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Passwords do not match or new password is empty.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        AdminMainMenuUI adminMenu = new AdminMainMenuUI();
+        adminMenu.setVisible(true);
+        adminMenu.pack();
+        adminMenu.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_save_btnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
