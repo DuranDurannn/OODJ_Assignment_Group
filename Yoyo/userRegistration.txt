@@ -1,11 +1,11 @@
 000,Eow,1234,Eow@gmail.com,male,C
-001,Duran,123,duran@gmail.com,female,S
-002,Sean,123,sean@gmail.com,female,O
+001,Duran,123,duran@gmail.com,female,C
+002,Sean,123,sean@gmail.com,female,C
 003,SUS,123,sus@gmail.com,female,C
 004,berysus,123,berysus@gmail.com,male,C
 006,aaa,123,aaa@gmail.com,female,C
 007,bbb,bbb,bbb@gmail.com,male,C
 008,ccc,ccc,ccc@gmail.com,female,C
-009,admin,a123,admin@gmail.com,female,A
-010,jk,123,a@a.com,Female,Officer
-011,b,b,bbb@bbb,Male,Admin
+009,admin,a123,admin@gmail.com,female,C
+010,jk,123,a@a.com,Female,C
+011,b,b,bbb@bbb,Male,C

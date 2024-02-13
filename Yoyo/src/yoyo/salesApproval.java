@@ -28,24 +28,21 @@ public class salesApproval extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) pendingApproval_tbl.getModel();
         model.setRowCount(0); // Clear existing rows
 
-        try (BufferedReader pendingReader = new BufferedReader(new FileReader("pendingApproval.txt"));
-             BufferedReader loggedInUserReader = new BufferedReader(new FileReader("loggedInUser.txt"))) {
-
-            // Read the user's email from loggedInUser.txt
-            String userEmail = loggedInUserReader.readLine();
+        try (BufferedReader pendingReader = new BufferedReader(new FileReader("pendingApproval.txt"))) {
 
             String pendingLine;
             while ((pendingLine = pendingReader.readLine()) != null) {
                 pendingLine = pendingLine.trim(); // Trim leading and trailing spaces
                 if (!pendingLine.isEmpty()) { // Skip empty lines
                     String[] pendingParts = pendingLine.split(",");
-                    if (pendingParts.length == 5) {
+                    if (pendingParts.length == 6) {
                         // Extract data from the parts array
-                        String furnitureCode = pendingParts[0];
-                        String furnitureName = pendingParts[1];
-                        String type = pendingParts[2];
-                        double price = Double.parseDouble(pendingParts[3]);
-                        String status = pendingParts[4];
+                        String userEmail = pendingParts[0];
+                        String furnitureCode = pendingParts[1];
+                        String furnitureName = pendingParts[2];
+                        String type = pendingParts[3];
+                        double price = Double.parseDouble(pendingParts[4]);
+                        String status = pendingParts[5];
 
                         // Add the extracted data to the table, including the user's email
                         model.addRow(new Object[]{userEmail, furnitureCode, furnitureName, type, price, status});
