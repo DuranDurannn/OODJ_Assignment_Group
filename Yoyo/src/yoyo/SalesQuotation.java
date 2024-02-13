@@ -12,7 +12,9 @@ import javax.swing.table.DefaultTableModel;
  */
 import javax.swing.table.DefaultTableModel;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -52,7 +54,7 @@ public class SalesQuotation extends javax.swing.JFrame {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error loading pending quotation data from file.");
     }
-}
+    }
 
     
 
@@ -141,7 +143,81 @@ public class SalesQuotation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendApproval_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendApproval_btnActionPerformed
-        // TODO add your handling code here:
+                                        
+                                                   
+        // Get the selected row index
+        int selectedRow = salesQuotation_tbl.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to send approval.");
+            return;
+        }
+
+        // Get the table model
+        DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
+
+        // Get the data from the selected row
+        Object[] rowData = {
+            model.getValueAt(selectedRow, 0),
+            model.getValueAt(selectedRow, 1),
+            model.getValueAt(selectedRow, 2),
+            model.getValueAt(selectedRow, 3),
+            "unapproved" // Set status to "unapproved" in SalesApproval frame
+        };
+
+        // Remove the row from salesQuotation_tbl
+        model.removeRow(selectedRow);
+
+        // Write data to pendingApproval.txt
+        writeDataToPendingApproval(rowData);
+
+        // Remove data from pendingQuotation.txt
+        removeDataFromPendingQuotation(selectedRow);
+    }                                                
+
+    /**
+     * Write data to pendingApproval.txt
+     * @param rowData Array of objects representing the data of the row to be added
+     */
+    private void writeDataToPendingApproval(Object[] rowData) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pendingApproval.txt", true))) {
+            for (Object data : rowData) {
+                writer.write(data.toString());
+                writer.write(",");
+            }
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error writing to pendingApproval.txt.");
+        }
+    }
+
+    /**
+     * Remove data from pendingQuotation.txt
+     * @param selectedRow The index of the row to be removed
+     */
+    private void removeDataFromPendingQuotation(int selectedRow) {
+        DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
+        try (BufferedReader reader = new BufferedReader(new FileReader("pendingQuotation.txt"))) {
+            String line;
+            StringBuilder newFileContent = new StringBuilder();
+            int count = 0;
+            while ((line = reader.readLine()) != null) {
+                if (count != selectedRow) {
+                    newFileContent.append(line);
+                    newFileContent.append("\n");
+                }
+                count++;
+            }
+            // Write the updated content back to pendingQuotation.txt
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("pendingQuotation.txt"))) {
+                writer.write(newFileContent.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error removing data from pendingQuotation.txt.");
+        }
+      
+
     }//GEN-LAST:event_sendApproval_btnActionPerformed
 
     /**
