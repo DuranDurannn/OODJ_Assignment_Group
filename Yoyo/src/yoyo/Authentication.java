@@ -12,19 +12,28 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Authentication {
 
     public static boolean authenticateUser(String userEmail, String userPassword) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("userRegistration.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("userRegistration.txt"));
+             BufferedWriter writer = new BufferedWriter(new FileWriter("loggedInUser.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 // Split the line into email and password
                 String[] userData = line.split(",");
-                String storedEmail = userData[3]; // Assuming email is at index 2
-                String storedPassword = userData[2]; // Assuming password is at index 3
+                String storedEmail = userData[3].trim(); // Assuming email is at index 3
+                String storedPassword = userData[2].trim(); // Assuming password is at index 2
 
                 // Check if entered email and password match the stored values
                 if (userEmail.equals(storedEmail) && userPassword.equals(storedPassword)) {
+                    // Write the user's email to the loggedInUser.txt file
+                    writer.write(userEmail);
                     return true; // Authentication successful
                 }
             }
@@ -34,4 +43,5 @@ public class Authentication {
         return false; // Authentication failed
     }
 }
+
 

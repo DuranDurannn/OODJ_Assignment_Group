@@ -4,6 +4,9 @@
  */
 package yoyo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author Eow
@@ -192,19 +195,29 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_register_btnActionPerformed
 
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
-        String userEmail = email_txt.getText();
-        String userPassword = password_txt.getText();
-        if (Authentication.authenticateUser(userEmail, userPassword)) {
-            // If authentication is successful, navigate to the MainMenu
-            MainMenuUI mainMenu = new MainMenuUI();
-            mainMenu.setVisible(true);
-            mainMenu.pack();
-            mainMenu.setLocationRelativeTo(null);
-            this.dispose(); // Close the Login frame
-        } else {
-            // If authentication fails, display an error message or handle it accordingly
-            System.out.println("Invalid email or password. Please try again.");
+                                                
+    String userEmail = email_txt.getText();
+    String userPassword = password_txt.getText();
+    if (Authentication.authenticateUser(userEmail, userPassword)) {
+        // Write the user's email to loggedInUser.txt
+        try (FileWriter writer = new FileWriter("loggedInUser.txt")) {
+            writer.write(userEmail);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        
+        // If authentication is successful, navigate to the MainMenu
+        MainMenuUI mainMenu = new MainMenuUI();
+        mainMenu.setVisible(true);
+        mainMenu.pack();
+        mainMenu.setLocationRelativeTo(null);
+        this.dispose(); // Close the Login frame
+    } else {
+        // If authentication fails, display an error message or handle it accordingly
+        System.out.println("Invalid email or password. Please try again.");
+    }
+
+
     
         
     
