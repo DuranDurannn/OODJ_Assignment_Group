@@ -24,28 +24,43 @@ public class salesApproval extends javax.swing.JFrame {
     }
 
     // Method to read data from "pendingApproval.txt" and display it in the table
-   private void displayPendingApproval() {
+private void displayPendingApproval() {
     DefaultTableModel model = (DefaultTableModel) pendingApproval_tbl.getModel();
     model.setRowCount(0); // Clear existing rows
 
-    try (BufferedReader reader = new BufferedReader(new FileReader("pendingApproval.txt"))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            line = line.trim(); // Trim leading and trailing spaces
-            if (!line.isEmpty()) { // Skip empty lines
-                String[] parts = line.split(",");
-                if (parts.length == 5) {
+    try (BufferedReader pendingReader = new BufferedReader(new FileReader("pendingApproval.txt"));
+         BufferedReader userReader = new BufferedReader(new FileReader("userRegistration.txt"))) {
+
+        String pendingLine;
+        while ((pendingLine = pendingReader.readLine()) != null) {
+            pendingLine = pendingLine.trim(); // Trim leading and trailing spaces
+            if (!pendingLine.isEmpty()) { // Skip empty lines
+                String[] pendingParts = pendingLine.split(",");
+                if (pendingParts.length == 5) {
                     // Extract data from the parts array
-                    String furnitureCode = parts[0];
-                    String furnitureName = parts[1];
-                    String type = parts[2];
-                    double price = Double.parseDouble(parts[3]);
-                    String status = parts[4];
-                    // Add the extracted data to the table
-                    model.addRow(new Object[]{furnitureCode, furnitureName, type, price, status});
+                    String furnitureCode = pendingParts[0];
+                    String furnitureName = pendingParts[1];
+                    String type = pendingParts[2];
+                    double price = Double.parseDouble(pendingParts[3]);
+                    String status = pendingParts[4];
+
+                    // Read user's email from userRegistration.txt
+                    String userLine;
+                    if ((userLine = userReader.readLine()) != null) {
+                        String[] userParts = userLine.split(","); 
+                        if (userParts.length >= 4) { // Ensure there is at least four fields
+                            String userEmail = userParts[3].trim(); // Trim whitespace
+                            // Add the extracted data to the table
+                            model.addRow(new Object[]{userEmail, furnitureCode, furnitureName, type, price, status});
+                        } else {
+                            System.out.println("Invalid line in userRegistration.txt: " + userLine);
+                        }
+                    } else {
+                        System.out.println("No more lines in userRegistration.txt");
+                    }
                 } else {
                     // Handle invalid lines
-                    System.out.println("Invalid line: " + line);
+                    System.out.println("Invalid line in pendingApproval.txt: " + pendingLine);
                 }
             }
         }
@@ -53,11 +68,6 @@ public class salesApproval extends javax.swing.JFrame {
         e.printStackTrace();
     }
 }
-
-
-
-
-
 
 
 
@@ -75,7 +85,6 @@ public class salesApproval extends javax.swing.JFrame {
         pendingApproval_tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -85,7 +94,7 @@ public class salesApproval extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Furniture Code", "Furniture Name", "Type", "Price", "Status"
+                "Customer ID", "Furniture Code", "Furniture Name", "Type", "Price", "Status"
             }
         ));
         jScrollPane1.setViewportView(pendingApproval_tbl);
