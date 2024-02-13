@@ -1,1 +1,3 @@
-001,User,1234,User@gmail.com,male,Admin
+001,USER,1234,USER@gmail.com,Female,A
+002,abc,332211,aaa@aaa,Male,O
+003,Darren,123,duran@gmail.com,Male,A

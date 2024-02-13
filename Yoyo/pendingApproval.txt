@@ -1,3 +1,5 @@
 F003,Modern Zigzag TV Table,Modern Home,1099.0,unapproved,
 F005,Wall Mounted TV Unit with Cabinet TV Stand Unit with Shelves for Living Room (Brown with White),Modern Home,1400.0,unapproved,
 F008,Modern TV table,Modern Home,2000.0,unapproved,
+F007,Modern desk with side shelves,Modern Home,2000.0,unapproved,
+F009,Side table with removable tray,Modern Home,900.0,unapproved,
