@@ -4,18 +4,64 @@
  */
 package yoyo;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eow
  */
+import javax.swing.table.DefaultTableModel;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 public class SalesQuotation extends javax.swing.JFrame {
 
+    // Existing code...
+
     /**
-     * Creates new form SalesQuotation
+     * Add a row to the table in SalesQuotation
+     * @param rowData Array of objects representing the data of the row to be added
      */
-    public SalesQuotation() {
+    public SalesQuotation(){
         initComponents();
+        loadPendingQuotation(); // Call method to load pending quotation data
     }
+
+    public void addRowToTable(Object[] rowData) {
+        DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
+        model.addRow(rowData);
+    }
+
+    /**
+     * Load data from pendingQuotation.txt and add it to the salesQuotation_tbl table
+     */
+    private void loadPendingQuotation() {
+        DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
+        String line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("pendingQuotation.txt"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 4) {
+                    Object[] rowData = {parts[0], parts[1], parts[2], Double.parseDouble(parts[3])};
+                    model.addRow(rowData);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error loading pending quotation data from file.");
+        }
+    }
+
+    // Existing code...
+
+
+
+
+    
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +74,7 @@ public class SalesQuotation extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        salesQuotation_tbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -37,18 +83,15 @@ public class SalesQuotation extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        salesQuotation_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Order ID", "Customer ID", "Furniture", "Price"
+                "Furniture Code", "Furniture Name", "Type", "Price"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(salesQuotation_tbl);
 
         jLabel1.setText("Sales quotation");
 
@@ -147,6 +190,6 @@ public class SalesQuotation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable salesQuotation_tbl;
     // End of variables declaration//GEN-END:variables
 }
