@@ -79,7 +79,7 @@ public class EmployeeLoginUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(343, 343, 343)
                         .addComponent(employeeLogin_lbl)))
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +98,7 @@ public class EmployeeLoginUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back_btn)
                     .addComponent(login_btn))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

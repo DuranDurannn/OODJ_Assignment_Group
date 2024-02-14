@@ -92,7 +92,7 @@
                           <Component id="employeeLogin_lbl" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="313" max="32767" attributes="0"/>
+                  <EmptySpace pref="331" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,7 +116,7 @@
                       <Component id="back_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="login_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="218" max="32767" attributes="0"/>
+                  <EmptySpace pref="239" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
