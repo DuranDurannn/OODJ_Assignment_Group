@@ -42,12 +42,17 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
                     String userID = allEmployee_tbl.getValueAt(selectedRowIndex, 0).toString();
                     String username = allEmployee_tbl.getValueAt(selectedRowIndex, 1).toString();
                     String email = allEmployee_tbl.getValueAt(selectedRowIndex, 2).toString();
-                    String gender = allEmployee_tbl.getValueAt(selectedRowIndex, 3).toString();
-                    String role = allEmployee_tbl.getValueAt(selectedRowIndex, 4).toString();
+                    String address = allEmployee_tbl.getValueAt(selectedRowIndex, 3).toString();
+                    String phoneNumber = allEmployee_tbl.getValueAt(selectedRowIndex, 4).toString();
+                    String gender = allEmployee_tbl.getValueAt(selectedRowIndex, 5).toString();
+                    String role = allEmployee_tbl.getValueAt(selectedRowIndex, 6).toString();
 
                     // Set the retrieved data to the text fields and combo boxes
                     username_txt.setText(username);
                     email_txt.setText(email);
+                    address_txt.setText(address);
+                    phoneNumber_txt.setText(phoneNumber);
+                    
                     gender_cbox.setSelectedItem(gender);
                     // Set the role based on the first letter of the status
                     switch (role.charAt(0)) {
@@ -75,7 +80,7 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(employeeList));
-            String[] columnsName = {"UserID", "Username", "Email", "Gender", "Status"};
+            String[] columnsName = {"UserID", "Username", "Email", "Address", "Phone Number", "Gender", "Status"};
         
             // Initialize the table model with column names
             DefaultTableModel table = new DefaultTableModel(columnsName, 0);
@@ -138,6 +143,10 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
         gender_cbox = new javax.swing.JComboBox<>();
         role_cbox = new javax.swing.JComboBox<>();
         remove_btn = new javax.swing.JButton();
+        address_txt = new javax.swing.JTextField();
+        phoneNumber_txt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         search_txt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -155,17 +164,18 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Username", "Email", "Gender", "Role"
+                "ID", "Username", "Email", "Address", "Phone Number", "Gender", "Role"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(allEmployee_tbl);
-        if (allEmployee_tbl.getColumnModel().getColumnCount() > 0) {
-            allEmployee_tbl.getColumnModel().getColumn(0).setHeaderValue("ID");
-            allEmployee_tbl.getColumnModel().getColumn(1).setHeaderValue("Username");
-            allEmployee_tbl.getColumnModel().getColumn(2).setHeaderValue("Email");
-            allEmployee_tbl.getColumnModel().getColumn(3).setHeaderValue("Gender");
-            allEmployee_tbl.getColumnModel().getColumn(4).setHeaderValue("Role");
-        }
 
         jLabel2.setText("Username: ");
 
@@ -193,32 +203,44 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Address");
+
+        jLabel8.setText("Phone number: ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(edit_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(remove_btn)
+                .addGap(33, 33, 33))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(91, 91, 91)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gender_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(role_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
                         .addGap(73, 73, 73)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(role_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(username_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(email_txt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(gender_cbox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(edit_btn)
-                        .addGap(47, 47, 47)
-                        .addComponent(remove_btn)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(phoneNumber_txt)
+                            .addComponent(address_txt)
+                            .addComponent(username_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                            .addComponent(email_txt))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,22 +250,30 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(username_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(address_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneNumber_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gender_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(role_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edit_btn)
-                    .addComponent(remove_btn))
-                .addContainerGap(200, Short.MAX_VALUE))
+                    .addComponent(remove_btn)
+                    .addComponent(edit_btn))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Manage worker profile");
@@ -284,14 +314,14 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(back_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(323, 323, 323))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(back_btn))
@@ -311,21 +341,17 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -353,7 +379,8 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
                     String password = datarow[2];
                     // Update the details in the line
                     String updatedLine = userID + "," + username_txt.getText() + "," + password  + "," + email_txt.getText() + ","
-                        + gender_cbox.getSelectedItem().toString() + "," + role_cbox.getSelectedItem().toString().charAt(0);
+                        + address_txt.getText() + "," + phoneNumber_txt.getText() + "," + gender_cbox.getSelectedItem().toString() + "," 
+                        + role_cbox.getSelectedItem().toString().charAt(0);
 
                     // Replace the old line with the updated one
                     lines.set(i, updatedLine);
@@ -429,12 +456,12 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_remove_btnActionPerformed
 
     private void search_txtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_txtKeyReleased
-        System.out.println("Key pressed");
         String search = search_txt.getText();
         filterTableData(search);
     }//GEN-LAST:event_search_txtKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address_txt;
     private javax.swing.JTable allEmployee_tbl;
     private javax.swing.JButton back_btn;
     private javax.swing.JButton edit_btn;
@@ -445,11 +472,14 @@ public class ManageEmployeeProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField phoneNumber_txt;
     private javax.swing.JButton remove_btn;
     private javax.swing.JComboBox<String> role_cbox;
     private javax.swing.JTextField search_txt;

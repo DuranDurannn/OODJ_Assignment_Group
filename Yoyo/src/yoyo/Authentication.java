@@ -18,10 +18,13 @@ public class Authentication {
                 String storedUsername = userData[1];
                 String storedPassword = userData[2];
                 String storedEmail = userData[3];
-                String storedStatus = userData[5];
+                String storedAddress = userData[4];
+                String storedPhoneNumber = userData[5];
+                String storedGender = userData[6];
+                String storedStatus = userData[7];
                 
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("currentUser.txt"))) {
-                    writer.write(storedUserID + "," + storedUsername + "," + storedPassword + "," + storedEmail + "," + storedStatus);
+                    writer.write(storedUserID + "," + storedUsername + "," + storedPassword + "," + storedEmail + "," + storedAddress + "," + storedPhoneNumber + "," + storedGender + "," + storedStatus);
                 }
 
                 // Check if entered email and password match the stored values
@@ -45,11 +48,13 @@ public class Authentication {
                 String storedUsername = userData[1];
                 String storedPassword = userData[2];
                 String storedEmail = userData[3];
-                String storedGender = userData[4];
-                String storedStatus = userData[5];
+                String storedAddress = userData[4];
+                String storedPhoneNumber = userData[5];
+                String storedGender = userData[6];
+                String storedStatus = userData[7];
                 
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("currentUser.txt"))) {
-                    writer.write(storedUserID + "," + storedUsername + "," + storedPassword + "," + storedEmail + "," + storedGender + "," + storedStatus);
+                    writer.write(storedUserID + "," + storedUsername + "," + storedPassword + "," + storedEmail + "," + storedAddress + "," + storedPhoneNumber + "," + storedGender + "," + storedStatus);
                 }
 
                 // Check if entered email and password match the stored values

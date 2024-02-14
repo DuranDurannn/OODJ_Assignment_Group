@@ -1,5 +1,4 @@
-001,USER,1234,USER@gmail.com,Female,A
-002,abc,332211,aaa@aaa,Male,O
-003,darren,123,duran@gmail.com,Female,A
-004,a,a,a@a,Male,A
-005,b,b,b@b,Female,S
+ST001,ADMIN,123,admin@gmail.com,Sabah,0165529979,Male,A
+ST003,salesperson,123,salesperson@gmail.com,JB,911,Male,S
+ST004,officer2,123,officer2@gmail.com,Sabah,992,Male,O
+ST005,John,123,john@gmail.com,KL,12345678,Male,A

@@ -8,39 +8,33 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class EmployeeRegister {
-
     private static int nextUserId; // Initialize the ID counter
 
     static {
-        // Initialize the ID counter by reading the last used ID from the file
-        nextUserId = readLastUserId();
-    }
-
-    private static int readLastUserId() {
+        // Read each line to find the last used user ID
         try (BufferedReader reader = new BufferedReader(new FileReader("employeeRegistration.txt"))) {
             String line;
-            int lastUserId = 0;
-
-            // Read each line to find the last used user ID
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length > 0) {
-                    int userId = Integer.parseInt(parts[0]);
-                    lastUserId = Math.max(lastUserId, userId);
+                    String userIdString = parts[0];
+                    if (userIdString.startsWith("ST")) {
+                        int userId = Integer.parseInt(userIdString.substring(2)); // Remove the "CS" prefix
+                        nextUserId = Math.max(nextUserId, userId);
+                    }
                 }
             }
-
-            return lastUserId + 1; // Increment to get the next user ID
-        } catch (IOException | NumberFormatException e) {
-            // Handle exceptions (e.g., file not found, invalid format)
+            // Increment the last ID read from the file
+            nextUserId++;
+        } catch (IOException e) {
+            // Handle the exception (e.g., show an error message)
             e.printStackTrace();
-            return 1; // Default to 1 if there is an issue
         }
     }
 
-    public static boolean registerUser(String username, String password, String confirmPassword, String email, String gender, String role) {
+    public static boolean registerUser(String username, String password, String confirmPassword, String email, String address, String phoneNumber, String gender, String role) {
         // Validate if all fields are filled
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || gender.equals("--OPTION--") || role.equals("--OPTION--")) {
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || address.isEmpty() || phoneNumber.isEmpty() || gender.equals("--OPTION--") || role.equals("--OPTION--")) {
             // Display an error message or handle it according to your requirements
             JOptionPane.showMessageDialog(null, "Registration fail, please fill in all the fields", "Uh-oh!", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -72,13 +66,13 @@ public class EmployeeRegister {
             e.printStackTrace();
         }
         
-        // Format the user ID with leading zeros (e.g., 001, 002, ...)
-        String formattedUserId = String.format("%03d", nextUserId);
+        // Format the user ID with leading zeros (e.g., ST001, ST002, ...)
+        String formattedUserId = "ST" + String.format("%03d", nextUserId);
 
         // Save the data to the text file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("employeeRegistration.txt", true))) {
             // Append the new user data to the file with the formatted ID and role
-            writer.write(formattedUserId + "," + username + "," + password + "," + email + "," + gender + "," + role.charAt(0));
+            writer.write(formattedUserId + "," + username + "," + password + "," + email + "," + address + "," + phoneNumber + "," + gender + "," + role.charAt(0));
             writer.newLine(); // Add a new line for the next entry
             JOptionPane.showMessageDialog(null, "Registration Successfull!");
 

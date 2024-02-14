@@ -53,6 +53,10 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
         reEnterNewPassword_txt = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         gender_cbox = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        address_txt = new javax.swing.JTextField();
+        phoneNumber_txt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +90,10 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
 
         gender_cbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Option--", "Male", "Female" }));
 
+        jLabel7.setText("Address");
+
+        jLabel8.setText("Phone Number");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,17 +122,22 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(94, 94, 94)
                                         .addComponent(reEnterNewPassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(59, 59, 59)
-                                        .addComponent(save_btn))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(save_btn)
+                                        .addGap(21, 21, 21))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(email_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                    .addComponent(gender_cbox, 0, 1, Short.MAX_VALUE))))))
+                                    .addComponent(gender_cbox, 0, 1, Short.MAX_VALUE)
+                                    .addComponent(phoneNumber_txt)
+                                    .addComponent(address_txt))))))
                 .addContainerGap(293, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,15 +161,23 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(gender_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                    .addComponent(address_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneNumber_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gender_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back_btn)
                     .addComponent(save_btn))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,6 +207,8 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
         String newPassword = new String(newPassword_txt.getPassword());
         String reEnteredPassword = new String(reEnterNewPassword_txt.getPassword());
         String newEmail = email_txt.getText();
+        String newAddress = address_txt.getText();
+        String newPhoneNumber = phoneNumber_txt.getText();
         String newGender = gender_cbox.getSelectedItem().toString();
 
         // Check if the passwords match or newPassword is empty
@@ -202,7 +225,7 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
                 String currentLine = currentUserScanner.nextLine();
                 String[] currentUserData = currentLine.split(",");
                 String currentUserId = currentUserData[0];
-                String currentUserStatus = currentUserData[5];
+                String currentUserStatus = currentUserData[7];
                 
                 Scanner employeeScanner = new Scanner(employeeRegistrationFile);
                 while (employeeScanner.hasNextLine()) {
@@ -213,7 +236,7 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
                     // If the user ID matches the current user's ID, update the information
                     if (userId.equals(currentUserId)) {
                         // Update the user's information
-                        line = userId + "," + newUsername + "," + newPassword + "," + newEmail + "," + newGender + "," + currentUserStatus;
+                        line = userId + "," + newUsername + "," + newPassword + "," + newEmail + "," + newAddress + "," + newPhoneNumber + "," + newGender + "," + currentUserStatus;
                     }
                     writer.println(line);
                 }
@@ -254,6 +277,7 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_save_btnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address_txt;
     private javax.swing.JButton back_btn;
     private javax.swing.JTextField email_txt;
     private javax.swing.JComboBox<String> gender_cbox;
@@ -263,8 +287,11 @@ public class ManagePersonalProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField newPassword_txt;
+    private javax.swing.JTextField phoneNumber_txt;
     private javax.swing.JPasswordField reEnterNewPassword_txt;
     private javax.swing.JButton save_btn;
     private javax.swing.JTextField username_txt;

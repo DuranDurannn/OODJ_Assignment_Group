@@ -11,14 +11,17 @@ public class Register {
     private static int nextUserId; // Initialize the ID counter
 
     static {
-        // Initialize nextUserId by reading the last ID from the file
+        // Read each line to find the last used user ID
         try (BufferedReader reader = new BufferedReader(new FileReader("userRegistration.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length > 0) {
-                    int userId = Integer.parseInt(parts[0]);
-                    nextUserId = Math.max(nextUserId, userId);
+                    String userIdString = parts[0];
+                    if (userIdString.startsWith("CS")) {
+                        int userId = Integer.parseInt(userIdString.substring(2)); // Remove the "CS" prefix
+                        nextUserId = Math.max(nextUserId, userId);
+                    }
                 }
             }
             // Increment the last ID read from the file
@@ -29,9 +32,9 @@ public class Register {
         }
     }
 
-    public static boolean registerUser(String username, String password, String confirmPassword, String email, String gender) {
+    public static boolean registerUser(String username, String password, String confirmPassword, String email, String address, String phoneNumber, String gender) {
         // Validate if all fields are filled
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || gender.equals("--OPTION--")) {
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || address.isEmpty() || phoneNumber.isEmpty() || gender.equals("--OPTION--")) {
             // Display an error message or handle it according to your requirements
             JOptionPane.showMessageDialog(null, "Registration fail, please fill in all the fields", "Uh-oh!", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -52,7 +55,7 @@ public class Register {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 
-                if (email.equals(parts[3])){
+                if (email.equals(parts[4])){
                     JOptionPane.showMessageDialog(null, "Registration fail, eamil already used", "Uh-oh!", JOptionPane.ERROR_MESSAGE);
                     return false;
                 }
@@ -63,13 +66,13 @@ public class Register {
             e.printStackTrace();
         }
 
-        // Format the user ID with leading zeros (e.g., 001, 002, ...)
-        String formattedUserId = String.format("%03d", nextUserId);
+        // Format the user ID with leading zeros and "CS" prefix (e.g., CS001, CS002, ...)
+        String formattedUserId = "CS" + String.format("%03d", nextUserId);
 
         // Save the data to the text file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("userRegistration.txt", true))) {
             // Append the new user data to the file with the formatted ID
-            writer.write(formattedUserId + "," + username + "," + password + "," + email + "," + gender + "," + "customer");
+            writer.write(formattedUserId + "," + username + "," + password + "," + email + "," + address + "," + phoneNumber + "," + gender + "," + "C");
             writer.newLine(); // Add a new line for the next entry
             JOptionPane.showMessageDialog(null, "Registration Successfull!");
 

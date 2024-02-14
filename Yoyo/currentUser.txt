@@ -1,1 +1,1 @@
-001,Duran,123,duran@gmail.com,C
+ST001,ADMIN,123,admin@gmail.com,Male,A

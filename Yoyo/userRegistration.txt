@@ -1,3 +1,3 @@
-000,Eow,1234,Eow@gmail.com,male,C
-001,Duran,123,duran@gmail.com,female,C
-002,Sean,123,sean@gmail.com,female,C
+CS001,DARREN,123,darren@gmail.com,Sabah,0165529979,Male,C
+CS002,user,123,user@gmail.com,KL,0123456789,Female,C
+CS003,Sean,123,sean@gmail.com,KL,1111111111,Male,C
