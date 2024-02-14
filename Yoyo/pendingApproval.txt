@@ -1,4 +1,1 @@
-duran@gmail.com,F001,Bed two side table with storage shelf,Modern Home,2500.0,unapproved
-sean@gmail.com,F001,Bed two side table with storage shelf,Modern Home,2500.0,unapproved
-duran@gmail.com,F001,Bed two side table with storage shelf,Modern Home,2500.0,Approved
-sean@gmail.com,F033,TV Cover Protector (Black),TV Cover Protector,609.0,Approved
+sean@gmail.com,F001,Bed two side table with storage shelf,Modern Home,2500.0,Approved

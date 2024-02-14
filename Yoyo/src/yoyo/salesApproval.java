@@ -12,7 +12,8 @@ import javax.swing.table.DefaultTableModel;
 public class salesApproval extends javax.swing.JFrame {
     public salesApproval() {
         initComponents();
-        displayPendingApproval(); // Call method to display pending approval data
+        displayPendingApproval();
+        displayProductProgress();
     }
 
     // Method to read data from "pendingApproval.txt" and display it in the table
@@ -48,6 +49,40 @@ public class salesApproval extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    private void displayProductProgress() {
+        DefaultTableModel model = (DefaultTableModel) productProgress_tbl.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        try (BufferedReader productReader = new BufferedReader(new FileReader("productStatus.txt"))) {
+
+            String productLine;
+            while ((productLine = productReader.readLine()) != null) {
+                productLine = productLine.trim(); // Trim leading and trailing spaces
+                if (!productLine.isEmpty()) { // Skip empty lines
+                    String[] productParts = productLine.split(",");
+                    if (productParts.length == 6) {
+                        // Extract data from the parts array
+                        String userEmail = productParts[0];
+                        String furnitureCode = productParts[1];
+                        String furnitureName = productParts[2];
+                        String type = productParts[3];
+                        double price = Double.parseDouble(productParts[4]);
+                        String status = productParts[5];
+
+                        // Add the extracted data to the table
+                        model.addRow(new Object[]{userEmail, furnitureCode, furnitureName, type, price, status});
+                    } else {
+                        // Handle invalid lines
+                        System.out.println("Invalid line in productStatus.txt: " + productLine);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void updateStatusInTextFile(int rowIndex, String newStatus) {
     try {
         String filePath = "pendingApproval.txt";
@@ -79,6 +114,7 @@ public class salesApproval extends javax.swing.JFrame {
         e.printStackTrace();
     }
 }
+    
 
 
     
@@ -215,9 +251,16 @@ public class salesApproval extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approve_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approve_btnActionPerformed
+                                         
     int selectedRowIndex = pendingApproval_tbl.getSelectedRow();
     if (selectedRowIndex != -1) {
         DefaultTableModel pendingModel = (DefaultTableModel) pendingApproval_tbl.getModel();
+        String currentStatus = pendingModel.getValueAt(selectedRowIndex, 5).toString();
+        
+        if (currentStatus.equals("Approved")) {
+            JOptionPane.showMessageDialog(this, "This request is already approved", "Already Approved", JOptionPane.INFORMATION_MESSAGE);
+            return; // Exit the method, preventing further processing
+        }
         
         // Get the data from the selected row
         String userEmail = pendingModel.getValueAt(selectedRowIndex, 0).toString();
@@ -234,15 +277,48 @@ public class salesApproval extends javax.swing.JFrame {
         
         // Write the approved data to productStatus.txt
         updateProductStatus(userEmail, furnitureCode, furnitureName, type, price, "In Progress");
+        
+        // Add a new row to productProgress_tbl
+        DefaultTableModel progressModel = (DefaultTableModel) productProgress_tbl.getModel();
+        progressModel.addRow(new Object[]{userEmail, furnitureCode, furnitureName, type, price, "In Progress"});
     } else {
         JOptionPane.showMessageDialog(this, "Please select a row to approve", "Approval Error", JOptionPane.ERROR_MESSAGE);
     }
 
 
 
+
+
     }//GEN-LAST:event_approve_btnActionPerformed
 
     private void complete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_complete_btnActionPerformed
+                                                
+    int selectedRowIndex = productProgress_tbl.getSelectedRow();
+    if (selectedRowIndex != -1) {
+        DefaultTableModel progressModel = (DefaultTableModel) productProgress_tbl.getModel();
+        String currentStatus = progressModel.getValueAt(selectedRowIndex, 5).toString();
+        
+        if (currentStatus.equals("Work Done")) {
+            JOptionPane.showMessageDialog(this, "This task is already marked as complete", "Already Complete", JOptionPane.INFORMATION_MESSAGE);
+            return; // Exit the method, preventing further processing
+        }
+        
+        // Update the status to "Work Done" in the table
+        progressModel.setValueAt("Work Done", selectedRowIndex, 5);
+        
+        String userEmail = progressModel.getValueAt(selectedRowIndex, 0).toString();
+        String furnitureCode = progressModel.getValueAt(selectedRowIndex, 1).toString();
+        String furnitureName = progressModel.getValueAt(selectedRowIndex, 2).toString();
+        String type = progressModel.getValueAt(selectedRowIndex, 3).toString();
+        double price = Double.parseDouble(progressModel.getValueAt(selectedRowIndex, 4).toString());
+        
+        // Update the status in productStatus.txt
+        updateProductStatus(userEmail, furnitureCode, furnitureName, type, price, "Work Done");
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a row to mark as complete", "Completion Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+
   
     }//GEN-LAST:event_complete_btnActionPerformed
 
