@@ -21,20 +21,20 @@ public class SalesQuotation extends javax.swing.JFrame {
     }
 
     private void loadPendingQuotation() {
-    DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
-    String line;
-    try (BufferedReader reader = new BufferedReader(new FileReader("pendingQuotation.txt"))) {
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts.length == 6) { // Check if the line has 5 parts (assuming the last part is the status)
-                Object[] rowData = {parts[0], parts[1], parts[2], parts[3], Double.parseDouble(parts[4]), parts[5]}; // Include the status in the last column
-                model.addRow(rowData);
+        DefaultTableModel model = (DefaultTableModel) salesQuotation_tbl.getModel();
+        String line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("pendingQuotation.txt"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 6) { // Check if the line has 5 parts (assuming the last part is the status)
+                    Object[] rowData = {parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]}; // Include the status in the last column
+                    model.addRow(rowData);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error loading pending quotation data from file.");
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error loading pending quotation data from file.");
-    }
     }
 
     @SuppressWarnings("unchecked")
@@ -133,6 +133,7 @@ public class SalesQuotation extends javax.swing.JFrame {
             model.getValueAt(selectedRow, 1),
             model.getValueAt(selectedRow, 2),
             model.getValueAt(selectedRow, 3),
+            model.getValueAt(selectedRow, 4),
             "unapproved" // Set status to "unapproved" in SalesApproval frame
         };
 

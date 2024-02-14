@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package yoyo;
 
-/**
- *
- * @author Eow
- */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -16,7 +8,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Register {
-
     private static int nextUserId; // Initialize the ID counter
 
     static {
