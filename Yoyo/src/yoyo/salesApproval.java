@@ -72,6 +72,13 @@ public class salesApproval extends javax.swing.JFrame {
         e.printStackTrace();
     }
 }
+    private void updateProductStatus(String userEmail, String furnitureCode, String furnitureName, String type, double price, String status) {
+    try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("productStatus.txt", true)))) {
+        writer.println(userEmail + "," + furnitureCode + "," + furnitureName + "," + type + "," + price + "," + status);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
 
     
@@ -208,15 +215,25 @@ public class salesApproval extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approve_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approve_btnActionPerformed
-   int selectedRowIndex = pendingApproval_tbl.getSelectedRow();
+    int selectedRowIndex = pendingApproval_tbl.getSelectedRow();
     if (selectedRowIndex != -1) {
         DefaultTableModel pendingModel = (DefaultTableModel) pendingApproval_tbl.getModel();
         
+        // Get the data from the selected row
+        String userEmail = pendingModel.getValueAt(selectedRowIndex, 0).toString();
+        String furnitureCode = pendingModel.getValueAt(selectedRowIndex, 1).toString();
+        String furnitureName = pendingModel.getValueAt(selectedRowIndex, 2).toString();
+        String type = pendingModel.getValueAt(selectedRowIndex, 3).toString();
+        double price = Double.parseDouble(pendingModel.getValueAt(selectedRowIndex, 4).toString());
+
         // Update status to "Approved" in pendingApproval_tbl
         pendingModel.setValueAt("Approved", selectedRowIndex, 5);
         
         // Update the status in pendingApproval.txt
         updateStatusInTextFile(selectedRowIndex, "Approved");
+        
+        // Write the approved data to productStatus.txt
+        updateProductStatus(userEmail, furnitureCode, furnitureName, type, price, "In Progress");
     } else {
         JOptionPane.showMessageDialog(this, "Please select a row to approve", "Approval Error", JOptionPane.ERROR_MESSAGE);
     }
