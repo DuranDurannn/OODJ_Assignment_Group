@@ -80,7 +80,7 @@ public class DashboardUI extends javax.swing.JFrame {
         cardLayoutContent = (CardLayout)(ContentCards.getLayout()); 
         cardLayoutButton = (CardLayout)(ButtonCards.getLayout());
         
-        switch (accessLevel) {
+        switch (accessLevel) { // handles access level behaviour
             case "officer" :
                 cardLayoutContent.show(ContentCards,"OfficerSummaryCard");
                 cardLayoutButton.show(ButtonCards,"OfficerButtonsCards");
