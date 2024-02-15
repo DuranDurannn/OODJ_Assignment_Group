@@ -264,7 +264,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="SalesPersonButtons">
+                    <Container class="javax.swing.JPanel" name="SalespersonButtons">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="62" green="59" red="58" type="rgb"/>
@@ -1994,7 +1994,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="SalesPersonSummaryCard">
+            <Container class="javax.swing.JPanel" name="SalespersonSummaryCard">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="1e" green="c8" red="c8" type="rgb"/>
@@ -2003,7 +2003,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="SalesPersonSummaryCard"/>
+                  <CardConstraints cardName="SalespersonSummaryCard"/>
                 </Constraint>
               </Constraints>
 
@@ -2178,6 +2178,9 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="52" green="21" red="1e" type="rgb"/>
                         </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Search"/>
                       </Properties>
                       <Events>
@@ -2188,6 +2191,9 @@
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="52" green="21" red="1e" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Save Changes"/>
                       </Properties>

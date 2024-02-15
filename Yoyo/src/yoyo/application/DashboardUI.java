@@ -22,9 +22,10 @@ import yoyo.reports.WorkDoneReport;
 
 public class DashboardUI extends javax.swing.JFrame {
     
-    CardLayout cardLayout;
+    CardLayout cardLayoutContent;
+    CardLayout cardLayoutButton;
     
-    public DashboardUI() {  
+    public DashboardUI(String accessLevel) {  
         initComponents(); 
         
         ImageIcon icon1 = new ImageIcon("dashboard.png");
@@ -76,15 +77,31 @@ public class DashboardUI extends javax.swing.JFrame {
         MonthlyUnitsSoldGraph.setLayout(new BorderLayout());
         createLineChart(monthlyUnitsSold,MonthlyUnitsSoldGraph, "Monthly Units Sold Comparison", "Month", "UnitsSold");
         
+        cardLayoutContent = (CardLayout)(ContentCards.getLayout()); 
+        cardLayoutButton = (CardLayout)(ButtonCards.getLayout());
         
-        cardLayout = (CardLayout)(ContentCards.getLayout()); 
-        cardLayout = (CardLayout)(ButtonCards.getLayout());
-        buttonMenu1.setSelected(true);
-        
+        switch (accessLevel) {
+            case "officer" :
+                cardLayoutContent.show(ContentCards,"OfficerSummaryCard");
+                cardLayoutButton.show(ButtonCards,"OfficerButtonsCards");
+                buttonMenu1.setSelected(true);
+                break;
+
+            case "salesperson" :
+                cardLayoutContent.show(ContentCards,"SalespersonSummaryCard");
+                cardLayoutButton.show(ButtonCards,"SalespersonButtonsCards");
+                buttonMenu6.setSelected(true);
+                break;                
+
+            case "administrator" :
+                cardLayoutContent.show(ContentCards,"AdministratorSummaryCard");
+                cardLayoutButton.show(ButtonCards,"AdministratorButtonsCards");
+                buttonMenu10.setSelected(true);
+                break;
+        }
     }
 
-
-    //////////////////////////////INTEGRATE WITH TEXT FILE FOR CHART CACULATION HERE////////////////////////////////////
+    
     private void createLineChart(Map<String, Double> monthlyRevenue, JPanel panel, String title, String xLabel, String yLabel) {
 
         // Create dataset
@@ -146,7 +163,7 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu2 = new yoyo.resources.ButtonMenu();
         buttonMenu3 = new yoyo.resources.ButtonMenu();
         buttonMenu4 = new yoyo.resources.ButtonMenu();
-        SalesPersonButtons = new javax.swing.JPanel();
+        SalespersonButtons = new javax.swing.JPanel();
         buttonMenu6 = new yoyo.resources.ButtonMenu();
         buttonMenu9 = new yoyo.resources.ButtonMenu();
         AdministratorButtons = new javax.swing.JPanel();
@@ -228,7 +245,7 @@ public class DashboardUI extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        SalesPersonSummaryCard = new javax.swing.JPanel();
+        SalespersonSummaryCard = new javax.swing.JPanel();
         roundPanel20 = new yoyo.resources.RoundPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -334,8 +351,8 @@ public class DashboardUI extends javax.swing.JFrame {
 
         ButtonCards.add(OfficerButtons, "OfficerButtonsCards");
 
-        SalesPersonButtons.setBackground(new java.awt.Color(88, 89, 98));
-        SalesPersonButtons.setOpaque(false);
+        SalespersonButtons.setBackground(new java.awt.Color(88, 89, 98));
+        SalespersonButtons.setOpaque(false);
 
         buttonMenu6.setText("Dashboard");
         buttonMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -355,23 +372,23 @@ public class DashboardUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout SalesPersonButtonsLayout = new javax.swing.GroupLayout(SalesPersonButtons);
-        SalesPersonButtons.setLayout(SalesPersonButtonsLayout);
-        SalesPersonButtonsLayout.setHorizontalGroup(
-            SalesPersonButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout SalespersonButtonsLayout = new javax.swing.GroupLayout(SalespersonButtons);
+        SalespersonButtons.setLayout(SalespersonButtonsLayout);
+        SalespersonButtonsLayout.setHorizontalGroup(
+            SalespersonButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonMenu9, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
             .addComponent(buttonMenu6, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
-        SalesPersonButtonsLayout.setVerticalGroup(
-            SalesPersonButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SalesPersonButtonsLayout.createSequentialGroup()
+        SalespersonButtonsLayout.setVerticalGroup(
+            SalespersonButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SalespersonButtonsLayout.createSequentialGroup()
                 .addComponent(buttonMenu6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonMenu9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 290, Short.MAX_VALUE))
         );
 
-        ButtonCards.add(SalesPersonButtons, "SalespersonButtonsCards");
+        ButtonCards.add(SalespersonButtons, "SalespersonButtonsCards");
 
         AdministratorButtons.setBackground(new java.awt.Color(88, 89, 98));
         AdministratorButtons.setOpaque(false);
@@ -1399,8 +1416,8 @@ public class DashboardUI extends javax.swing.JFrame {
 
         ContentCards.add(ManagePersonalAccount, "ManagePersonalAccountCard");
 
-        SalesPersonSummaryCard.setBackground(new java.awt.Color(200, 200, 30));
-        SalesPersonSummaryCard.setOpaque(false);
+        SalespersonSummaryCard.setBackground(new java.awt.Color(200, 200, 30));
+        SalespersonSummaryCard.setOpaque(false);
 
         roundPanel20.setBackground(new java.awt.Color(246, 245, 249));
         roundPanel20.setPreferredSize(new java.awt.Dimension(628, 382));
@@ -1449,6 +1466,7 @@ public class DashboardUI extends javax.swing.JFrame {
         });
 
         SearchQuotationButton1.setBackground(new java.awt.Color(30, 33, 82));
+        SearchQuotationButton1.setForeground(new java.awt.Color(255, 255, 255));
         SearchQuotationButton1.setText("Search");
         SearchQuotationButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1457,6 +1475,7 @@ public class DashboardUI extends javax.swing.JFrame {
         });
 
         ModifyQuotationButton1.setBackground(new java.awt.Color(30, 33, 82));
+        ModifyQuotationButton1.setForeground(new java.awt.Color(255, 255, 255));
         ModifyQuotationButton1.setText("Save Changes");
         ModifyQuotationButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1508,18 +1527,18 @@ public class DashboardUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        javax.swing.GroupLayout SalesPersonSummaryCardLayout = new javax.swing.GroupLayout(SalesPersonSummaryCard);
-        SalesPersonSummaryCard.setLayout(SalesPersonSummaryCardLayout);
-        SalesPersonSummaryCardLayout.setHorizontalGroup(
-            SalesPersonSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout SalespersonSummaryCardLayout = new javax.swing.GroupLayout(SalespersonSummaryCard);
+        SalespersonSummaryCard.setLayout(SalespersonSummaryCardLayout);
+        SalespersonSummaryCardLayout.setHorizontalGroup(
+            SalespersonSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 1128, Short.MAX_VALUE)
         );
-        SalesPersonSummaryCardLayout.setVerticalGroup(
-            SalesPersonSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        SalespersonSummaryCardLayout.setVerticalGroup(
+            SalespersonSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
         );
 
-        ContentCards.add(SalesPersonSummaryCard, "SalesPersonSummaryCard");
+        ContentCards.add(SalespersonSummaryCard, "SalespersonSummaryCard");
 
         javax.swing.GroupLayout DashboardBackgroundLayout = new javax.swing.GroupLayout(DashboardBackground);
         DashboardBackground.setLayout(DashboardBackgroundLayout);
@@ -1579,7 +1598,7 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu2.setSelected(false);
         buttonMenu3.setSelected(false);
         buttonMenu5.setSelected(false);
-        cardLayout.show(ContentCards,"ManagePersonalAccountCard");
+        cardLayoutContent.show(ContentCards,"ManagePersonalAccountCard");
     }//GEN-LAST:event_buttonMenu4ActionPerformed
 
     private void buttonMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu3ActionPerformed
@@ -1588,7 +1607,7 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu2.setSelected(false);
         buttonMenu4.setSelected(false);
         buttonMenu5.setSelected(false);
-        cardLayout.show(ContentCards,"ReportCard");
+        cardLayoutContent.show(ContentCards,"ReportCard");
     }//GEN-LAST:event_buttonMenu3ActionPerformed
 
     private void buttonMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu2ActionPerformed
@@ -1597,7 +1616,7 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu3.setSelected(false);
         buttonMenu4.setSelected(false);
         buttonMenu5.setSelected(false);
-        cardLayout.show(ContentCards,"SalesOrderCard");
+        cardLayoutContent.show(ContentCards,"SalesOrderCard");
     }//GEN-LAST:event_buttonMenu2ActionPerformed
 
     private void buttonMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu1ActionPerformed
@@ -1606,7 +1625,7 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu3.setSelected(false);
         buttonMenu4.setSelected(false);
         buttonMenu5.setSelected(false);
-        cardLayout.show(ContentCards,"OfficerDashboardCard");
+        cardLayoutContent.show(ContentCards,"OfficerDashboardCard");
     }//GEN-LAST:event_buttonMenu1ActionPerformed
 
     private void ModifyQuotationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyQuotationButtonActionPerformed
@@ -1691,9 +1710,9 @@ public class DashboardUI extends javax.swing.JFrame {
     private javax.swing.JPanel ReportCard;
     private javax.swing.JButton SalesApproveButton;
     private javax.swing.JPanel SalesOrderCard;
-    private javax.swing.JPanel SalesPersonButtons;
-    private javax.swing.JPanel SalesPersonSummaryCard;
     private javax.swing.JButton SalesRejectButton;
+    private javax.swing.JPanel SalespersonButtons;
+    private javax.swing.JPanel SalespersonSummaryCard;
     private javax.swing.JButton SearchQuotationButton;
     private javax.swing.JButton SearchQuotationButton1;
     private yoyo.resources.ButtonMenu buttonMenu1;
