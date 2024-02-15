@@ -163,7 +163,15 @@ public class Quotation extends javax.swing.JFrame {
             new String [] {
                 "Furniture", "Quantity", "RM / Unit", "Amount"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jLabel18.setForeground(new java.awt.Color(30, 33, 82));
@@ -289,6 +297,7 @@ public class Quotation extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 

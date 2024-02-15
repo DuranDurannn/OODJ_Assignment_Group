@@ -1,31 +1,24 @@
+package yoyo.application;
+
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.io.IOException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import yoyo.application.DashboardUI;
-import yoyo.application.Login;
 
 
-public static void main(String args[]) throws IOException {
+public class Main {
+    public static void main(String args[]) throws IOException {
 
-    Login userInfo = new Login();  
+        Login userInfo = new Login();
+        User user = null;
 
-    try {
-        UIManager.setLookAndFeel (new FlatIntelliJLaf());
-        //userInfo.readUserInfo(); this is just testing ples remove
-    } catch (UnsupportedLookAndFeelException e) {
+        try {
+            UIManager.setLookAndFeel (new FlatIntelliJLaf());
+            new LoginRegisterUI().setVisible(true);
+            user = userInfo.readUserInfo();
+            new DashboardUI(user.getAccessLevel()).setVisible(true); 
+        } catch (UnsupportedLookAndFeelException e) {
+            //ERROR HANDLING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        }  
     }
-
-    new DashboardUI("administrator").setVisible(true); // shows adminUI (here for testing only, remove in final application)
-    new DashboardUI("officer").setVisible(true); // shows officerUI (here for testing only, remove in final application)
-    new DashboardUI("salesperson").setVisible(true); // shows salespersonUI (here for testing only, remove in final application)
-       
 }
-
-        
-        
-            
-        
-    
-    
-

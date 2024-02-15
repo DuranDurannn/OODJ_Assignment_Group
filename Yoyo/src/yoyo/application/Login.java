@@ -1,15 +1,17 @@
+package yoyo.application;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-import yoyo.application.Encryption;
+import javax.swing.JOptionPane;
 
 public class Login {
 
     private String filePath = "userInfo.txt";
     private static final String ENCRYPTION_KEY = "Your16CharKey123";
 
-    public void readUserInfo() throws IOException {
+    public User readUserInfo() throws IOException {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter email or phone number: ");
@@ -31,7 +33,8 @@ public class Login {
                         continue;
                     }
 
-                    if ((emailOrPhone.equals(tokens[3]) || emailOrPhone.equals(tokens[5])) && password.equals(tokens[2])) { // Check if login value matches email or phone number                   
+                    if ((emailOrPhone.equals(tokens[3]) || emailOrPhone.equals(tokens[5])) && password.equals(tokens[2])) {
+                        // Check if login value matches email or phone number
                         User user = new User(); // Create User object based on matching data
                         user.setID(tokens[0]);
                         user.setUsername(tokens[1]);
@@ -49,32 +52,33 @@ public class Login {
                             case 'S' -> user.setAccessLevel("salesperson");
                             default -> {
                                 System.err.println("Warning: Invalid access level derived for ID: " + user.getID());
-                                continue;
+                                return null;
                             }
                         }
 
-                        // Start of debuging code, remove or comment out during production 
-                        String userDetails ="ID: " + user.getID() + "\n" + 
-                                            "Username: " + user.getUsername() + "\n" +
-                                            "Email: " + user.getEmail() + "\n" +
-                                            "Address: " + user.getAddress() + "\n" +
-                                            "Phone Number: " + user.getPhoneNumber() + "\n" +
-                                            "Gender: " + user.getGender() + "\n" +
-                                            "Access Level: " + user.getAccessLevel();
-
-                        System.out.println(userDetails);
-                        // End of debugging code
-
-                        break; 
+                        return user;
+                    } else {
+                        JOptionPane.showMessageDialog(
+                            null, 
+                            "Invalid email, phone number, or password. Please try again or register for a new account.", 
+                            "Login Failed", 
+                            JOptionPane.ERROR_MESSAGE,
+                            null
+                        );
+                        
+                        break; // IMPLEMENT ERROR HANDELING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
                     }
                 }
             } catch (IOException e) {
                 throw e; // Re-throw IOException for proper handling
             } catch (Exception e) {
                 System.err.println("Encryption error: " + e.getMessage());
+                return null;
             }
         } catch (Exception e) {
         System.err.println("Encryption error: " + e.getMessage());
+        return null;
         }
+    return null;
     }
 }

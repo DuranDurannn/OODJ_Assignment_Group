@@ -1,3 +1,5 @@
+package yoyo.application;
+
 public class User {
     
     private String id;

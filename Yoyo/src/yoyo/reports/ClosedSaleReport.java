@@ -53,7 +53,15 @@ public class ClosedSaleReport extends javax.swing.JFrame {
             new String [] {
                 "Date", "Sale ID", "Furniture ID", "Units Sold", "Total Revenue"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
 
         jPanel4.setBackground(new java.awt.Color(30, 33, 82));
@@ -221,6 +229,7 @@ public class ClosedSaleReport extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
