@@ -3,7 +3,7 @@ import java.io.IOException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import yoyo.application.DashboardUI;
-
+import yoyo.application.Login;
 
 
 public static void main(String args[]) throws IOException {
@@ -12,7 +12,7 @@ public static void main(String args[]) throws IOException {
 
     try {
         UIManager.setLookAndFeel (new FlatIntelliJLaf());
-        userInfo.readUserInfo();
+        //userInfo.readUserInfo(); this is just testing ples remove
     } catch (UnsupportedLookAndFeelException e) {
     }
 
