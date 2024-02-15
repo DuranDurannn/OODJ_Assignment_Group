@@ -2,8 +2,6 @@
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.UIManager;
 import yoyo.application.DashboardUI;
-import yoyo.reports.ClosedSaleReport;
-import yoyo.reports.WorkDoneReport;
 
 
 public static void main(String args[]) {
@@ -14,8 +12,10 @@ public static void main(String args[]) {
         e.printStackTrace();
     }
 
-    new DashboardUI().setVisible(true);
-        
+    new DashboardUI("administrator").setVisible(true); // shows adminUI (here for testing only, remove in final application)
+    new DashboardUI("officer").setVisible(true); // shows officerUI (here for testing only, remove in final application)
+    new DashboardUI("salesperson").setVisible(true); // shows salespersonUI (here for testing only, remove in final application)
+       
 }
 
         
