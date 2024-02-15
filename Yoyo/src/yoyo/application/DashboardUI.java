@@ -78,6 +78,7 @@ public class DashboardUI extends javax.swing.JFrame {
         
         
         cardLayout = (CardLayout)(ContentCards.getLayout()); 
+        cardLayout = (CardLayout)(ButtonCards.getLayout());
         buttonMenu1.setSelected(true);
         
     }
@@ -145,6 +146,13 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu2 = new yoyo.resources.ButtonMenu();
         buttonMenu3 = new yoyo.resources.ButtonMenu();
         buttonMenu4 = new yoyo.resources.ButtonMenu();
+        SalesPersonButtons = new javax.swing.JPanel();
+        buttonMenu6 = new yoyo.resources.ButtonMenu();
+        buttonMenu9 = new yoyo.resources.ButtonMenu();
+        AdministratorButtons = new javax.swing.JPanel();
+        buttonMenu10 = new yoyo.resources.ButtonMenu();
+        buttonMenu12 = new yoyo.resources.ButtonMenu();
+        buttonMenu13 = new yoyo.resources.ButtonMenu();
         roundPanel27 = new yoyo.resources.RoundPanel();
         imageAvatar20 = new yoyo.resources.ImageAvatar();
         jLabel54 = new javax.swing.JLabel();
@@ -325,6 +333,96 @@ public class DashboardUI extends javax.swing.JFrame {
         );
 
         ButtonCards.add(OfficerButtons, "OfficerButtonsCards");
+
+        SalesPersonButtons.setBackground(new java.awt.Color(88, 89, 98));
+        SalesPersonButtons.setOpaque(false);
+
+        buttonMenu6.setText("Dashboard");
+        buttonMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonMenu6.setPreferredSize(new java.awt.Dimension(179, 36));
+        buttonMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenu6ActionPerformed(evt);
+            }
+        });
+
+        buttonMenu9.setText("Edit Profile");
+        buttonMenu9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonMenu9.setPreferredSize(new java.awt.Dimension(179, 36));
+        buttonMenu9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenu9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SalesPersonButtonsLayout = new javax.swing.GroupLayout(SalesPersonButtons);
+        SalesPersonButtons.setLayout(SalesPersonButtonsLayout);
+        SalesPersonButtonsLayout.setHorizontalGroup(
+            SalesPersonButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(buttonMenu9, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+            .addComponent(buttonMenu6, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+        );
+        SalesPersonButtonsLayout.setVerticalGroup(
+            SalesPersonButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SalesPersonButtonsLayout.createSequentialGroup()
+                .addComponent(buttonMenu6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonMenu9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 290, Short.MAX_VALUE))
+        );
+
+        ButtonCards.add(SalesPersonButtons, "SalespersonButtonsCards");
+
+        AdministratorButtons.setBackground(new java.awt.Color(88, 89, 98));
+        AdministratorButtons.setOpaque(false);
+
+        buttonMenu10.setText("Dashboard");
+        buttonMenu10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonMenu10.setPreferredSize(new java.awt.Dimension(179, 36));
+        buttonMenu10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenu10ActionPerformed(evt);
+            }
+        });
+
+        buttonMenu12.setText("Reports");
+        buttonMenu12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonMenu12.setPreferredSize(new java.awt.Dimension(179, 36));
+        buttonMenu12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenu12ActionPerformed(evt);
+            }
+        });
+
+        buttonMenu13.setText("Edit Profile");
+        buttonMenu13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonMenu13.setPreferredSize(new java.awt.Dimension(179, 36));
+        buttonMenu13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenu13ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AdministratorButtonsLayout = new javax.swing.GroupLayout(AdministratorButtons);
+        AdministratorButtons.setLayout(AdministratorButtonsLayout);
+        AdministratorButtonsLayout.setHorizontalGroup(
+            AdministratorButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(buttonMenu13, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+            .addComponent(buttonMenu12, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+            .addComponent(buttonMenu10, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+        );
+        AdministratorButtonsLayout.setVerticalGroup(
+            AdministratorButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AdministratorButtonsLayout.createSequentialGroup()
+                .addComponent(buttonMenu10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonMenu12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonMenu13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 248, Short.MAX_VALUE))
+        );
+
+        ButtonCards.add(AdministratorButtons, "AdministratorButtonsCards");
 
         javax.swing.GroupLayout roundPanel5Layout = new javax.swing.GroupLayout(roundPanel5);
         roundPanel5.setLayout(roundPanel5Layout);
@@ -1056,9 +1154,7 @@ public class DashboardUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SearchQuotationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(roundPanel18Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, 0)))
+                            .addComponent(jLabel7))
                         .addComponent(ModifyQuotationButton)))
                 .addGap(40, 40, 40))
         );
@@ -1553,8 +1649,29 @@ public class DashboardUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ModifyQuotationButton1ActionPerformed
 
+    private void buttonMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonMenu6ActionPerformed
+
+    private void buttonMenu9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonMenu9ActionPerformed
+
+    private void buttonMenu10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonMenu10ActionPerformed
+
+    private void buttonMenu12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonMenu12ActionPerformed
+
+    private void buttonMenu13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonMenu13ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AdministratorButtons;
     private javax.swing.JPanel AdministratorSummaryCard;
     private javax.swing.JPanel ButtonCards;
     private javax.swing.JPanel ContentCards;
@@ -1574,15 +1691,21 @@ public class DashboardUI extends javax.swing.JFrame {
     private javax.swing.JPanel ReportCard;
     private javax.swing.JButton SalesApproveButton;
     private javax.swing.JPanel SalesOrderCard;
+    private javax.swing.JPanel SalesPersonButtons;
     private javax.swing.JPanel SalesPersonSummaryCard;
     private javax.swing.JButton SalesRejectButton;
     private javax.swing.JButton SearchQuotationButton;
     private javax.swing.JButton SearchQuotationButton1;
     private yoyo.resources.ButtonMenu buttonMenu1;
+    private yoyo.resources.ButtonMenu buttonMenu10;
+    private yoyo.resources.ButtonMenu buttonMenu12;
+    private yoyo.resources.ButtonMenu buttonMenu13;
     private yoyo.resources.ButtonMenu buttonMenu2;
     private yoyo.resources.ButtonMenu buttonMenu3;
     private yoyo.resources.ButtonMenu buttonMenu4;
     private yoyo.resources.ButtonMenu buttonMenu5;
+    private yoyo.resources.ButtonMenu buttonMenu6;
+    private yoyo.resources.ButtonMenu buttonMenu9;
     private yoyo.resources.ImageAvatar imageAvatar20;
     private yoyo.resources.ImageAvatar imageAvatar21;
     private javax.swing.JDialog jDialog1;
