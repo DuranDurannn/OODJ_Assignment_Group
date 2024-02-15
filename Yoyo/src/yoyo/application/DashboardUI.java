@@ -81,23 +81,23 @@ public class DashboardUI extends javax.swing.JFrame {
         cardLayoutButton = (CardLayout)(ButtonCards.getLayout());
         
         switch (accessLevel) { // handles access level behaviour
-            case "officer" :
+            case "officer" -> {
                 cardLayoutContent.show(ContentCards,"OfficerSummaryCard");
                 cardLayoutButton.show(ButtonCards,"OfficerButtonsCards");
                 buttonMenu1.setSelected(true);
-                break;
+            }
 
-            case "salesperson" :
+            case "salesperson" -> {
                 cardLayoutContent.show(ContentCards,"SalespersonSummaryCard");
                 cardLayoutButton.show(ButtonCards,"SalespersonButtonsCards");
                 buttonMenu6.setSelected(true);
-                break;                
+            }                
 
-            case "administrator" :
+            case "administrator" -> {
                 cardLayoutContent.show(ContentCards,"AdministratorSummaryCard");
                 cardLayoutButton.show(ButtonCards,"AdministratorButtonsCards");
                 buttonMenu10.setSelected(true);
-                break;
+            }
         }
     }
 
@@ -1625,6 +1625,7 @@ public class DashboardUI extends javax.swing.JFrame {
         buttonMenu3.setSelected(false);
         buttonMenu4.setSelected(false);
         buttonMenu5.setSelected(false);
+        System.out.println();
         cardLayoutContent.show(ContentCards,"OfficerDashboardCard");
     }//GEN-LAST:event_buttonMenu1ActionPerformed
 
