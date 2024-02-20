@@ -27,6 +27,7 @@ public class Login {
                 while ((line = reader.readLine()) != null) {
                     String decryptedInfo = Encryption.decrypt(line, ENCRYPTION_KEY);
                     String[] tokens = decryptedInfo.split(",");
+                    System.out.println(tokens);
 
                     if (tokens.length != 7) {
                         System.err.println("Warning: Line '" + line + "' has invalid format");

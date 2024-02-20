@@ -1,7 +1,7 @@
 package yoyo.application;
 
 import java.awt.CardLayout;
-
+import java.io.FileNotFoundException;
 
 public class LoginRegisterUI extends javax.swing.JFrame {
 
@@ -34,19 +34,19 @@ CardLayout cardLayoutWelcome;
         roundPanel2 = new yoyo.resources.RoundPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        registerEmail_txt = new javax.swing.JTextField();
+        registerConfirmPassword_txt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         SignUpButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         GoToLogInButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        registerPassword_txt = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        registerUsername_txt = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        registerAddress_txt = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,6 +98,11 @@ CardLayout cardLayoutWelcome;
         GoToSignUpButton.setText("Sign Up");
         GoToSignUpButton.setBorder(null);
         GoToSignUpButton.setContentAreaFilled(false);
+        GoToSignUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoToSignUpButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,9 +211,9 @@ CardLayout cardLayoutWelcome;
         jLabel10.setForeground(new java.awt.Color(30, 33, 82));
         jLabel10.setText("Email");
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        registerEmail_txt.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        registerConfirmPassword_txt.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(30, 33, 82));
@@ -236,6 +241,11 @@ CardLayout cardLayoutWelcome;
         GoToLogInButton.setText("Log in here");
         GoToLogInButton.setBorder(null);
         GoToLogInButton.setContentAreaFilled(false);
+        GoToLogInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoToLogInButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -260,19 +270,19 @@ CardLayout cardLayoutWelcome;
         jLabel13.setForeground(new java.awt.Color(30, 33, 82));
         jLabel13.setText("Welcome to YOYO");
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
+        registerPassword_txt.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(30, 33, 82));
         jLabel14.setText("Password");
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
+        registerUsername_txt.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(30, 33, 82));
         jLabel15.setText("Username");
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
+        registerAddress_txt.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(30, 33, 82));
@@ -305,16 +315,16 @@ CardLayout cardLayoutWelcome;
                         .addContainerGap(121, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registerUsername_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registerEmail_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registerPassword_txt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registerConfirmPassword_txt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SignUpButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(312, 312, 312))
-                            .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(registerAddress_txt, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(40, 40, 40))))
         );
         roundPanel2Layout.setVerticalGroup(
@@ -327,23 +337,23 @@ CardLayout cardLayoutWelcome;
                 .addGap(26, 26, 26)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(registerUsername_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(registerAddress_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(registerEmail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(registerPassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(registerConfirmPassword_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(SignUpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -390,8 +400,22 @@ CardLayout cardLayoutWelcome;
     }//GEN-LAST:event_LogInButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
-        // TODO add your handling code here:
+        String registerUsername = registerUsername_txt.getText();
+        String registerAddress = registerAddress_txt.getText();
+        String registerEmail = registerEmail_txt.getText();
+        String registerPassword = registerPassword_txt.getText();
+        String registerConfirmPassword = registerConfirmPassword_txt.getText();
+        
+        Register.registerUserInfo(registerUsername, registerAddress, registerEmail, registerPassword, registerConfirmPassword);
     }//GEN-LAST:event_SignUpButtonActionPerformed
+
+    private void GoToSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToSignUpButtonActionPerformed
+        cardLayoutWelcome.show(WelcomeCards, "RegisterCard");
+    }//GEN-LAST:event_GoToSignUpButtonActionPerformed
+
+    private void GoToLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToLogInButtonActionPerformed
+        cardLayoutWelcome.show(WelcomeCards, "LoginCard");
+    }//GEN-LAST:event_GoToLogInButtonActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,11 +443,11 @@ CardLayout cardLayoutWelcome;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField registerAddress_txt;
+    private javax.swing.JTextField registerConfirmPassword_txt;
+    private javax.swing.JTextField registerEmail_txt;
+    private javax.swing.JTextField registerPassword_txt;
+    private javax.swing.JTextField registerUsername_txt;
     private yoyo.resources.RoundPanel roundPanel1;
     private yoyo.resources.RoundPanel roundPanel2;
     // End of variables declaration//GEN-END:variables
