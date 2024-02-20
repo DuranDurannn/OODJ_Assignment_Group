@@ -1,3 +1,0 @@
-001,User,1234,User@gmail.com,male,A
-002,a,a,a@a,Male,A
-
