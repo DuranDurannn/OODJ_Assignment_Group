@@ -7,28 +7,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 
 public class Main {
-<<<<<<< HEAD
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel (new FlatIntelliJLaf()); 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        new DashboardUI("argumentValue").setVisible(true);
-
-    }
-}
-
-
-        
-        
-            
-        
-    
-    
-
-=======
     public static void main(String args[]) throws IOException {
 
         Login userInfo = new Login();
@@ -44,4 +22,3 @@ public class Main {
         }  
     }
 }
->>>>>>> 0e49e3262e03ab220b6ab14de529d25f93ef3190
