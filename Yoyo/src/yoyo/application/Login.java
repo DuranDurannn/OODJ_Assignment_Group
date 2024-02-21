@@ -1,85 +1,44 @@
 package yoyo.application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Login {
 
-    private String filePath = "userInfo.txt";
-    private static final String ENCRYPTION_KEY = "Your16CharKey123";
+    public User processUserInfo(ArrayList<String[]> userInfo, String userLoginInput, String userPasswordInput) {
+        for (String[] userValues : userInfo) {
+            // Assuming columns 3 and 5 contain email and phone number respectively
+            if ((userValues[3].equals(userLoginInput) || userValues[5].equals(userLoginInput)) && userValues[2].equals(userPasswordInput)) {
+                // Match found!
+                User user = new User();
+                user.setID(userValues[0]);
+                user.setUsername(userValues[1]);
+                user.setPassword(userValues[2]); // Assuming password can be stored in plain text, update if needed
+                user.setEmail(userValues[3]);
+                user.setAddress(userValues[4]);
+                user.setPhoneNumber(userValues[5]);
+                user.setGender(userValues[6]);
 
-    public User readUserInfo() throws IOException {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter email or phone number: ");
-            String emailOrPhone = scanner.nextLine();          
-
-            System.out.println("Enter password: ");
-            String password = scanner.nextLine();
-
-            BufferedReader reader = null;
-            try {
-                reader = new BufferedReader(new FileReader(filePath));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String decryptedInfo = Encryption.decrypt(line, ENCRYPTION_KEY);
-                    String[] tokens = decryptedInfo.split(",");
-                    System.out.println(tokens);
-
-                    if (tokens.length != 7) {
-                        System.err.println("Warning: Line '" + line + "' has invalid format");
-                        continue;
-                    }
-
-                    if ((emailOrPhone.equals(tokens[3]) || emailOrPhone.equals(tokens[5])) && password.equals(tokens[2])) {
-                        // Check if login value matches email or phone number
-                        User user = new User(); // Create User object based on matching data
-                        user.setID(tokens[0]);
-                        user.setUsername(tokens[1]);
-                        user.setPassword(tokens[2]);
-                        user.setEmail(tokens[3]);
-                        user.setAddress(tokens[4]);
-                        user.setPhoneNumber(tokens[5]);
-                        user.setGender(tokens[6]);
-
-                        char firstLetter = user.getID().charAt(0);
-                        switch (firstLetter) {
-                            case 'A' -> user.setAccessLevel("admin");
-                            case 'M' -> user.setAccessLevel("manager");
-                            case 'C' -> user.setAccessLevel("customer");
-                            case 'S' -> user.setAccessLevel("salesperson");
-                            default -> {
-                                System.err.println("Warning: Invalid access level derived for ID: " + user.getID());
-                                return null;
-                            }
-                        }
-
-                        return user;
-                    } else {
-                        JOptionPane.showMessageDialog(
-                            null, 
-                            "Invalid email, phone number, or password. Please try again or register for a new account.", 
-                            "Login Failed", 
-                            JOptionPane.ERROR_MESSAGE,
-                            null
-                        );
-                        
-                        break; // IMPLEMENT ERROR HANDELING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-                    }
+                char firstLetter = user.getID().charAt(0);
+                switch (firstLetter) {
+                    case 'A' -> user.setAccessLevel("admin");
+                    case 'M' -> user.setAccessLevel("manager");
+                    case 'C' -> user.setAccessLevel("customer");
+                    case 'S' -> user.setAccessLevel("salesperson");
+                    default -> System.err.println("Warning: Invalid access level derived for ID: " + user.getID());
                 }
-            } catch (IOException e) {
-                throw e; // Re-throw IOException for proper handling
-            } catch (Exception e) {
-                System.err.println("Encryption error: " + e.getMessage());
-                return null;
+
+                return user;
             }
-        } catch (Exception e) {
-        System.err.println("Encryption error: " + e.getMessage());
-        return null;
         }
-    return null;
+
+        // No match found
+        JOptionPane.showMessageDialog(null,
+                "Invalid credentials. Please try again.",
+                "Login Failed",
+                JOptionPane.ERROR_MESSAGE,
+                null);
+
+        return null;
     }
 }
