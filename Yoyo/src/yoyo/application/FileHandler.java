@@ -45,18 +45,28 @@ public class FileHandler {
         return data;
     }
 
-    public void appendDataLineByLine(String userData) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            try {
-                String encryptedLine = Encryption.encrypt(userData, secretKey);
-                writer.write(encryptedLine);
+    public void writeDataLineByLine(ArrayList<String[]> data) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false)); // Overwrite
 
-                writer.newLine();
-            } catch (Exception e) {
-                System.err.println("Encryption error: " + e.getMessage());
-            } finally {
-                writer.close(); // Ensure writer is always closed
+        for (String[] lineData : data) {
+            StringBuilder line = new StringBuilder();
+            for (String token : lineData) {
+                line.append(token).append(",");
             }
-        }   
+            // Remove the trailing comma
+            line.setLength(line.length() - 1);
+
+            try {
+                // Encrypt the line
+                String encryptedLine = Encryption.encrypt(line.toString(), secretKey);
+                writer.write(encryptedLine);
+                writer.newLine();
+                writer.flush();
+            } catch (Exception e) {
+                System.err.println("Error encrypting and writing line: " + e.getMessage());
+            }
+        }
+
+        writer.close();
     }
 }

@@ -1,27 +1,15 @@
 package yoyo.application;
 
 import java.awt.CardLayout;
-import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class LoginRegisterUI extends javax.swing.JFrame {
+
 CardLayout cardLayoutWelcome;
-Login login = new Login();
-Register register = new Register();
-String UserInputEmailOrPhone;
-String UserInputPassword;
-String userUsernameInput;
-String userGenderInput;
-String userEmailInput;
-String userPhoneInput;
-String userAddressInput;
-String userRegisterPasswordInput;
-String userConfirmPasswordInput;
 
     public LoginRegisterUI() {
         initComponents();
-        cardLayoutWelcome = (CardLayout) WelcomeCards.getLayout();
+        cardLayoutWelcome = (CardLayout)(WelcomeCards.getLayout()); 
     }
 
 
@@ -34,8 +22,8 @@ String userConfirmPasswordInput;
         roundPanel1 = new yoyo.resources.RoundPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        EmailOrPhoneField = new javax.swing.JTextField();
-        PasswordField = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         LogInButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -46,24 +34,24 @@ String userConfirmPasswordInput;
         roundPanel2 = new yoyo.resources.RoundPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        EmailRegisterField = new javax.swing.JTextField();
-        PasswordConfirmRegisterField = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         SignUpButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         GoToLogInButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        PasswordRegisterField = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        UsernameRegisterField = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        GenderRegisterField = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        PhoneRegisterField = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        AddressRegisterField = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,11 +70,11 @@ String userConfirmPasswordInput;
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(30, 33, 82));
-        jLabel6.setText("Email or Phone");
+        jLabel6.setText("Username or Email");
 
-        EmailOrPhoneField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
 
-        PasswordField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(30, 33, 82));
@@ -114,11 +102,6 @@ String userConfirmPasswordInput;
         GoToSignUpButton.setText("Sign Up");
         GoToSignUpButton.setBorder(null);
         GoToSignUpButton.setContentAreaFilled(false);
-        GoToSignUpButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GoToSignUpButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,8 +123,6 @@ String userConfirmPasswordInput;
                 .addGap(5, 5, 5))
         );
 
-        GoToSignUpButton.getAccessibleContext().setAccessibleName("");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(30, 33, 82));
         jLabel4.setText("Hello There!");
@@ -160,12 +141,12 @@ String userConfirmPasswordInput;
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(312, 312, 312))
-                    .addComponent(EmailOrPhoneField)
+                    .addComponent(jTextField1)
                     .addComponent(LogInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(391, 391, 391))
-                    .addComponent(PasswordField)
+                    .addComponent(jTextField2)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(265, 265, 265))
@@ -184,11 +165,11 @@ String userConfirmPasswordInput;
                 .addGap(43, 43, 43)
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(EmailOrPhoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addGap(21, 21, 21)
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addGap(52, 52, 52)
                 .addComponent(LogInButton)
                 .addGap(30, 30, 30)
@@ -229,9 +210,9 @@ String userConfirmPasswordInput;
         jLabel10.setForeground(new java.awt.Color(30, 33, 82));
         jLabel10.setText("Email");
 
-        EmailRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
 
-        PasswordConfirmRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(30, 33, 82));
@@ -259,11 +240,6 @@ String userConfirmPasswordInput;
         GoToLogInButton.setText("Log in here");
         GoToLogInButton.setBorder(null);
         GoToLogInButton.setContentAreaFilled(false);
-        GoToLogInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GoToLogInButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -288,25 +264,25 @@ String userConfirmPasswordInput;
         jLabel13.setForeground(new java.awt.Color(30, 33, 82));
         jLabel13.setText("Welcome to YOYO");
 
-        PasswordRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(30, 33, 82));
         jLabel14.setText("Password");
 
-        UsernameRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(30, 33, 82));
         jLabel15.setText("Username");
 
-        GenderRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(30, 33, 82));
         jLabel17.setText("Gender");
 
-        PhoneRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(30, 33, 82));
@@ -316,7 +292,7 @@ String userConfirmPasswordInput;
         jLabel19.setForeground(new java.awt.Color(30, 33, 82));
         jLabel19.setText("Address");
 
-        AddressRegisterField.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField10.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -324,7 +300,8 @@ String userConfirmPasswordInput;
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addGap(197, 197, 197)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,25 +319,25 @@ String userConfirmPasswordInput;
                         .addContainerGap(121, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(AddressRegisterField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PasswordRegisterField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PasswordConfirmRegisterField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SignUpButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel2Layout.createSequentialGroup()
                                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(EmailRegisterField, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                    .addComponent(UsernameRegisterField))
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                    .addComponent(jTextField6))
                                 .addGap(30, 30, 30)
                                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(roundPanel2Layout.createSequentialGroup()
                                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(PhoneRegisterField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(GenderRegisterField))))
+                                    .addComponent(jTextField8))))
                         .addGap(40, 40, 40))))
         );
         roundPanel2Layout.setVerticalGroup(
@@ -375,34 +352,34 @@ String userConfirmPasswordInput;
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(UsernameRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GenderRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EmailRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(roundPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel18)
                             .addGap(40, 40, 40))
-                        .addComponent(PhoneRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddressRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PasswordRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PasswordConfirmRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(SignUpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -445,87 +422,21 @@ String userConfirmPasswordInput;
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonActionPerformed
-        UserInputEmailOrPhone = EmailOrPhoneField.getText();
-        UserInputPassword = PasswordField.getText();
-        
-        try {
-            FileHandler loginFileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
-            ArrayList<String[]> tempDecryptedUserInfoLine = loginFileHandler.readLinesOneByOne();
-            login.setUserInfo(tempDecryptedUserInfoLine);
-            login.setUserLoginInput(UserInputEmailOrPhone);
-            login.setUserPasswordInput(UserInputPassword);
-            User verifiedUser = login.loginCheck();
-
-            if (verifiedUser != null) {
-                dispose();
-                new Dashboard(verifiedUser).setVisible(true); 
-                
-            } else {
-                System.out.println("User not found or invalid credentials.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading user information file: " + e.getMessage());
-        } finally {
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_LogInButtonActionPerformed
 
     private void SignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpButtonActionPerformed
-        userUsernameInput = UsernameRegisterField.getText();
-        userGenderInput = GenderRegisterField.getText();
-        userEmailInput = EmailRegisterField.getText();
-        userPhoneInput = PhoneRegisterField.getText();
-        userAddressInput = AddressRegisterField.getText();
-        userRegisterPasswordInput = PasswordRegisterField.getText();
-        userConfirmPasswordInput = PasswordConfirmRegisterField.getText();
-        
-        try {
-            FileHandler registerFileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
-            ArrayList<String[]> tempDecryptedRegisterUserInfoLine = registerFileHandler.readLinesOneByOne();
-            register.setUserInfo(tempDecryptedRegisterUserInfoLine);
-            register.setUserUsernameInput(userUsernameInput);
-            register.setUserGenderInput(userGenderInput);
-            register.setUserEmailInput(userEmailInput);
-            register.setUserPhoneInput(userPhoneInput);
-            register.setUserAddressInput(userAddressInput);
-            register.setUserRegisterPasswordInput(userRegisterPasswordInput);
-            register.setUserConfirmPasswordInput(userConfirmPasswordInput);
-            User verifiedUser = register.registerCheck();
-
-            if (verifiedUser != null) {
-                dispose();
-                new Dashboard(verifiedUser).setVisible(true); 
-                
-            } else {
-                System.out.println("Invalid signup credentials.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading user information file: " + e.getMessage());
-        } finally {
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_SignUpButtonActionPerformed
-    private void GoToLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        cardLayoutWelcome.show(WelcomeCards,"LoginCard");
-    }   
-    private void GoToSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        cardLayoutWelcome.show(WelcomeCards,"RegisterCard");
-    } 
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AddressRegisterField;
-    private javax.swing.JTextField EmailOrPhoneField;
-    private javax.swing.JTextField EmailRegisterField;
-    private javax.swing.JTextField GenderRegisterField;
     private javax.swing.JButton GoToLogInButton;
     private javax.swing.JButton GoToSignUpButton;
     private javax.swing.JButton LogInButton;
     private javax.swing.JPanel LoginCard;
-    private javax.swing.JTextField PasswordConfirmRegisterField;
-    private javax.swing.JTextField PasswordField;
-    private javax.swing.JTextField PasswordRegisterField;
-    private javax.swing.JTextField PhoneRegisterField;
     private javax.swing.JPanel RegisterCard;
     private javax.swing.JButton SignUpButton;
-    private javax.swing.JTextField UsernameRegisterField;
     private javax.swing.JPanel WelcomeCards;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -544,6 +455,15 @@ String userConfirmPasswordInput;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private yoyo.resources.RoundPanel roundPanel1;
     private yoyo.resources.RoundPanel roundPanel2;
     // End of variables declaration//GEN-END:variables

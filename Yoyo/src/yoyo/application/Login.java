@@ -5,26 +5,11 @@ import javax.swing.JOptionPane;
 
 public class Login {
 
-    private ArrayList<String[]> userInfo;
-    private String userLoginInput;
-    private String userPasswordInput;
-
-    public void setUserInfo(ArrayList<String[]> userInfo) {
-        this.userInfo = userInfo;
-    }
-
-    public void setUserLoginInput(String userLoginInput) {
-        this.userLoginInput = userLoginInput;
-    }
-
-    public void setUserPasswordInput(String userPasswordInput) {
-        this.userPasswordInput = userPasswordInput;
-    }
-
-    public User loginCheck() {
-
+    public User processUserInfo(ArrayList<String[]> userInfo, String userLoginInput, String userPasswordInput) {
         for (String[] userValues : userInfo) {
+            // Assuming columns 3 and 5 contain email and phone number respectively
             if ((userValues[3].equals(userLoginInput) || userValues[5].equals(userLoginInput)) && userValues[2].equals(userPasswordInput)) {
+                // Match found!
                 User user = new User();
                 user.setID(userValues[0]);
                 user.setUsername(userValues[1]);
