@@ -149,13 +149,13 @@ public class Register {
 
         System.out.println("formattedUserId = " + dataLine);
         System.out.println("ID: " + registeringUser.getID());
-System.out.println("Username: " + registeringUser.getUsername());
-System.out.println("Password: " + registeringUser.getPassword());
-System.out.println("Email: " + registeringUser.getEmail());
-System.out.println("Address: " + registeringUser.getAddress());
-System.out.println("Phone Number: " + registeringUser.getPhoneNumber());
-System.out.println("Gender: " + registeringUser.getGender());
-System.out.println("Profile Link: " + registeringUser.getProfileLink());
+        System.out.println("Username: " + registeringUser.getUsername());
+        System.out.println("Password: " + registeringUser.getPassword());
+        System.out.println("Email: " + registeringUser.getEmail());
+        System.out.println("Address: " + registeringUser.getAddress());
+        System.out.println("Phone Number: " + registeringUser.getPhoneNumber());
+        System.out.println("Gender: " + registeringUser.getGender());
+        System.out.println("Profile Link: " + registeringUser.getProfileLink());
 
         try {
             fileHandler.appendEncryptedLine("userInfo.txt", dataLine, "Your16CharKey123");

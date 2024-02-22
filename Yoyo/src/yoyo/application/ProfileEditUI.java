@@ -1,15 +1,15 @@
 package yoyo.application;
 
-public class ProfileEdit extends javax.swing.JFrame {
+public class ProfileEditUI extends javax.swing.JFrame {
 String editUserUsernameInput;
 String editUserGenderInput;
-String editUserPhoneNumberInput;
+String editUserPhoneInput;
 String editUserEmailInput;
 String editUserAddressInput;
 String editUserRegisterPasswordInput;
 String editUserConfirmPasswordInput;
 
-    public ProfileEdit() {
+    public ProfileEditUI() {
         initComponents();
     }
 
@@ -36,7 +36,7 @@ String editUserConfirmPasswordInput;
         jLabel19 = new javax.swing.JLabel();
         AddressRegisterField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +146,7 @@ String editUserConfirmPasswordInput;
         editProfileRoundPanelLayout.setVerticalGroup(
             editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(70, 70, 70)
                 .addComponent(jLabel13)
                 .addGap(18, 18, 18)
                 .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +183,7 @@ String editUserConfirmPasswordInput;
                 .addComponent(PasswordConfirmRegisterField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(editProfileButton)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -223,7 +223,7 @@ String editUserConfirmPasswordInput;
         editUserUsernameInput = UsernameRegisterField.getText();
         editUserGenderInput = GenderRegisterField.getText();
         editUserEmailInput = EmailRegisterField.getText();
-        editUserPhoneNumberInput = PhoneRegisterField.getText();
+        editUserPhoneInput = PhoneRegisterField.getText();
         editUserAddressInput = AddressRegisterField.getText();
         editUserRegisterPasswordInput = PasswordRegisterField.getText();
         editUserConfirmPasswordInput = PasswordConfirmRegisterField.getText();
