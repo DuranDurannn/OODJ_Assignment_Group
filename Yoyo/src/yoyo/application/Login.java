@@ -1,7 +1,13 @@
 package yoyo.application;
 
+import yoyo.actors.Administrator;
+import yoyo.actors.Customer;
+import yoyo.actors.Officer;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import yoyo.actors.SalesPerson;
+import yoyo.actors.User;
 
 public class Login {
 
@@ -22,29 +28,33 @@ public class Login {
     }
 
     public User loginCheck() {
-
         for (String[] userValues : userInfo) {
             if ((userValues[3].equals(userLoginInput) || userValues[5].equals(userLoginInput)) && userValues[2].equals(userPasswordInput)) {
-                User user = new User();
-                user.setID(userValues[0]);
-                user.setUsername(userValues[1]);
-                user.setPassword(userValues[2]); // Assuming password can be stored in plain text, update if needed
-                user.setEmail(userValues[3]);
-                user.setAddress(userValues[4]);
-                user.setPhoneNumber(userValues[5]);
-                user.setGender(userValues[6]);
-                user.setProfileLink(userValues[7]);
-                System.out.println("Profile Picture: " + user.getProfileLink());
 
-                char firstLetter = user.getID().charAt(0);
+                User user = null;
+                char firstLetter = userValues[0].charAt(0);
                 switch (firstLetter) {
-                    case 'A' -> user.setAccessLevel("admin");
-                    case 'M' -> user.setAccessLevel("manager");
-                    case 'C' -> user.setAccessLevel("customer");
-                    case 'S' -> user.setAccessLevel("salesperson");
-                    default -> System.err.println("Warning: Invalid access level derived for ID: " + user.getID());
-                }
-
+                    case 'A' -> {
+                        user = new Administrator();
+                        setProperties(user, userValues);
+                    }
+                    case 'O' -> {
+                        user = new Officer();
+                        setProperties(user, userValues);
+                    }
+                    case 'C' -> {
+                        user = new Customer();
+                        setProperties(user, userValues);
+                    }
+                    case 'S' -> {
+                        user = new SalesPerson();
+                        setProperties(user, userValues);
+                    }
+                    default -> {
+                        System.err.println("Warning: Invalid access level derived for ID: " + userValues[0]);
+                        return null;
+                    }
+                }                
                 return user;
             }
         }
@@ -57,5 +67,16 @@ public class Login {
                 null);
 
         return null;
+    }
+
+    private void setProperties(User user, String[] userValues) {
+        user.setID(userValues[0]);
+        user.setUsername(userValues[1]);
+        user.setPassword(userValues[2]);
+        user.setEmail(userValues[3]);
+        user.setAddress(userValues[4]);
+        user.setPhoneNumber(userValues[5]);
+        user.setGender(userValues[6]);
+        user.setProfileLink(userValues[7]);
     }
 }

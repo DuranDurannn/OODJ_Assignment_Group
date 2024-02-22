@@ -1,8 +1,10 @@
 package yoyo.application;
 
+import yoyo.actors.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import yoyo.actors.Customer;
 
 public class Register {
 
@@ -51,7 +53,7 @@ public class Register {
 
     public User registerCheck() {
         
-        User registeringUser = new User();
+        User user = null;
         
         if (userUsernameInput.isEmpty() || userGenderInput.isEmpty() ||
             userEmailInput.isEmpty() || userPhoneInput.isEmpty() ||
@@ -91,7 +93,7 @@ public class Register {
         
         if (!userAddressInput.matches(
                 "^" +                                   // Start of string
-                "\\d+\\s+[\\w\\s]+," +                   // House number (digits) followed by space, Street name (words and spaces) followed by a comma
+                "\\d+\\s+[\\w\\s]+," +                  // House number (digits) followed by space, Street name (words and spaces) followed by a comma
                 "\\s+[\\w\\s]+," +                      // Area/locality (words and spaces) followed by a comma
                 "\\s+\\d{5}\\s+[\\w\\s]+," +            // Postal code (5 digits) followed by space, City/state/country (words and spaces) followed by a comma
                 "\\s+[\\w\\s]+" +                       // Additional city/state/country (words and spaces)
@@ -118,34 +120,28 @@ public class Register {
                 nextUserId = Math.max(nextUserId, userId);
             }                  
         }
-        nextUserId++;
         
+        Customer customer = new Customer();
+        
+        nextUserId++;       
         formatedUserId = "C" + String.format("%03d", nextUserId);
 
-        registeringUser.setID(formatedUserId);
-        registeringUser.setUsername(userUsernameInput);
-        registeringUser.setPassword(userRegisterPasswordInput);
-        registeringUser.setEmail(userEmailInput);
-        registeringUser.setAddress(userAddressInput);
-        registeringUser.setPhoneNumber(userPhoneInput);
-        registeringUser.setGender(userGenderInput);
-        registeringUser.setProfileLink("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s"); 
+        customer.setID(formatedUserId);
+        customer.setUsername(userUsernameInput);
+        customer.setPassword(userRegisterPasswordInput);
+        customer.setEmail(userEmailInput);
+        customer.setAddress(userAddressInput);
+        customer.setPhoneNumber(userPhoneInput);
+        customer.setGender(userGenderInput);
+        customer.setProfileLink("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s"); 
 
-        char firstLetter = registeringUser.getID().charAt(0);
-        switch (firstLetter) {
-            case 'A' -> registeringUser.setAccessLevel("admin");
-            case 'M' -> registeringUser.setAccessLevel("manager");
-            case 'C' -> registeringUser.setAccessLevel("customer");
-            case 'S' -> registeringUser.setAccessLevel("salesperson");
-            default -> System.err.println("Warning: Invalid access level derived for ID: " + registeringUser.getID());
-        }
         SecureFileHandler fileHandler = new SecureFileHandler();
         fileHandler.setFilePath("userInfo.txt");
 
-        String dataLine = registeringUser.getID() + "!" + registeringUser.getUsername() + "!"
-                       + registeringUser.getPassword() + "!" + registeringUser.getEmail() + "!"
-                       + registeringUser.getAddress() + "!" + registeringUser.getPhoneNumber() + "!"
-                       + registeringUser.getGender() + "!" + registeringUser.getProfileLink();
+        String dataLine = customer.getID() + "!" + customer.getUsername() + "!"
+                        + customer.getPassword() + "!" + customer.getEmail() + "!"
+                        + customer.getAddress() + "!" + customer.getPhoneNumber() + "!"
+                        + customer.getGender() + "!" + customer.getProfileLink();
 
         try {
             fileHandler.appendEncryptedLine(dataLine);
@@ -155,6 +151,6 @@ public class Register {
         }
 
         JOptionPane.showMessageDialog(null, "Registration successful!");
-        return registeringUser;
+        return customer;
     }
 }

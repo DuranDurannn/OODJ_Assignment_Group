@@ -1,5 +1,6 @@
 package yoyo.application;
 
+import yoyo.actors.User;
 import java.awt.CardLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -459,7 +460,7 @@ String userConfirmPasswordInput;
 
             if (verifiedUser != null) {
                 dispose();
-                new Dashboard(verifiedUser).setVisible(true); 
+                verifiedUser.showDashboard(); 
                 
             } else {
                 System.out.println("User not found or invalid credentials.");
@@ -496,7 +497,7 @@ String userConfirmPasswordInput;
 
             if (verifiedUser != null) {
                 dispose();
-                new Dashboard(verifiedUser).setVisible(true); 
+                verifiedUser.showDashboard();
                 
             } else {
                 System.out.println("Invalid signup credentials.");
