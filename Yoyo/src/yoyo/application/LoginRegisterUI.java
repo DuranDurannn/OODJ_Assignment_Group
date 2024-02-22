@@ -449,9 +449,9 @@ String userConfirmPasswordInput;
         UserInputPassword = PasswordField.getText();
         
         try {
-            FileHandler loginFileHandler = new FileHandler("userInfo.txt", 8, "Your16CharKey123"); //Issue heredsfsddfsdfsdfsdfsdfsfsdfsdf
-            ArrayList<String[]> tempDecryptedUserInfoLine = loginFileHandler.readLinesOneByOne();
-            login.setUserInfo(tempDecryptedUserInfoLine);
+            SecureFileHandler secureFileHandler = new SecureFileHandler();
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines("userInfo.txt", 8, "Your16CharKey123");
+            login.setUserInfo(decryptedData);
             login.setUserLoginInput(UserInputEmailOrPhone);
             login.setUserPasswordInput(UserInputPassword);
             User verifiedUser = login.loginCheck();
@@ -480,9 +480,9 @@ String userConfirmPasswordInput;
         userConfirmPasswordInput = PasswordConfirmRegisterField.getText();
         
         try {
-            FileHandler registerFileHandler = new FileHandler("userInfo.txt", 8, "Your16CharKey123"); //Issue heredsfsddfsdfsdfsdfsdfsfsdfsdf
-            ArrayList<String[]> tempDecryptedRegisterUserInfoLine = registerFileHandler.readLinesOneByOne();
-            register.setUserInfo(tempDecryptedRegisterUserInfoLine);
+            SecureFileHandler secureFileHandler = new SecureFileHandler();
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines("userInfo.txt", 8, "Your16CharKey123");
+            register.setUserInfo(decryptedData);
             register.setUserUsernameInput(userUsernameInput);
             register.setUserGenderInput(userGenderInput);
             register.setUserEmailInput(userEmailInput);
