@@ -26,7 +26,7 @@ public class FileHandler {
 
         while ((line = reader.readLine()) != null) {
             try {
-                Encryptor encryptor = new AesEncryptor();
+                AesEncryptor encryptor = new AesEncryptor();
                 String decryptedLine = encryptor.decrypt(line, secretKey);
 
                 // Split and validate tokens
@@ -51,7 +51,7 @@ public class FileHandler {
     public void appendDataLineByLine(String userData) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             try {
-                Encryptor encryptor = new AesEncryptor();
+                AesEncryptor encryptor = new AesEncryptor();
                 String encryptedLine = encryptor.encrypt(userData, secretKey);
                 writer.write(encryptedLine);
 

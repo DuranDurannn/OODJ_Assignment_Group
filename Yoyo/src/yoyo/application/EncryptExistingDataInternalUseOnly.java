@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import yoyo.application.AesEncryptor;
-import yoyo.application.Encryptor;
 
 public class EncryptExistingDataInternalUseOnly {
 
@@ -24,7 +23,7 @@ public class EncryptExistingDataInternalUseOnly {
     private static void encryptAndWriteToFile(String userData) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("userInfo.txt", true))) {
             try {
-                Encryptor encryptor = new AesEncryptor();
+                AesEncryptor encryptor = new AesEncryptor();
                 String encryptedUserData = encryptor.encrypt(userData, ENCRYPTION_KEY);
                 writer.write(encryptedUserData);
                 writer.newLine();

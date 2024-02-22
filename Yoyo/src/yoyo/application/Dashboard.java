@@ -1910,7 +1910,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerateInvoiceButtonActionPerformed
 
     private void EditProfileDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileDetailsButtonActionPerformed
-        // TODO add your handling code here:
+        new ProfileEdit().setVisible(true);
     }//GEN-LAST:event_EditProfileDetailsButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

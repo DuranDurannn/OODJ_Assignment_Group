@@ -5,14 +5,12 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import yoyo.resources.Encryptor;
 
-public class AesEncryptor implements Encryptor {
+public class AesEncryptor {
 
     private static final String ALGORITHM = "AES";
     private static final String TRANSFORMATION = "AES/CBC/PKCS5Padding";
 
-    @Override
     public String encrypt(String data, String key) throws Exception {
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         SecretKey secretKey = new SecretKeySpec(key.getBytes(), ALGORITHM);
@@ -29,7 +27,6 @@ public class AesEncryptor implements Encryptor {
         return Base64.getEncoder().encodeToString(result);
     }
 
-    @Override
     public String decrypt(String encryptedData, String key) throws Exception {
         byte[] encryptedBytes = Base64.getDecoder().decode(encryptedData);
 
