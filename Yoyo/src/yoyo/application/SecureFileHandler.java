@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.util.Base64;
-import yoyo.resources.FileHandler;
 
-public class SecureFileHandler implements FileHandler {
-
-    @Override
-    public ArrayList<String[]> readAndDecryptLines(String filePath, int numTokens, String secretKey) throws IOException {
+public class SecureFileHandler {
+    
+    private String filePath;
+    private String secretKey = "Your16CharKey123";
+    
+    public ArrayList<String[]> readAndDecryptLines(int numTokens) throws IOException {
         ArrayList<String[]> decryptedDataList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -46,8 +47,7 @@ public class SecureFileHandler implements FileHandler {
         return decryptedDataList;
     }
 
-    @Override
-    public void appendEncryptedLine(String filePath, String userData, String secretKey) throws IOException {
+    public void appendEncryptedLine(String userData) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             try {
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -70,5 +70,14 @@ public class SecureFileHandler implements FileHandler {
                 throw new IOException("Encryption and write to file error: " + e.getMessage(), e);
             }
         }
+    }
+    
+    public void setFilePath(String filePath) {
+    this.filePath = filePath;
+    }
+
+    // Add this setter method for secretKey
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
     }
 }

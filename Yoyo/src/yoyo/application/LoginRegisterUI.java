@@ -450,7 +450,8 @@ String userConfirmPasswordInput;
         
         try {
             SecureFileHandler secureFileHandler = new SecureFileHandler();
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines("userInfo.txt", 8, "Your16CharKey123");
+            secureFileHandler.setFilePath("userInfo.txt");
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
             login.setUserInfo(decryptedData);
             login.setUserLoginInput(UserInputEmailOrPhone);
             login.setUserPasswordInput(UserInputPassword);
@@ -481,7 +482,8 @@ String userConfirmPasswordInput;
         
         try {
             SecureFileHandler secureFileHandler = new SecureFileHandler();
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines("userInfo.txt", 8, "Your16CharKey123");
+            secureFileHandler.setFilePath("userInfo.txt");
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
             register.setUserInfo(decryptedData);
             register.setUserUsernameInput(userUsernameInput);
             register.setUserGenderInput(userGenderInput);
