@@ -1,14 +1,11 @@
 package yoyo.application;
 
-import javax.crypto.*;
+import java.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-
-interface Encryptor {
-    String encrypt(String data, String key) throws Exception;
-    String decrypt(String encryptedData, String key) throws Exception;
-}
+import yoyo.resources.Encryptor;
 
 public class AesEncryptor implements Encryptor {
 
