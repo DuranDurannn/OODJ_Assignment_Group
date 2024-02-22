@@ -10,6 +10,7 @@ public class User {
     private String phoneNumber;
     private String gender;
     private String accessLevel;
+    private String profileLink;
 
     // Getters
     public String getID() {
@@ -44,6 +45,10 @@ public class User {
         return accessLevel;
     }
     
+    public String getProfileLink() {
+        return profileLink;
+    }
+        
     // Setters
     public void setID(String id) {
         this.id = id;
@@ -75,5 +80,9 @@ public class User {
     
     public void setAccessLevel(String accessLevel) {
         this.accessLevel = accessLevel;
+    }
+    
+    public void setProfileLink(String profileLink) {
+        this.profileLink = profileLink;
     }
 }

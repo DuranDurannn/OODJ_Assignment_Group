@@ -1669,16 +1669,11 @@
                               <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                               <Component id="imageAvatar21" pref="449" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jPanel5" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="EditProfileDetailsButton" min="-2" pref="323" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="EditProfileDetailsButton" max="32767" attributes="0"/>
+                                  <Component id="jPanel5" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace pref="156" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1778,27 +1773,21 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel21" max="32767" attributes="0"/>
                                               <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel11" alignment="1" pref="183" max="32767" attributes="0"/>
+                                              <Component id="jLabel11" alignment="1" pref="156" max="32767" attributes="0"/>
                                               <Component id="jLabel20" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel15" pref="175" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" pref="42" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel16" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="jLabel15" max="32767" attributes="0"/>
+                                              <Component id="jLabel13" max="32767" attributes="0"/>
                                               <Component id="jLabel12" max="32767" attributes="0"/>
-                                              <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel17" alignment="1" min="-2" pref="236" max="-2" attributes="0"/>
-                                                  <Component id="jLabel19" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jLabel18" alignment="0" pref="180" max="32767" attributes="0"/>
-                                                  <Component id="jLabel22" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="jLabel17" alignment="1" min="-2" pref="236" max="-2" attributes="0"/>
+                                              <Component id="jLabel19" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -1820,7 +1809,7 @@
                                       <Component id="jLabel14" alignment="3" max="32767" attributes="0"/>
                                       <Component id="jLabel16" alignment="3" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1830,15 +1819,11 @@
                                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   <Component id="jLabel17" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel19" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel22" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel18" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1847,7 +1832,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel14">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
+                              <Font name="Segoe UI" size="16" style="0"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1858,7 +1843,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel11">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="24" style="1"/>
+                              <Font name="Segoe UI" size="28" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1869,7 +1854,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel16">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
+                              <Font name="Segoe UI" size="16" style="0"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1880,7 +1865,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel12">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="24" style="1"/>
+                              <Font name="Segoe UI" size="28" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1891,7 +1876,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel20">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="24" style="1"/>
+                              <Font name="Segoe UI" size="28" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1902,7 +1887,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel21">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
+                              <Font name="Segoe UI" size="16" style="0"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1913,7 +1898,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel13">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="24" style="1"/>
+                              <Font name="Segoe UI" size="28" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1924,7 +1909,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel15">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
+                              <Font name="Segoe UI" size="16" style="0"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1932,21 +1917,10 @@
                             <Property name="text" type="java.lang.String" value="email@gmail.com"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel18">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="52" green="21" red="1e" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="43300, Kajang, Selangor"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel19">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
+                              <Font name="Segoe UI" size="16" style="0"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
@@ -1957,23 +1931,12 @@
                         <Component class="javax.swing.JLabel" name="jLabel17">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="24" style="1"/>
+                              <Font name="Segoe UI" size="28" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="52" green="21" red="1e" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Address"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel22">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="52" green="21" red="1e" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Taman Utama"/>
                           </Properties>
                         </Component>
                       </SubComponents>

@@ -449,7 +449,7 @@ String userConfirmPasswordInput;
         UserInputPassword = PasswordField.getText();
         
         try {
-            FileHandler loginFileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
+            FileHandler loginFileHandler = new FileHandler("userInfo.txt", 8, "Your16CharKey123"); //Issue heredsfsddfsdfsdfsdfsdfsfsdfsdf
             ArrayList<String[]> tempDecryptedUserInfoLine = loginFileHandler.readLinesOneByOne();
             login.setUserInfo(tempDecryptedUserInfoLine);
             login.setUserLoginInput(UserInputEmailOrPhone);
@@ -462,6 +462,7 @@ String userConfirmPasswordInput;
                 
             } else {
                 System.out.println("User not found or invalid credentials.");
+
             }
         } catch (IOException e) {
             System.err.println("Error reading user information file: " + e.getMessage());
@@ -479,7 +480,7 @@ String userConfirmPasswordInput;
         userConfirmPasswordInput = PasswordConfirmRegisterField.getText();
         
         try {
-            FileHandler registerFileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
+            FileHandler registerFileHandler = new FileHandler("userInfo.txt", 8, "Your16CharKey123"); //Issue heredsfsddfsdfsdfsdfsdfsfsdfsdf
             ArrayList<String[]> tempDecryptedRegisterUserInfoLine = registerFileHandler.readLinesOneByOne();
             register.setUserInfo(tempDecryptedRegisterUserInfoLine);
             register.setUserUsernameInput(userUsernameInput);

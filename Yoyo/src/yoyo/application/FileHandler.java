@@ -26,13 +26,16 @@ public class FileHandler {
 
         while ((line = reader.readLine()) != null) {
             try {
-                // Decrypt the line
-                String decryptedLine = Encryption.decrypt(line, secretKey);
+                Encryptor encryptor = new AesEncryptor();
+                String decryptedLine = encryptor.decrypt(line, secretKey);
 
                 // Split and validate tokens
-                String[] tokens = decryptedLine.split(",");
+                String[] tokens = decryptedLine.split("!");
                 if (tokens.length == numTokens) {
                     data.add(tokens);
+                for (String token : tokens) {
+    System.out.println(token);
+}
                 } else {
                     System.err.println("Warning: Line '" + line + "' has invalid format");
                 }
@@ -48,7 +51,8 @@ public class FileHandler {
     public void appendDataLineByLine(String userData) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             try {
-                String encryptedLine = Encryption.encrypt(userData, secretKey);
+                Encryptor encryptor = new AesEncryptor();
+                String encryptedLine = encryptor.encrypt(userData, secretKey);
                 writer.write(encryptedLine);
 
                 writer.newLine();

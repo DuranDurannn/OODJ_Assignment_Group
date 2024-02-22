@@ -61,6 +61,14 @@ public class Register {
             return null;
         }
         
+        if (userUsernameInput.contains("!") || userGenderInput.contains("!") ||
+            userEmailInput.contains("!") || userPhoneInput.contains("!") ||
+            userAddressInput.contains("!") || userRegisterPasswordInput.contains("!") ||
+            userConfirmPasswordInput.contains("!")) {
+            JOptionPane.showMessageDialog(null, "Exclaimation marks are not allowed in any input field.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
         if (!userGenderInput.equals("male") && !userGenderInput.equals("female")) {
             JOptionPane.showMessageDialog(null, "Invalid gender input. Please enter 'male' or 'female'.", "Registration Error", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -81,6 +89,23 @@ public class Register {
             return null;
         }
         
+        if (!userAddressInput.matches(
+                "^" +                                   // Start of string
+                "\\d+\\s+[\\w\\s]+," +                   // House number (digits) followed by space, Street name (words and spaces) followed by a comma
+                "\\s+[\\w\\s]+," +                      // Area/locality (words and spaces) followed by a comma
+                "\\s+\\d{5}\\s+[\\w\\s]+," +            // Postal code (5 digits) followed by space, City/state/country (words and spaces) followed by a comma
+                "\\s+[\\w\\s]+" +                       // Additional city/state/country (words and spaces)
+                "$"                                     // End of string
+        )) {
+            JOptionPane.showMessageDialog(
+                null, 
+                "Invalid address format. Please follow the example: 15 Persiaran Gurney, Georgetown, 10250 Pulau Pinang, Malaysia", 
+                "Registration Error", 
+                JOptionPane.ERROR_MESSAGE
+            );
+            return null;
+        }
+
         for (String[] userValues : userInfo) {
 
             if (userValues[3].equals(userEmailInput) || userValues[5].equals(userPhoneInput)) {
@@ -103,7 +128,8 @@ public class Register {
         registeringUser.setEmail(userEmailInput);
         registeringUser.setAddress(userAddressInput);
         registeringUser.setPhoneNumber(userPhoneInput);
-        registeringUser.setGender(userGenderInput);     
+        registeringUser.setGender(userGenderInput);
+        registeringUser.setProfileLink("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s"); 
 
         char firstLetter = registeringUser.getID().charAt(0);
         switch (firstLetter) {
@@ -114,12 +140,12 @@ public class Register {
             default -> System.err.println("Warning: Invalid access level derived for ID: " + registeringUser.getID());
         }
 
-        FileHandler fileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
+        FileHandler fileHandler = new FileHandler("userInfo.txt", 8, "Your16CharKey123");
 
-        String dataLine = registeringUser.getID() + "," + registeringUser.getUsername() + ","
-                       + registeringUser.getPassword() + "," + registeringUser.getEmail() + ","
-                       + registeringUser.getAddress() + "," + registeringUser.getPhoneNumber() + ","
-                       + registeringUser.getGender();
+        String dataLine = registeringUser.getID() + "!" + registeringUser.getUsername() + "!"
+                       + registeringUser.getPassword() + "!" + registeringUser.getEmail() + "!"
+                       + registeringUser.getAddress() + "!" + registeringUser.getPhoneNumber() + "!"
+                       + registeringUser.getGender() + "!" + registeringUser.getProfileLink();
         
         System.out.println("formattedUserId = " + dataLine);
         

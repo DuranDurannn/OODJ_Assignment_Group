@@ -33,6 +33,8 @@ public class Login {
                 user.setAddress(userValues[4]);
                 user.setPhoneNumber(userValues[5]);
                 user.setGender(userValues[6]);
+                user.setProfileLink(userValues[7]);
+                System.out.println("Profile Picture: " + user.getProfileLink());
 
                 char firstLetter = user.getID().charAt(0);
                 switch (firstLetter) {

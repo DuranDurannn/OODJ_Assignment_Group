@@ -15,7 +15,7 @@ public class Main {
 
             
         } catch (UnsupportedLookAndFeelException e) {
-            //ERROR HANDLING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            System.err.println("Error unsupported LAF");
         }  
     }
 }
