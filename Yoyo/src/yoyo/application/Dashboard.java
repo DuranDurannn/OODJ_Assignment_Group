@@ -25,6 +25,7 @@ public class Dashboard extends javax.swing.JFrame {
     private CardLayout cardLayoutContent;
     private CardLayout cardLayoutButton;
     private User currentUser;
+    private String imageLink;
     
     public User getCurrentUser() {
     return currentUser;
@@ -36,6 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     public Dashboard(User user) {  
         this.currentUser = user;
+        imageLink = user.getProfileLink();
         initComponents(); 
         
         //DEBUG CODE//
@@ -47,6 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
         System.out.println("Phone Number: " + currentUser.getPhoneNumber());
         System.out.println("Gender: " + currentUser.getGender());
         System.out.println("Access Level: " + currentUser.getAccessLevel());
+        System.out.println("Profile Picture: " + currentUser.getProfileLink());
         //DEBUG CODE//
         
         jLabel55.setText(currentUser.getUsername());
@@ -563,7 +566,7 @@ public class Dashboard extends javax.swing.JFrame {
             public javax.swing.Icon getIcon() {
                 try {
                     return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.kym-cdn.com/entries/icons/original/000/031/003/cover3.jpg")
+                        new java.net.URL(imageLink)
                     );
                 } catch (java.net.MalformedURLException e) {
                 }
@@ -1297,7 +1300,7 @@ public class Dashboard extends javax.swing.JFrame {
             public javax.swing.Icon getIcon() {
                 try {
                     return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.kym-cdn.com/entries/icons/facebook/000/031/003/cover3.jpg")
+                        new java.net.URL(imageLink)
                     );
                 } catch (java.net.MalformedURLException e) {
                 }
