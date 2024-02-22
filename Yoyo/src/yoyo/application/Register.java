@@ -140,22 +140,30 @@ public class Register {
             default -> System.err.println("Warning: Invalid access level derived for ID: " + registeringUser.getID());
         }
 
-        FileHandler fileHandler = new FileHandler("userInfo.txt", 8, "Your16CharKey123");
+        SecureFileHandler fileHandler = new SecureFileHandler();
 
         String dataLine = registeringUser.getID() + "!" + registeringUser.getUsername() + "!"
                        + registeringUser.getPassword() + "!" + registeringUser.getEmail() + "!"
                        + registeringUser.getAddress() + "!" + registeringUser.getPhoneNumber() + "!"
                        + registeringUser.getGender() + "!" + registeringUser.getProfileLink();
-        
+
         System.out.println("formattedUserId = " + dataLine);
-        
+        System.out.println("ID: " + registeringUser.getID());
+System.out.println("Username: " + registeringUser.getUsername());
+System.out.println("Password: " + registeringUser.getPassword());
+System.out.println("Email: " + registeringUser.getEmail());
+System.out.println("Address: " + registeringUser.getAddress());
+System.out.println("Phone Number: " + registeringUser.getPhoneNumber());
+System.out.println("Gender: " + registeringUser.getGender());
+System.out.println("Profile Link: " + registeringUser.getProfileLink());
+
         try {
-            fileHandler.appendDataLineByLine(dataLine);
+            fileHandler.appendEncryptedLine("userInfo.txt", dataLine, "Your16CharKey123");
             
         } catch (IOException e) {
             System.err.println("Error writing data to file: " + e.getMessage());
         }
-        
+
         JOptionPane.showMessageDialog(null, "Registration successful!");
         return registeringUser;
     }
