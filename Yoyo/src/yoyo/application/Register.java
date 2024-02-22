@@ -1,129 +1,136 @@
 package yoyo.application;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 public class Register {
-    
-    private static String filePath = "userInfo.txt";
-    private static final String ENCRYPTION_KEY = "Your16CharKey123";
-    
-    private static ArrayList<User> userList = new ArrayList<>();
-    
-    private static int nextUserId;
-    
-    BufferedReader reader = null;
-    {
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String decryptedInfo = Encryption.decrypt(line, ENCRYPTION_KEY);
-                String[] tokens = decryptedInfo.split(",");
 
-                if (tokens.length != 7) {
-                    System.err.println("Warning: Line '" + line + "' has invalid format");
-                    continue;
-                }
-                
-                User user = new User(); // Create User object based on matching data
-                user.setID(tokens[0]);
-                user.setUsername(tokens[1]);
-                user.setPassword(tokens[2]);
-                user.setEmail(tokens[3]);
-                user.setAddress(tokens[4]);
-                user.setPhoneNumber(tokens[5]);
-                user.setGender(tokens[6]);
-                
-                if (tokens.length > 0) {
-                    String userIdString = tokens[0];
-                    if (userIdString.startsWith("C")) {
-                        int userId = Integer.parseInt(userIdString.substring(2)); // Remove the "CS" prefix
-                        nextUserId = Math.max(nextUserId, userId);
-                    }
-                }
-            }
-            
-            nextUserId++;
-        }catch (FileNotFoundException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private ArrayList<String[]> userInfo;
+    private String userUsernameInput;
+    private String userGenderInput;
+    private String userEmailInput;
+    private String userPhoneInput;
+    private String userAddressInput;
+    private String userRegisterPasswordInput;
+    private String userConfirmPasswordInput;
+    private String formatedUserId = "C001";
+    private static int nextUserId;
+
+    public void setUserInfo(ArrayList<String[]> userInfo) {
+        this.userInfo = userInfo;
     }
 
-    public static boolean registerUserInfo(String registerUsername, String registerAddress, String registerEmail, String registerPassword, String registerConfirmPassword) {
-        // Validate that all fields are filled in
-        if (registerUsername.isEmpty() || registerAddress.isEmpty() || registerEmail.isEmpty() || registerPassword.isEmpty() || registerConfirmPassword.isEmpty()) {
-            JOptionPane.showMessageDialog(
-                null, 
-                "Please fill in all information to register. Please try again.", 
-                "Register Failed", 
-                JOptionPane.ERROR_MESSAGE,
-                null
-            );
-            return false;
-        }
+    public void setUserUsernameInput(String userUsernameInput) {
+        this.userUsernameInput = userUsernameInput;
+    }
 
-        // Validate that password and confirm password match
-        if (!registerPassword.equals(registerConfirmPassword)) {
-            JOptionPane.showMessageDialog(
-                null, 
-                "Password does not match confirm password. Please try again.", 
-                "Register Failed", 
-                JOptionPane.ERROR_MESSAGE,
-                null
-            );
-             return false;
+    public void setUserGenderInput(String userGenderInput) {
+        this.userGenderInput = userGenderInput.toLowerCase();
+    }
+
+    public void setUserEmailInput(String userEmailInput) {
+        this.userEmailInput = userEmailInput;
+    }
+
+    public void setUserPhoneInput(String userPhoneInput) {
+        this.userPhoneInput = userPhoneInput;
+    }
+
+    public void setUserAddressInput(String userAddressInput) {
+        this.userAddressInput = userAddressInput;
+    }
+
+    public void setUserRegisterPasswordInput(String userPasswordInput) {
+        this.userRegisterPasswordInput = userPasswordInput;
+    }
+
+    public void setUserConfirmPasswordInput(String userConfirmPasswordInput) {
+        this.userConfirmPasswordInput = userConfirmPasswordInput;
+    }
+
+    public User registerCheck() {
+        
+        User registeringUser = new User();
+        
+        if (userUsernameInput.isEmpty() || userGenderInput.isEmpty() ||
+            userEmailInput.isEmpty() || userPhoneInput.isEmpty() ||
+            userAddressInput.isEmpty() || userRegisterPasswordInput.isEmpty() ||
+            userConfirmPasswordInput.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
         
-        //Check is the email taken or not
-        for (User user : userList) {
-            if (user.getEmail().equals(registerEmail)) {
-                JOptionPane.showMessageDialog(
-                    null, 
-                    "Email already exists. Please use a different email address.", 
-                    "Register Failed", 
-                    JOptionPane.ERROR_MESSAGE,
-                    null
-                );
-                return false;
+        if (!userGenderInput.equals("male") && !userGenderInput.equals("female")) {
+            JOptionPane.showMessageDialog(null, "Invalid gender input. Please enter 'male' or 'female'.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        if (!userRegisterPasswordInput.equals(userConfirmPasswordInput)) {
+            JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        if (!userEmailInput.contains("@")) {
+            JOptionPane.showMessageDialog(null, "Invalid email address. Please enter a valid email.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        if (!userPhoneInput.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Invalid phone number. Please enter only numeric digits.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        for (String[] userValues : userInfo) {
+
+            if (userValues[3].equals(userEmailInput) || userValues[5].equals(userPhoneInput)) {
+                JOptionPane.showMessageDialog(null, "Email or phone already exists. Please choose a different one.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+                return null;
             }
+            
+            if (userValues.length > 0 && userValues[0].startsWith("C")) {
+                int userId = Integer.parseInt(userValues[0].substring(1));
+                nextUserId = Math.max(nextUserId, userId);
+            }                  
         }
+        nextUserId++;
         
-        String formatedUserId = "C" + String.format("%03d", nextUserId);
-        
-        String newUser = formatedUserId + "," + registerUsername + "," + registerAddress + "," + registerEmail + "," + registerPassword;
+        formatedUserId = "C" + String.format("%03d", nextUserId);
 
-        /* Encrypt user information
-        String encryptedInfo;
+        registeringUser.setID(formatedUserId);
+        registeringUser.setUsername(userUsernameInput);
+        registeringUser.setPassword(userRegisterPasswordInput);
+        registeringUser.setEmail(userEmailInput);
+        registeringUser.setAddress(userAddressInput);
+        registeringUser.setPhoneNumber(userPhoneInput);
+        registeringUser.setGender(userGenderInput);     
+
+        char firstLetter = registeringUser.getID().charAt(0);
+        switch (firstLetter) {
+            case 'A' -> registeringUser.setAccessLevel("admin");
+            case 'M' -> registeringUser.setAccessLevel("manager");
+            case 'C' -> registeringUser.setAccessLevel("customer");
+            case 'S' -> registeringUser.setAccessLevel("salesperson");
+            default -> System.err.println("Warning: Invalid access level derived for ID: " + registeringUser.getID());
+        }
+
+        FileHandler fileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
+
+        String dataLine = registeringUser.getID() + "," + registeringUser.getUsername() + ","
+                       + registeringUser.getPassword() + "," + registeringUser.getEmail() + ","
+                       + registeringUser.getAddress() + "," + registeringUser.getPhoneNumber() + ","
+                       + registeringUser.getGender();
+        
+        System.out.println("formattedUserId = " + dataLine);
+        
         try {
-            encryptedInfo = Encryption.encrypt(newUser, ENCRYPTION_KEY);
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle encryption errors appropriately
-            return false; // If encryption fails, return false
-        }
-        */
-
-        // Perform the registration process here (e.g., write user information to a file or database)
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(newUser); // Write encrypted user information
-            writer.newLine();
+            fileHandler.appendDataLineByLine(dataLine);
+            
         } catch (IOException e) {
-            e.printStackTrace(); // Handle file writing errors appropriately
-            return false; // If writing to file fails, return false
+            System.err.println("Error writing data to file: " + e.getMessage());
         }
-
-        // If registration is successful, return true
-        return true;
+        
+        JOptionPane.showMessageDialog(null, "Registration successful!");
+        return registeringUser;
     }
 }
