@@ -4,6 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.LinkedHashMap;
 import javax.swing.ImageIcon;
 import org.jfree.chart.ChartFactory;
@@ -14,6 +20,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.util.Map;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import yoyo.reports.ClosedSaleReport;
 import yoyo.reports.Invoice;
@@ -26,6 +33,32 @@ public class Dashboard extends javax.swing.JFrame {
     private CardLayout cardLayoutButton;
     private User currentUser;
     
+    public void loadTableData() {
+        String FILE_PATH = "PendingApproval.txt";
+        File furnitureList = new File(FILE_PATH);
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(furnitureList));
+            DefaultTableModel table = (DefaultTableModel) salespersonTable.getModel();
+            
+            String firstLine = br.readLine();
+            if (firstLine != null) {
+                String[] firstRow = firstLine.split("!");
+                table.addRow(firstRow);
+            }
+            
+            String line;
+                while ((line = br.readLine()) != null) {
+                    String[] dataRow = line.split("!");
+                    table.addRow(dataRow);
+                }
+            } catch (IOException ex) {
+        ex.printStackTrace(); // Print the stack trace for debugging
+    }
+    
+    salespersonTable.setDefaultEditor(Object.class, null);
+}
+    
     public User getCurrentUser() {
     return currentUser;
     }
@@ -37,6 +70,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard(User user) {  
         this.currentUser = user;
         initComponents(); 
+        loadTableData();
         
         //DEBUG CODE//
         System.out.println("ID: " + currentUser.getID());
@@ -288,10 +322,12 @@ public class Dashboard extends javax.swing.JFrame {
         roundPanel20 = new yoyo.resources.RoundPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        salespersonTable = new javax.swing.JTable();
         jTextField2 = new javax.swing.JTextField();
         SearchQuotationButton1 = new javax.swing.JButton();
         ModifyQuotationButton1 = new javax.swing.JButton();
+        AddFurnitureButton1 = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
         roundPanel11 = new yoyo.resources.RoundPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jTable13 = new javax.swing.JTable();
@@ -1458,7 +1494,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addGroup(roundPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel19Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 408, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EditProfileDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(imageAvatar21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1488,28 +1524,18 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(30, 33, 82));
         jLabel8.setText("Salesperson Dashboard");
 
-        jTable4.setBackground(new java.awt.Color(246, 245, 249));
-        jTable4.getTableHeader().setBackground(new java.awt.Color(30, 33, 82));
-        jTable4.getTableHeader().setForeground(new java.awt.Color(246, 245, 249));
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        salespersonTable.setBackground(new java.awt.Color(246, 245, 249));
+        salespersonTable.getTableHeader().setBackground(new java.awt.Color(30, 33, 82));
+        salespersonTable.getTableHeader().setForeground(new java.awt.Color(246, 245, 249));
+        salespersonTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Sales ID", "Date", "Amount", "Status"
+                "Sales ID", "Customer ID", "Furniture ID", "Furniture Name", "Type", "Price", "Status", "Date"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(1).setHeaderValue("Date");
-            jTable4.getColumnModel().getColumn(2).setHeaderValue("Amount");
-            jTable4.getColumnModel().getColumn(3).setHeaderValue("Status");
-        }
+        jScrollPane4.setViewportView(salespersonTable);
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1535,18 +1561,42 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        AddFurnitureButton1.setBackground(new java.awt.Color(30, 33, 82));
+        AddFurnitureButton1.setForeground(new java.awt.Color(255, 255, 255));
+        AddFurnitureButton1.setText("Add Button");
+        AddFurnitureButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFurnitureButton1ActionPerformed(evt);
+            }
+        });
+
+        refreshButton.setBackground(new java.awt.Color(30, 33, 82));
+        refreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel20Layout = new javax.swing.GroupLayout(roundPanel20);
         roundPanel20.setLayout(roundPanel20Layout);
         roundPanel20Layout.setHorizontalGroup(
             roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel20Layout.createSequentialGroup()
+                .addGap(314, 314, 314)
+                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel20Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane4)
                     .addGroup(roundPanel20Layout.createSequentialGroup()
                         .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel20Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                            .addGroup(roundPanel20Layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(AddFurnitureButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SearchQuotationButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -1563,10 +1613,13 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ModifyQuotationButton1)
+                    .addComponent(AddFurnitureButton1)
                     .addComponent(SearchQuotationButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(refreshButton)
+                .addGap(24, 24, 24))
         );
 
         roundPanel11.setBackground(new java.awt.Color(246, 245, 249));
@@ -1832,7 +1885,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardBackgroundLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(DashboardBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ContentCards, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ContentCards, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
@@ -2007,8 +2060,21 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchQuotationButton2ActionPerformed
 
+    private void AddFurnitureButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFurnitureButton1ActionPerformed
+        FurnitureDetailsUI furnitureFrame = new FurnitureDetailsUI();
+        furnitureFrame.setVisible(true);
+    }//GEN-LAST:event_AddFurnitureButton1ActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        DefaultTableModel table = (DefaultTableModel) salespersonTable.getModel();
+        table.setRowCount(0);
+        
+        loadTableData();
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddFurnitureButton1;
     private javax.swing.JPanel AdministratorButtons;
     private javax.swing.JPanel AdministratorSummaryCard;
     private javax.swing.JPanel ButtonCards;
@@ -2107,7 +2173,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable jTable13;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
@@ -2116,6 +2181,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton refreshButton;
     private yoyo.resources.RoundPanel roundPanel1;
     private yoyo.resources.RoundPanel roundPanel11;
     private yoyo.resources.RoundPanel roundPanel12;
@@ -2131,5 +2197,6 @@ public class Dashboard extends javax.swing.JFrame {
     private yoyo.resources.RoundPanel roundPanel3;
     private yoyo.resources.RoundPanel roundPanel5;
     private yoyo.resources.RoundPanel roundPanel6;
+    private javax.swing.JTable salespersonTable;
     // End of variables declaration//GEN-END:variables
 }
