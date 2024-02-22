@@ -1,6 +1,5 @@
 package yoyo.application;
 
-import yoyo.actors.User;
 import java.awt.CardLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -450,21 +449,19 @@ String userConfirmPasswordInput;
         UserInputPassword = PasswordField.getText();
         
         try {
-            SecureFileHandler secureFileHandler = new SecureFileHandler();
-            secureFileHandler.setFilePath("userInfo.txt");
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
-            login.setUserInfo(decryptedData);
+            FileHandler loginFileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
+            ArrayList<String[]> tempDecryptedUserInfoLine = loginFileHandler.readLinesOneByOne();
+            login.setUserInfo(tempDecryptedUserInfoLine);
             login.setUserLoginInput(UserInputEmailOrPhone);
             login.setUserPasswordInput(UserInputPassword);
             User verifiedUser = login.loginCheck();
 
             if (verifiedUser != null) {
                 dispose();
-                verifiedUser.showDashboard(); 
+                new Dashboard(verifiedUser).setVisible(true); 
                 
             } else {
                 System.out.println("User not found or invalid credentials.");
-
             }
         } catch (IOException e) {
             System.err.println("Error reading user information file: " + e.getMessage());
@@ -482,10 +479,9 @@ String userConfirmPasswordInput;
         userConfirmPasswordInput = PasswordConfirmRegisterField.getText();
         
         try {
-            SecureFileHandler secureFileHandler = new SecureFileHandler();
-            secureFileHandler.setFilePath("userInfo.txt");
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
-            register.setUserInfo(decryptedData);
+            FileHandler registerFileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
+            ArrayList<String[]> tempDecryptedRegisterUserInfoLine = registerFileHandler.readLinesOneByOne();
+            register.setUserInfo(tempDecryptedRegisterUserInfoLine);
             register.setUserUsernameInput(userUsernameInput);
             register.setUserGenderInput(userGenderInput);
             register.setUserEmailInput(userEmailInput);
@@ -497,7 +493,7 @@ String userConfirmPasswordInput;
 
             if (verifiedUser != null) {
                 dispose();
-                verifiedUser.showDashboard();
+                new Dashboard(verifiedUser).setVisible(true); 
                 
             } else {
                 System.out.println("Invalid signup credentials.");

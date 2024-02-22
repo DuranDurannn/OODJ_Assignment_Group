@@ -1,6 +1,7 @@
-package yoyo.actors;
+package yoyo.application;
 
-public abstract class User {
+public class User {
+    
     private String id;
     private String username;
     private String password;
@@ -9,17 +10,16 @@ public abstract class User {
     private String phoneNumber;
     private String gender;
     private String accessLevel;
-    private String profileLink;
 
     // Getters
     public String getID() {
         return id;
     }
-
+    
     public String getUsername() {
         return username;
     }
-
+    
     public String getPassword() {
         return password;
     }
@@ -39,20 +39,16 @@ public abstract class User {
     public String getGender() {
         return gender;
     }
-
+    
     public String getAccessLevel() {
         return accessLevel;
     }
-
-    public String getProfileLink() {
-        return profileLink;
-    }
-
+    
     // Setters
     public void setID(String id) {
         this.id = id;
     }
-
+    
     public void setUsername(String username) {
         this.username = username;
     }
@@ -76,27 +72,8 @@ public abstract class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
+    
     public void setAccessLevel(String accessLevel) {
         this.accessLevel = accessLevel;
-    }
-
-    public void setProfileLink(String profileLink) {
-        this.profileLink = profileLink;
-    }
-
-    public abstract void showDashboard();
-    
-    @Override
-    public String toString() {
-        return  "ID='" + getID() + '\'' +
-                ", username='" + getUsername() + '\'' +
-                ", password='" + getPassword() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", address='" + getAddress() + '\'' +
-                ", phoneNumber='" + getPhoneNumber() + '\'' +
-                ", gender='" + getGender() + '\'' +
-                ", accessLevel='" + getAccessLevel() + '\'' +
-                ", profileLink='" + getProfileLink() + '\'' ;
     }
 }
