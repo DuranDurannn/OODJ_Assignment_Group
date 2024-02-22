@@ -1,20 +1,8 @@
 package yoyo.application;
 
-import java.awt.BorderLayout;
+import yoyo.actors.User;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.geom.Ellipse2D;
-import java.util.LinkedHashMap;
 import javax.swing.ImageIcon;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-
-import java.util.Map;
-import javax.swing.JPanel;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import yoyo.reports.ClosedSaleReport;
 import yoyo.reports.Invoice;
 import yoyo.reports.WorkDoneReport;
@@ -35,26 +23,28 @@ public class Dashboard extends javax.swing.JFrame {
         this.currentUser = user;
     }
     
-    public Dashboard(User user) {  
+    public Dashboard(User user) { 
         this.currentUser = user;
+        
         imageLink = user.getProfileLink();
         initComponents(); 
+        
+// <editor-fold defaultstate="collapsed" desc="Address line splitting">
 
         String address = user.getAddress();
-        String[] lines = address.split(","); // Split the address by commas
-
-        // Create a StringBuilder to build the HTML-formatted text
+        String[] lines = address.split(",");
         StringBuilder htmlText = new StringBuilder("<html>");
 
-        // Append each line with a <br> tag to create a new line
         for (String line : lines) {
             htmlText.append(line.trim()).append("<br>");
         }
 
-        // Close the HTML tag
         htmlText.append("</html>");
+        
+// </editor-fold>
 
-        // Set the HTML-formatted text to the JLabel
+// <editor-fold defaultstate="collapsed" desc="Set visual text elements">
+
         jLabel19.setText(htmlText.toString());
 
         jLabel55.setText(currentUser.getUsername());
@@ -63,7 +53,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel21.setText(currentUser.getGender());
         jLabel16.setText(currentUser.getPhoneNumber());
         jLabel15.setText(currentUser.getEmail());
-                
+        
+// </editor-fold>
+        
+// <editor-fold defaultstate="collapsed" desc="Button icon initialization">     
+
         ImageIcon icon1 = new ImageIcon("dashboard.png");
         buttonMenu1.setIcon(icon1);
         buttonMenu6.setIcon(icon1);
@@ -86,42 +80,12 @@ public class Dashboard extends javax.swing.JFrame {
         ImageIcon icon5 = new ImageIcon("logout.png");
         buttonMenu5.setIcon(icon5);
         
-        Map<String, Double> monthlyRevenue = new LinkedHashMap<>();
-        monthlyRevenue.put("Jan", 1000.0);
-        monthlyRevenue.put("Feb", 1200.0);
-        monthlyRevenue.put("Mar", 1500.0);
-        monthlyRevenue.put("Apr", 1700.0);
-        monthlyRevenue.put("May", 1800.0);
-        monthlyRevenue.put("Jun", 1900.0);
-        monthlyRevenue.put("Jul", 2000.0);
-        monthlyRevenue.put("Aug", 2100.0);
-        monthlyRevenue.put("Sep", 2200.0);
-        monthlyRevenue.put("Oct", 2300.0);
-        monthlyRevenue.put("Nov", 2400.0);
-        monthlyRevenue.put("Dec", 2500.0);
-        
-        MonthlyRevenueGraph.setLayout(new BorderLayout());
-        createLineChart(monthlyRevenue,MonthlyRevenueGraph, "Monthly Revenue Comparison", "Month", "Revenue(RM)");
-        
-        Map<String, Double> monthlyUnitsSold = new LinkedHashMap<>();
-        monthlyUnitsSold.put("Jan", 15.0);
-        monthlyUnitsSold.put("Feb", 17.0);
-        monthlyUnitsSold.put("Mar", 18.0);
-        monthlyUnitsSold.put("Apr", 16.0);
-        monthlyUnitsSold.put("May", 20.0);
-        monthlyUnitsSold.put("Jun", 36.0);
-        monthlyUnitsSold.put("Jul", 21.0);
-        monthlyUnitsSold.put("Aug", 38.0);
-        monthlyUnitsSold.put("Sep", 43.0);
-        monthlyUnitsSold.put("Oct", 55.0);
-        monthlyUnitsSold.put("Nov", 67.0);
-        monthlyUnitsSold.put("Dec", 75.0);
-        
-        MonthlyUnitsSoldGraph.setLayout(new BorderLayout());
-        createLineChart(monthlyUnitsSold,MonthlyUnitsSoldGraph, "Monthly Units Sold Comparison", "Month", "UnitsSold");
-        
+// </editor-fold>        
+
+// <editor-fold defaultstate="collapsed" desc="Show different dashboards"> 
+
         cardLayoutContent = (CardLayout)(ContentCards.getLayout()); 
-        cardLayoutButton = (CardLayout)(ButtonCards.getLayout());
+        cardLayoutButton = (CardLayout)(ButtonCards.getLayout());    
         
         switch (currentUser.getAccessLevel()) { // handles access level behaviour
             case "officer" -> {
@@ -143,66 +107,21 @@ public class Dashboard extends javax.swing.JFrame {
             }
             
             case "customer" -> {
-                cardLayoutContent.show(ContentCards,"CustomerSummaryCard");
+                cardLayoutContent.show(ContentCards, "CustomerSummaryCard");
                 cardLayoutButton.show(ButtonCards,"CustomerButtonsCards");
                 buttonMenu11.setSelected(true);
             }
 
         }
     }
-
     
-    private void createLineChart(Map<String, Double> monthlyRevenue, JPanel panel, String title, String xLabel, String yLabel) {
-
-        // Create dataset
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String month : monthlyRevenue.keySet()) {
-            dataset.addValue(monthlyRevenue.get(month), "Revenue", month);
-        }
-
-        // Create chart
-        JFreeChart chart = ChartFactory.createLineChart(
-            title,
-            xLabel,
-            yLabel,
-            dataset,
-            PlotOrientation.VERTICAL,
-            false, // Include legend
-            false, // Include tooltips
-            false // No URL generator
-        );
-
-        // Customize chart (optional)
-        customizeChart(chart); // Call a separate method for customization
-
-        // Add chart to the panel
-        ChartPanel chartPanel = new ChartPanel(chart);
-        panel.add(chartPanel);
-    }
+// </editor-fold>    
     
-    private void customizeChart(JFreeChart chart) {
-        
-        // Optional customizations
-        chart.getPlot().setBackgroundPaint(new Color(246,245,249)); 
-        
-        // Add rounded corners to lines (optional)
-        LineAndShapeRenderer renderer = (LineAndShapeRenderer) chart.getCategoryPlot().getRenderer();
-        renderer.setSeriesPaint(0, new Color(0, 128, 255)); // Set point color to blue
-        renderer.setSeriesShape(0, new Ellipse2D.Double(-3, -3, 6, 6)); // Change shape to circle
-        renderer.setBaseShapesVisible(true);
-        renderer.setDrawOutlines(false);
-        renderer.setUseFillPaint(true);
-        renderer.setBaseFillPaint(new Color(0, 128, 255));
-
-    }
-    
-        
     @SuppressWarnings("unchecked")
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
         DashboardBackground = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         roundPanel5 = new yoyo.resources.RoundPanel();
@@ -322,17 +241,6 @@ public class Dashboard extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         SearchItemsButton1 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1400, 800));
@@ -956,7 +864,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        ContentCards.add(OfficerSummaryCard, "OfficerDashboardCard");
+        ContentCards.add(OfficerSummaryCard, "OfficerSummaryCard");
 
         SalesOrderCard.setOpaque(false);
 
@@ -2043,7 +1951,6 @@ public class Dashboard extends javax.swing.JFrame {
     private yoyo.resources.ButtonMenu buttonMenu9;
     private yoyo.resources.ImageAvatar imageAvatar20;
     private yoyo.resources.ImageAvatar imageAvatar21;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
