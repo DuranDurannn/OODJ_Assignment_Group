@@ -30,7 +30,7 @@ public class FileHandler {
                 String decryptedLine = Encryption.decrypt(line, secretKey);
 
                 // Split and validate tokens
-                String[] tokens = decryptedLine.split(",");
+                String[] tokens = decryptedLine.split("|");
                 if (tokens.length == numTokens) {
                     data.add(tokens);
                 } else {

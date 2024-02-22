@@ -116,9 +116,9 @@ public class Register {
 
         FileHandler fileHandler = new FileHandler("userInfo.txt", 7, "Your16CharKey123");
 
-        String dataLine = registeringUser.getID() + "," + registeringUser.getUsername() + ","
-                       + registeringUser.getPassword() + "," + registeringUser.getEmail() + ","
-                       + registeringUser.getAddress() + "," + registeringUser.getPhoneNumber() + ","
+        String dataLine = registeringUser.getID() + "|" + registeringUser.getUsername() + "|"
+                       + registeringUser.getPassword() + "|" + registeringUser.getEmail() + "|"
+                       + registeringUser.getAddress() + "|" + registeringUser.getPhoneNumber() + "|"
                        + registeringUser.getGender();
         
         System.out.println("formattedUserId = " + dataLine);

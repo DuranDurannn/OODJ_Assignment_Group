@@ -32,7 +32,7 @@ public class FurnitureDetailsUI extends javax.swing.JFrame {
         String line;
         while ((line = br.readLine()) != null) {
             String decryptedLine = Encryption.decrypt(line, "Your16CharKey123"); // Replace "Your16CharKey123" with your actual secret key
-            String[] rowData = decryptedLine.split(",");
+            String[] rowData = decryptedLine.split("|");
             model.addRow(rowData);
         }
     } catch (IOException e) {
