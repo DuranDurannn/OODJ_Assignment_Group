@@ -22,36 +22,13 @@ import yoyo.reports.WorkDoneReport;
 
 public class Dashboard extends javax.swing.JFrame {
     
-    private CardLayout cardLayoutContent;
-    private CardLayout cardLayoutButton;
-    private User currentUser;
+    CardLayout cardLayoutContent;
+    CardLayout cardLayoutButton;
     
-    public User getCurrentUser() {
-    return currentUser;
-    }
-
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
-    }
     
-    public Dashboard(User user) {  
-        this.currentUser = user;
+    public Dashboard(String accessLevel) {  
         initComponents(); 
         
-        //DEBUG CODE//
-        System.out.println("ID: " + currentUser.getID());
-        System.out.println("Username: " + currentUser.getUsername());
-        System.out.println("Password: " + currentUser.getPassword());
-        System.out.println("Email: " + currentUser.getEmail());
-        System.out.println("Address: " + currentUser.getAddress());
-        System.out.println("Phone Number: " + currentUser.getPhoneNumber());
-        System.out.println("Gender: " + currentUser.getGender());
-        System.out.println("Access Level: " + currentUser.getAccessLevel());
-        //DEBUG CODE//
-        
-        jLabel55.setText(currentUser.getUsername());
-        jLabel54.setText(currentUser.getAccessLevel());
-                
         ImageIcon icon1 = new ImageIcon("dashboard.png");
         buttonMenu1.setIcon(icon1);
         buttonMenu6.setIcon(icon1);
@@ -111,7 +88,7 @@ public class Dashboard extends javax.swing.JFrame {
         cardLayoutContent = (CardLayout)(ContentCards.getLayout()); 
         cardLayoutButton = (CardLayout)(ButtonCards.getLayout());
         
-        switch (currentUser.getAccessLevel()) { // handles access level behaviour
+        switch (accessLevel) { // handles access level behaviour
             case "officer" -> {
                 cardLayoutContent.show(ContentCards,"OfficerSummaryCard");
                 cardLayoutButton.show(ButtonCards,"OfficerButtonsCards");
