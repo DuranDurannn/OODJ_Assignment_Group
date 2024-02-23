@@ -34,27 +34,32 @@ public class Dashboard extends javax.swing.JFrame {
     private User currentUser;
     
     public void loadTableData() {
-        String FILE_PATH = "PendingApproval.txt";
-        File furnitureList = new File(FILE_PATH);
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(furnitureList));
-            DefaultTableModel table = (DefaultTableModel) salespersonTable.getModel();
-            
-            String firstLine = br.readLine();
-            if (firstLine != null) {
-                String[] firstRow = firstLine.split("!");
-                table.addRow(firstRow);
-            }
-            
-            String line;
-                while ((line = br.readLine()) != null) {
-                    String[] dataRow = line.split("!");
-                    table.addRow(dataRow);
-                }
-            } catch (IOException ex) {
-        ex.printStackTrace(); // Print the stack trace for debugging
-    }
+// Load data into the salespersonTable
+    TableReader tableReader1 = new TableReader();
+    DefaultTableModel salespersonTableModel = (DefaultTableModel) salespersonTable.getModel();
+    tableReader1.loadTableData("PendingApproval.txt", salespersonTableModel);
+
+    // Load data into the ShopCatalogue table
+    TableReader tableReader2 = new TableReader();
+    DefaultTableModel shopCatalogueTableModel = (DefaultTableModel) shopCatalogue.getModel();
+    tableReader2.loadTableData("FurnitureDetailsTest.txt", shopCatalogueTableModel);
+    
+//    // Load data into the salesOrderTable
+//    TableReader tableReader3 = new TableReader();
+//    DefaultTableModel salesOrderTableModel = (DefaultTableModel) salesOrderTable.getModel();
+//    tableReader3.loadTableData("FurnitureDetailsTest.txt", salesOrderTableModel);
+//    
+//    // Load data into the officerDashboardTable
+//    TableReader tableReader4 = new TableReader();
+//    DefaultTableModel officerDashboardTableModel = (DefaultTableModel) officerDashboardTable.getModel();
+//    tableReader4.loadTableData("FurnitureDetailsTest.txt", officerDashboardTableModel);
+//    
+//    // Load data into the adminDashboardTable
+//    TableReader tableReader5 = new TableReader();
+//    DefaultTableModel adminDashboardTableModel = (DefaultTableModel) adminDashboardTable.getModel();
+//    tableReader5.loadTableData("FurnitureDetailsTest.txt", adminDashboardTableModel);
+
     
     salespersonTable.setDefaultEditor(Object.class, null);
 }
@@ -340,7 +345,7 @@ public class Dashboard extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
+        shopCatalogue = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
         roundPanel2 = new yoyo.resources.RoundPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -883,7 +888,7 @@ public class Dashboard extends javax.swing.JFrame {
         roundPanel15Layout.setVerticalGroup(
             roundPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel15Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel36)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel35)
@@ -922,7 +927,7 @@ public class Dashboard extends javax.swing.JFrame {
         roundPanel16Layout.setVerticalGroup(
             roundPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel16Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel37)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel38)
@@ -944,7 +949,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addComponent(roundPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)))
+                        .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 316, Short.MAX_VALUE)))
                 .addGap(40, 40, 40))
         );
         roundPanel6Layout.setVerticalGroup(
@@ -978,7 +983,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         OfficerSummaryCardLayout.setVerticalGroup(
             OfficerSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+            .addComponent(roundPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
             .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1076,7 +1081,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         SalesOrderCardLayout.setVerticalGroup(
             SalesOrderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
 
         ContentCards.add(SalesOrderCard, "SalesOrderCard");
@@ -1166,8 +1171,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MonthlyUnitsSoldGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MonthlyRevenueGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MonthlyUnitsSoldGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                    .addComponent(MonthlyRevenueGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GenerateWorkDoneReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1301,7 +1306,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         AdministratorSummaryCardLayout.setVerticalGroup(
             AdministratorSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+            .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
 
         ContentCards.add(AdministratorSummaryCard, "AdministratorSummaryCard");
@@ -1509,7 +1514,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         ManagePersonalAccountLayout.setVerticalGroup(
             ManagePersonalAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(roundPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
         );
 
         ContentCards.add(ManagePersonalAccount, "ManagePersonalAccountCard");
@@ -1702,7 +1707,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         SalespersonSummaryCardLayout.setVerticalGroup(
             SalespersonSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+            .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
             .addComponent(roundPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1728,22 +1733,19 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Please contact sales personel or call us at 012 324 3071 to make a purchase");
 
-        jTable7.setBackground(new java.awt.Color(246, 245, 249));
-        jTable7.getTableHeader().setBackground(new java.awt.Color(30, 33, 82));
-        jTable7.getTableHeader().setForeground(new java.awt.Color(246, 245, 249));
-        jTable7.setForeground(new java.awt.Color(246, 245, 249));
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        shopCatalogue.setBackground(new java.awt.Color(0, 0, 0));
+        shopCatalogue.getTableHeader().setBackground(new java.awt.Color(30, 33, 82));
+        shopCatalogue.getTableHeader().setForeground(new java.awt.Color(246, 245, 249));
+        shopCatalogue.setForeground(new java.awt.Color(255, 255, 255));
+        shopCatalogue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane8.setViewportView(jTable7);
+        jScrollPane8.setViewportView(shopCatalogue);
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(30, 33, 82));
@@ -1863,7 +1865,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         CustomerSummaryCardLayout.setVerticalGroup(
             CustomerSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
+            .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
             .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -2174,7 +2176,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
@@ -2198,5 +2199,6 @@ public class Dashboard extends javax.swing.JFrame {
     private yoyo.resources.RoundPanel roundPanel5;
     private yoyo.resources.RoundPanel roundPanel6;
     private javax.swing.JTable salespersonTable;
+    private javax.swing.JTable shopCatalogue;
     // End of variables declaration//GEN-END:variables
 }
