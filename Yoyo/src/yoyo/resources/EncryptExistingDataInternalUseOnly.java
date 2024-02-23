@@ -1,34 +1,35 @@
 package yoyo.resources;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import yoyo.application.Encryption;
+import java.util.ArrayList;
+import java.util.function.Predicate;
+import yoyo.handlers.SecureFileHandler;
 
 public class EncryptExistingDataInternalUseOnly {
-
-    private static final String ENCRYPTION_KEY = "Your16CharKey123";
-
     public static void main(String[] args) {
         try {
-            encryptAndWriteToFile("C001,DARREN,123,darren@gmail.com,Sabah,0165529979,Male");
+            SecureFileHandler secureFileHandler = new SecureFileHandler();
+            secureFileHandler.setFilePath("userInfo.txt");
 
-        } catch (IOException e) {
-            System.err.println("Error writing to the file: " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("Encryption error: " + e.getMessage());
-        }
-    }
+            // Encrypt and append the line to the file
+            secureFileHandler.appendEncryptedLine("C001!DARREN!123!darren@gmail.com!Sabah!0165529979!Male!https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s");
+            
+            // Overwrite line
+            Predicate<String> condition = line -> line.split("=")[0].trim().equals("a") && line.split("=")[1].trim().equals("b");// example only this does nothing
+            secureFileHandler.replaceEncryptedLine("C001!DARREN!123!darren@gmail.com!Sabah!0165529979!Male!https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s", condition);
+            
+            // Reading and decrypting lines from the file
+            ArrayList<String[]> decryptedDataList = secureFileHandler.readAndDecryptLines(8);
 
-    private static void encryptAndWriteToFile(String userData) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("userInfo.txt", true))) {
-            try {
-                String encryptedUserData = Encryption.encrypt(userData, ENCRYPTION_KEY);
-                writer.write(encryptedUserData);
-                writer.newLine();
-            } catch (Exception e) {
-            System.err.println("Encryption error: " + e.getMessage());
+            // Printing the decrypted data
+            for (String[] tokens : decryptedDataList) {
+                for (String token : tokens) {
+                    System.out.print(token + " ");
+                }
+                System.out.println();
             }
+        } catch (IOException e) {
+            System.err.println("Error writing to/reading from the file: " + e.getMessage());
         }
     }
 }
