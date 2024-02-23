@@ -75,7 +75,7 @@ public class EditHandler extends AccountHandler{
                 + editingUser.getGender() + "!" + editingUser.getProfileLink();
 
         try {
-            fileHandler.appendEncryptedLine(dataLine);     
+            fileHandler.replaceEncryptedLine(dataLine, condition);     
         } catch (IOException e) {
             System.err.println("Error writing data to file: " + e.getMessage());
         }

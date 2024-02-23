@@ -73,7 +73,7 @@ public class SecureFileHandler {
         }
     }
     
-    public static void replaceEncryptedLine(String userData, Predicate<String> condition) throws IOException {
+    public void replaceEncryptedLine(String userData, Predicate<String> condition) throws IOException {
         try {
             BufferedReader file = new BufferedReader(new FileReader(filePath));
             StringBuffer inputBuffer = new StringBuffer();
