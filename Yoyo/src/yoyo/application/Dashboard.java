@@ -27,15 +27,7 @@ public class Dashboard extends javax.swing.JFrame {
     private CardLayout cardLayoutButton;
     private User currentUser;
     private String imageLink;
-    
-    public User getCurrentUser() {
-    return currentUser;
-    }
-
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
-    }
-    
+        
     public Dashboard(User user) { 
         this.currentUser = user;
         
@@ -55,7 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         htmlText.append("</html>");
         
 // </editor-fold>
-
+    
 // <editor-fold defaultstate="collapsed" desc="Set visual text elements">
 
         jLabel19.setText(htmlText.toString());

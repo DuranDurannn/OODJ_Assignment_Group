@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 public class LoginRegisterUI extends javax.swing.JFrame {
 CardLayout cardLayoutWelcome;
-Login login = new Login();
-Register register = new Register();
+AccountHandler accountHandler = new AccountHandler();
 String UserInputEmailOrPhone;
 String UserInputPassword;
 String userUsernameInput;
@@ -453,10 +452,10 @@ String userConfirmPasswordInput;
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
             ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
-            login.setUserInfo(decryptedData);
-            login.setUserLoginInput(UserInputEmailOrPhone);
-            login.setUserPasswordInput(UserInputPassword);
-            User verifiedUser = login.loginCheck();
+            accountHandler.setUserInfo(decryptedData);
+            accountHandler.setUserLoginInput(UserInputEmailOrPhone);
+            accountHandler.setUserPasswordInput(UserInputPassword);
+            User verifiedUser = accountHandler.loginCheck();
 
             if (verifiedUser != null) {
                 dispose();
@@ -485,15 +484,15 @@ String userConfirmPasswordInput;
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
             ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
-            register.setUserInfo(decryptedData);
-            register.setUserUsernameInput(userUsernameInput);
-            register.setUserGenderInput(userGenderInput);
-            register.setUserEmailInput(userEmailInput);
-            register.setUserPhoneInput(userPhoneInput);
-            register.setUserAddressInput(userAddressInput);
-            register.setUserRegisterPasswordInput(userRegisterPasswordInput);
-            register.setUserConfirmPasswordInput(userConfirmPasswordInput);
-            User verifiedUser = register.registerCheck();
+            accountHandler.setUserInfo(decryptedData);
+            accountHandler.setUserUsernameInput(userUsernameInput);
+            accountHandler.setUserGenderInput(userGenderInput);
+            accountHandler.setUserEmailInput(userEmailInput);
+            accountHandler.setUserPhoneInput(userPhoneInput);
+            accountHandler.setUserAddressInput(userAddressInput);
+            accountHandler.setUserRegisterPasswordInput(userRegisterPasswordInput);
+            accountHandler.setUserConfirmPasswordInput(userConfirmPasswordInput);
+            User verifiedUser = accountHandler.registerCheck();
 
             if (verifiedUser != null) {
                 dispose();

@@ -72,12 +72,18 @@ public class SecureFileHandler {
         }
     }
     
+    public void clearFile(String filePath) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("");
+        }
+    }   
+    
     public void setFilePath(String filePath) {
     this.filePath = filePath;
     }
 
-    // Add this setter method for secretKey
-    public void setSecretKey(String secretKey) {
+    public void setSecretKey() throws IOException {
         this.secretKey = secretKey;
     }
+
 }
