@@ -19,8 +19,6 @@ public class RegisterHandler extends AccountHandler{
     @Override
     public yoyo.actors.User Check() {
 
-        yoyo.actors.User user = null;
-
         // Use Validator class for all validations
         if (!Validator.validateUsername(userUsernameInput)) {
             return null;

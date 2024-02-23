@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import yoyo.actors.User;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -32,6 +35,14 @@ public class Dashboard extends javax.swing.JFrame {
         this.currentUser = user;
         
         imageLink = user.getProfileLink();
+        
+        try {
+            URL url = new URL(imageLink);
+            Image image = Toolkit.getDefaultToolkit().getImage(url);
+        } catch (Exception e) {
+            imageLink = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s";
+        }
+        
         initComponents(); 
 
 // <editor-fold defaultstate="collapsed" desc="Address line splitting">
@@ -1868,7 +1879,7 @@ public class Dashboard extends javax.swing.JFrame {
         buttonMenu3.setSelected(false);
         buttonMenu4.setSelected(false);
         dispose();
-        new LoginRegisterEditUI(0).setVisible(true);
+        new LoginRegisterEditUI(0, null).setVisible(true);
     }//GEN-LAST:event_buttonMenu5ActionPerformed
 
     private void GenerateClosedSaleReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateClosedSaleReportButtonActionPerformed
@@ -1929,7 +1940,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void EditProfileDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileDetailsButtonActionPerformed
         dispose();
-        new LoginRegisterEditUI(1).setVisible(true);
+        new LoginRegisterEditUI(1, currentUser).setVisible(true);
     }//GEN-LAST:event_EditProfileDetailsButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

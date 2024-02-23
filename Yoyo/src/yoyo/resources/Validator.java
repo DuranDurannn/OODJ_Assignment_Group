@@ -2,6 +2,7 @@ package yoyo.resources;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import yoyo.actors.User;
 
 public class Validator {
 
@@ -90,4 +91,17 @@ public class Validator {
         }
         return true;
     }
-}
+    
+    public static boolean validateUniqueNotCurrentUser(String email, String phone, ArrayList<String[]> userInfo, User user) {
+        for (String[] userValues : userInfo) {
+            if (userValues[3].equals(email) || userValues[5].equals(phone)) {
+                if ((user.getEmail()).equals(email) || (user.getPhoneNumber()).equals(phone)) {
+                    return true;
+                }
+                    JOptionPane.showMessageDialog(null, "Email or phone already exists. Please choose a different one.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+            }
+        }
+        return true;
+    }
+}   

@@ -40,10 +40,10 @@ public class EditHandler extends AccountHandler{
         if (!Validator.validatePassword(userEditPasswordInput, userEditConfirmPasswordInput)) {
             return null;
         }
-        if (!Validator.validateUniqueUser(userEditEmailInput, userEditPhoneInput, userInfo)) {
+        if (!Validator.validateUniqueNotCurrentUser(userEditEmailInput, userEditPhoneInput, userInfo, editingUser)) {
             return null;
-        }
-
+        }      
+        
         setEditProperties(editingUser);
         
         for (int i = 0; i < userInfo.size(); i++) {
@@ -68,20 +68,19 @@ public class EditHandler extends AccountHandler{
         
         SecureFileHandler fileHandler = new SecureFileHandler();
         fileHandler.setFilePath("userInfo.txt");
-    
+
         String dataLine = editingUser.getID() + "!" + editingUser.getUsername() + "!"
                 + editingUser.getPassword() + "!" + editingUser.getEmail() + "!"
                 + editingUser.getAddress() + "!" + editingUser.getPhoneNumber() + "!"
                 + editingUser.getGender() + "!" + editingUser.getProfileLink();
 
         try {
-            fileHandler.appendEncryptedLine(dataLine);
-            
+            fileHandler.appendEncryptedLine(dataLine);     
         } catch (IOException e) {
             System.err.println("Error writing data to file: " + e.getMessage());
         }
 
-        JOptionPane.showMessageDialog(null, "Registration successful!");
+        JOptionPane.showMessageDialog(null, "Edit successful!");
         return editingUser;
     }
     
@@ -92,11 +91,12 @@ public class EditHandler extends AccountHandler{
     public void setEditingUser(yoyo.actors.User user) {
         this.editingUser = user;
     }
+    
     public void setUserEditUsernameInput(String userEditUsernameInput) {
         this.userEditUsernameInput = userEditUsernameInput;
     }
 
-    public void setUserEditGenderInput(String userEdditGenderInput) {
+    public void setUserEditGenderInput(String userEditGenderInput) {
         this.userEditGenderInput = userEditGenderInput.toLowerCase();
     }
 
@@ -123,6 +123,7 @@ public class EditHandler extends AccountHandler{
     public void setUserEditProfileInput(String userEditProfileInput) {
         this.userEditProfileInput = userEditProfileInput;
     } 
+    
     private void setEditProperties(yoyo.actors.User user) {
         user.setID(editingUser.getID());
         user.setUsername(userEditUsernameInput);

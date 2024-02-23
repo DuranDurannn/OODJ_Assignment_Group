@@ -32,19 +32,19 @@ public class LoginRegisterEditUI extends javax.swing.JFrame {
     private String userEditConfirmPasswordInput;
     private String userEditPasswordInput;
     private String userEditAddressInput;
+    private User currentUser;
 
-    public LoginRegisterEditUI(int num) {
+    public LoginRegisterEditUI(int num, User user) {   
+        this.currentUser = user;
         initComponents();      
         cardLayoutWelcome = (CardLayout) WelcomeCards.getLayout();
                 
         switch (num) {
             case 0 -> {
-                System.out.println("call1");
                 cardLayoutWelcome.show(WelcomeCards,"LoginCard");
             }
             
             case 1 -> {
-                System.out.println("call2");
                 cardLayoutWelcome.show(WelcomeCards,"EditCard");
             }
         }  
@@ -750,6 +750,7 @@ public class LoginRegisterEditUI extends javax.swing.JFrame {
             editHandler.setUserEditPasswordInput(userEditPasswordInput);
             editHandler.setUserEditConfirmPasswordInput(userEditConfirmPasswordInput);
             editHandler.setUserEditProfileInput(userEditProfileInput);
+            editHandler.setEditingUser(currentUser);
             User verifiedUser = editHandler.Check();
 
             if (verifiedUser != null) {
