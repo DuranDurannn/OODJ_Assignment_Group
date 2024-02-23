@@ -17,6 +17,7 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import yoyo.reports.ClosedSaleReport;
 import yoyo.reports.Invoice;
+import yoyo.reports.Quotation;
 import yoyo.reports.WorkDoneReport;
 
 
@@ -321,6 +322,7 @@ public class Dashboard extends javax.swing.JFrame {
         SearchItemsButton7 = new javax.swing.JButton();
         jLabel41 = new javax.swing.JLabel();
         ModifyQuotationButton2 = new javax.swing.JButton();
+        ViewQuotationButton = new javax.swing.JButton();
         CustomerSummaryCard = new javax.swing.JPanel();
         roundPanel23 = new yoyo.resources.RoundPanel();
         SearchItemsButton = new javax.swing.JButton();
@@ -1019,14 +1021,14 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField5)
+                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(roundPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SearchQuotationButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchQuotationButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GenerateInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(GenerateInvoiceButton)))
                 .addGap(39, 39, 39))
         );
         roundPanel1Layout.setVerticalGroup(
@@ -1037,8 +1039,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchQuotationButton2)
-                    .addComponent(GenerateInvoiceButton))
+                    .addComponent(GenerateInvoiceButton)
+                    .addComponent(SearchQuotationButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
@@ -1607,6 +1609,15 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        ViewQuotationButton.setBackground(new java.awt.Color(30, 33, 82));
+        ViewQuotationButton.setForeground(new java.awt.Color(255, 255, 255));
+        ViewQuotationButton.setText("View Quote");
+        ViewQuotationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewQuotationButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel11Layout = new javax.swing.GroupLayout(roundPanel11);
         roundPanel11.setLayout(roundPanel11Layout);
         roundPanel11Layout.setHorizontalGroup(
@@ -1615,24 +1626,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel11Layout.createSequentialGroup()
-                        .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(roundPanel11Layout.createSequentialGroup()
-                                .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                .addGap(8, 8, 8)
-                                .addComponent(SearchItemsButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ModifyQuotationButton2)))
-                        .addGap(40, 40, 40))
-                    .addGroup(roundPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel41)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ViewQuotationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(roundPanel11Layout.createSequentialGroup()
+                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addGap(8, 8, 8)
+                        .addComponent(SearchItemsButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ModifyQuotationButton2)))
+                .addGap(40, 40, 40))
         );
         roundPanel11Layout.setVerticalGroup(
             roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel11Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel41)
+                .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(ViewQuotationButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2016,6 +2028,10 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ModifyQuotationButton2ActionPerformed
 
+    private void ViewQuotationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewQuotationButtonActionPerformed
+        new Quotation().setVisible(true);
+    }//GEN-LAST:event_ViewQuotationButtonActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdministratorButtons;
@@ -2048,6 +2064,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton SearchQuotationButton;
     private javax.swing.JButton SearchQuotationButton1;
     private javax.swing.JButton SearchQuotationButton2;
+    private javax.swing.JButton ViewQuotationButton;
     private yoyo.resources.ButtonMenu buttonMenu1;
     private yoyo.resources.ButtonMenu buttonMenu10;
     private yoyo.resources.ButtonMenu buttonMenu11;
