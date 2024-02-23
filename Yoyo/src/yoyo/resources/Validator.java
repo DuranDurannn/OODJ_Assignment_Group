@@ -1,4 +1,4 @@
-package yoyo.application;
+package yoyo.resources;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

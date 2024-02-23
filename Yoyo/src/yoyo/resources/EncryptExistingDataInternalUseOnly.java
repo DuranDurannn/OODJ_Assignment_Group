@@ -2,7 +2,7 @@ package yoyo.resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import yoyo.application.SecureFileHandler;
+import yoyo.handlers.SecureFileHandler;
 
 public class EncryptExistingDataInternalUseOnly {
     public static void main(String[] args) {

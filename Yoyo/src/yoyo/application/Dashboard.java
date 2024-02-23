@@ -1868,7 +1868,7 @@ public class Dashboard extends javax.swing.JFrame {
         buttonMenu3.setSelected(false);
         buttonMenu4.setSelected(false);
         dispose();
-        new LoginRegisterUI().setVisible(true);
+        new LoginRegisterEditUI(0).setVisible(true);
     }//GEN-LAST:event_buttonMenu5ActionPerformed
 
     private void GenerateClosedSaleReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateClosedSaleReportButtonActionPerformed
@@ -1928,7 +1928,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerateInvoiceButtonActionPerformed
 
     private void EditProfileDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileDetailsButtonActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new LoginRegisterEditUI(1).setVisible(true);
     }//GEN-LAST:event_EditProfileDetailsButtonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

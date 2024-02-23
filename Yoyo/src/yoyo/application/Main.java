@@ -11,7 +11,7 @@ public class Main {
     public static void main(String args[]) throws IOException {
         try {
             UIManager.setLookAndFeel (new FlatIntelliJLaf());           
-            new LoginRegisterUI().setVisible(true);         
+            new LoginRegisterEditUI(0).setVisible(true);         
 
             
         } catch (UnsupportedLookAndFeelException e) {

@@ -1,29 +1,54 @@
 package yoyo.application;
 
+import yoyo.handlers.SecureFileHandler;
 import yoyo.actors.User;
 import java.awt.CardLayout;
 import java.io.IOException;
 import java.util.ArrayList;
+import yoyo.handlers.EditHandler;
+import yoyo.handlers.LoginHandler;
+import yoyo.handlers.RegisterHandler;
 
 
-public class LoginRegisterUI extends javax.swing.JFrame {
-CardLayout cardLayoutWelcome;
-AccountHandler accountHandler = new AccountHandler();
-String UserInputEmailOrPhone;
-String UserInputPassword;
-String userUsernameInput;
-String userGenderInput;
-String userEmailInput;
-String userPhoneInput;
-String userAddressInput;
-String userRegisterPasswordInput;
-String userConfirmPasswordInput;
+public class LoginRegisterEditUI extends javax.swing.JFrame {
+    CardLayout cardLayoutWelcome;
+    LoginHandler loginHandler = new LoginHandler();
+    RegisterHandler registerHandler = new RegisterHandler();
+    EditHandler editHandler = new EditHandler();
+    String UserInputEmailOrPhone;
+    String UserInputPassword;
+    String userUsernameInput;
+    String userGenderInput;
+    String userEmailInput;
+    String userPhoneInput;
+    String userAddressInput;
+    String userRegisterPasswordInput;
+    String userConfirmPasswordInput;
+    private String userEditUsernameInput;
+    private String userEditGenderInput;
+    private String userEditEmailInput;
+    private String userEditPhoneInput;
+    private String userEditProfileInput;
+    private String userEditConfirmPasswordInput;
+    private String userEditPasswordInput;
+    private String userEditAddressInput;
 
-    public LoginRegisterUI() {
-        initComponents();
+    public LoginRegisterEditUI(int num) {
+        initComponents();      
         cardLayoutWelcome = (CardLayout) WelcomeCards.getLayout();
+                
+        switch (num) {
+            case 0 -> {
+                System.out.println("call1");
+                cardLayoutWelcome.show(WelcomeCards,"LoginCard");
+            }
+            
+            case 1 -> {
+                System.out.println("call2");
+                cardLayoutWelcome.show(WelcomeCards,"EditCard");
+            }
+        }  
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,6 +89,26 @@ String userConfirmPasswordInput;
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         AddressRegisterField = new javax.swing.JTextField();
+        EditCard = new javax.swing.JPanel();
+        editProfileRoundPanel = new yoyo.resources.RoundPanel();
+        jLabel16 = new javax.swing.JLabel();
+        EditUserEmail = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        saveProfileButton = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        EditCurrentPasswordField = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        EditUsernameField = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        EditGenderField = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        EditPhoneField = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        EditAddressField = new javax.swing.JTextField();
+        EditNewPasswordField = new javax.swing.JTextField();
+        EditProfileLinkField = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -429,6 +474,181 @@ String userConfirmPasswordInput;
 
         WelcomeCards.add(RegisterCard, "RegisterCard");
 
+        EditCard.setBackground(new java.awt.Color(255, 255, 255));
+        EditCard.setForeground(new java.awt.Color(255, 255, 255));
+        EditCard.setToolTipText("");
+
+        editProfileRoundPanel.setBackground(new java.awt.Color(246, 245, 249));
+        editProfileRoundPanel.setForeground(new java.awt.Color(17, 17, 43));
+        editProfileRoundPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel16.setText("Email");
+
+        EditUserEmail.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel20.setText("New Password");
+
+        saveProfileButton.setBackground(new java.awt.Color(196, 196, 196));
+        saveProfileButton.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        saveProfileButton.setForeground(new java.awt.Color(30, 33, 82));
+        saveProfileButton.setText("Save Changes");
+        saveProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveProfileButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel21.setText("Edit Profile");
+
+        EditCurrentPasswordField.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel22.setText("Current Password");
+
+        EditUsernameField.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel23.setText("Username");
+
+        EditGenderField.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel24.setText("Gender");
+
+        EditPhoneField.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel25.setText("Phone");
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel26.setText("Address");
+
+        EditAddressField.setBackground(new java.awt.Color(255, 255, 255));
+
+        EditNewPasswordField.setBackground(new java.awt.Color(255, 255, 255));
+
+        EditProfileLinkField.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(30, 33, 82));
+        jLabel27.setText("Profile Link");
+
+        javax.swing.GroupLayout editProfileRoundPanelLayout = new javax.swing.GroupLayout(editProfileRoundPanel);
+        editProfileRoundPanel.setLayout(editProfileRoundPanelLayout);
+        editProfileRoundPanelLayout.setHorizontalGroup(
+            editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(197, 197, 197))
+                    .addComponent(EditProfileLinkField)
+                    .addComponent(saveProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(EditCurrentPasswordField)
+                        .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(EditAddressField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                                        .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(EditUserEmail)
+                                            .addComponent(EditUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(EditGenderField)
+                                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(EditPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editProfileRoundPanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(311, 311, 311))
+                                .addComponent(EditNewPasswordField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(40, 40, 40))
+        );
+        editProfileRoundPanelLayout.setVerticalGroup(
+            editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditGenderField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EditUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editProfileRoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(editProfileRoundPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel25)
+                            .addGap(40, 40, 40))
+                        .addComponent(EditPhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditNewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditCurrentPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditProfileLinkField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(saveProfileButton)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout EditCardLayout = new javax.swing.GroupLayout(EditCard);
+        EditCard.setLayout(EditCardLayout);
+        EditCardLayout.setHorizontalGroup(
+            EditCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditCardLayout.createSequentialGroup()
+                .addContainerGap(333, Short.MAX_VALUE)
+                .addComponent(editProfileRoundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(333, Short.MAX_VALUE))
+        );
+        EditCardLayout.setVerticalGroup(
+            EditCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditCardLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(editProfileRoundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        WelcomeCards.add(EditCard, "EditCard");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -452,10 +672,10 @@ String userConfirmPasswordInput;
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
             ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
-            accountHandler.setUserInfo(decryptedData);
-            accountHandler.setUserLoginInput(UserInputEmailOrPhone);
-            accountHandler.setUserPasswordInput(UserInputPassword);
-            User verifiedUser = accountHandler.loginCheck();
+            loginHandler.setUserInfo(decryptedData);
+            loginHandler.setUserLoginInput(UserInputEmailOrPhone);
+            loginHandler.setUserPasswordInput(UserInputPassword);
+            User verifiedUser = loginHandler.Check();
 
             if (verifiedUser != null) {
                 dispose();
@@ -484,15 +704,15 @@ String userConfirmPasswordInput;
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
             ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
-            accountHandler.setUserInfo(decryptedData);
-            accountHandler.setUserUsernameInput(userUsernameInput);
-            accountHandler.setUserGenderInput(userGenderInput);
-            accountHandler.setUserEmailInput(userEmailInput);
-            accountHandler.setUserPhoneInput(userPhoneInput);
-            accountHandler.setUserAddressInput(userAddressInput);
-            accountHandler.setUserRegisterPasswordInput(userRegisterPasswordInput);
-            accountHandler.setUserConfirmPasswordInput(userConfirmPasswordInput);
-            User verifiedUser = accountHandler.registerCheck();
+            registerHandler.setUserInfo(decryptedData);
+            registerHandler.setUserUsernameInput(userUsernameInput);
+            registerHandler.setUserGenderInput(userGenderInput);
+            registerHandler.setUserEmailInput(userEmailInput);
+            registerHandler.setUserPhoneInput(userPhoneInput);
+            registerHandler.setUserAddressInput(userAddressInput);
+            registerHandler.setUserRegisterPasswordInput(userRegisterPasswordInput);
+            registerHandler.setUserConfirmPasswordInput(userConfirmPasswordInput);
+            User verifiedUser = registerHandler.Check();
 
             if (verifiedUser != null) {
                 dispose();
@@ -506,6 +726,44 @@ String userConfirmPasswordInput;
         } finally {
         }
     }//GEN-LAST:event_SignUpButtonActionPerformed
+
+    private void saveProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveProfileButtonActionPerformed
+        userEditUsernameInput = EditUsernameField.getText();
+        userEditGenderInput = EditGenderField.getText();
+        userEditEmailInput = EditUserEmail.getText();
+        userEditPhoneInput = EditPhoneField.getText();
+        userEditAddressInput = EditAddressField.getText();
+        userEditPasswordInput = EditCurrentPasswordField.getText();
+        userEditConfirmPasswordInput = EditNewPasswordField.getText();
+        userEditProfileInput = EditProfileLinkField.getText();
+
+        try {
+            SecureFileHandler secureFileHandler = new SecureFileHandler();
+            secureFileHandler.setFilePath("userInfo.txt");
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
+            editHandler.setUserInfo(decryptedData);
+            editHandler.setUserEditUsernameInput(userEditUsernameInput);
+            editHandler.setUserEditGenderInput(userEditGenderInput);
+            editHandler.setUserEditPhoneInput(userEditPhoneInput);
+            editHandler.setUserEditEmailInput(userEditEmailInput);
+            editHandler.setUserEditAddressInput(userEditAddressInput);
+            editHandler.setUserEditPasswordInput(userEditPasswordInput);
+            editHandler.setUserEditConfirmPasswordInput(userEditConfirmPasswordInput);
+            editHandler.setUserEditProfileInput(userEditProfileInput);
+            User verifiedUser = editHandler.Check();
+
+            if (verifiedUser != null) {
+                dispose();
+                verifiedUser.showDashboard();
+
+            } else {
+                System.out.println("Invalid credentials.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading user information file: " + e.getMessage());
+        } finally {
+        }
+    }//GEN-LAST:event_saveProfileButtonActionPerformed
     private void GoToLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         cardLayoutWelcome.show(WelcomeCards,"LoginCard");
     }   
@@ -515,6 +773,15 @@ String userConfirmPasswordInput;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AddressRegisterField;
+    private javax.swing.JTextField EditAddressField;
+    private javax.swing.JPanel EditCard;
+    private javax.swing.JTextField EditCurrentPasswordField;
+    private javax.swing.JTextField EditGenderField;
+    private javax.swing.JTextField EditNewPasswordField;
+    private javax.swing.JTextField EditPhoneField;
+    private javax.swing.JTextField EditProfileLinkField;
+    private javax.swing.JTextField EditUserEmail;
+    private javax.swing.JTextField EditUsernameField;
     private javax.swing.JTextField EmailOrPhoneField;
     private javax.swing.JTextField EmailRegisterField;
     private javax.swing.JTextField GenderRegisterField;
@@ -530,15 +797,25 @@ String userConfirmPasswordInput;
     private javax.swing.JButton SignUpButton;
     private javax.swing.JTextField UsernameRegisterField;
     private javax.swing.JPanel WelcomeCards;
+    private yoyo.resources.RoundPanel editProfileRoundPanel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -549,5 +826,6 @@ String userConfirmPasswordInput;
     private javax.swing.JPanel jPanel2;
     private yoyo.resources.RoundPanel roundPanel1;
     private yoyo.resources.RoundPanel roundPanel2;
+    private javax.swing.JButton saveProfileButton;
     // End of variables declaration//GEN-END:variables
 }
