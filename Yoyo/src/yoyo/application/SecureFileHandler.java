@@ -71,4 +71,12 @@ public class SecureFileHandler implements FileHandler {
             }
         }
     }
+    
+    public void clearFile(String filePath) throws IOException {
+        // Create a BufferedWriter to write to the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            // Write nothing to the file, effectively clearing its contents
+            writer.write("");
+        }
+    }
 }

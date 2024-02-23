@@ -51,15 +51,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="editProfileRoundPanel" min="-2" pref="700" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="editProfileRoundPanel" min="-2" pref="613" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -87,6 +87,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="EditNewPasswordField" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel19" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
@@ -104,28 +105,27 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="AddressRegisterField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="PasswordRegisterField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="PasswordConfirmRegisterField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="EditAddressField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="EditCurrentPasswordField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="editProfileButton" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="EmailRegisterField" alignment="0" pref="295" max="32767" attributes="0"/>
-                                          <Component id="UsernameRegisterField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="EditUserEmail" alignment="0" pref="295" max="32767" attributes="0"/>
+                                          <Component id="EditUsernameField" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel18" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
-                                                  <Component id="PhoneRegisterField" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
+                                                  <Component id="EditPhoneField" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="GenderRegisterField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="EditGenderField" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -145,12 +145,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="UsernameRegisterField" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="EditUsernameField" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="GenderRegisterField" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="EditGenderField" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -158,29 +158,29 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="EmailRegisterField" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="EditUserEmail" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="PhoneRegisterField" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="EditPhoneField" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="AddressRegisterField" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="EditAddressField" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="PasswordRegisterField" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="EditNewPasswordField" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="PasswordConfirmRegisterField" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="EditCurrentPasswordField" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="editProfileButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
@@ -199,14 +199,7 @@
                 <Property name="text" type="java.lang.String" value="Email"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="EmailRegisterField">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="PasswordConfirmRegisterField">
+            <Component class="javax.swing.JTextField" name="EditUserEmail">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -252,7 +245,7 @@
                 <Property name="text" type="java.lang.String" value="Edit Profile"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="PasswordRegisterField">
+            <Component class="javax.swing.JTextField" name="EditCurrentPasswordField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -270,7 +263,7 @@
                 <Property name="text" type="java.lang.String" value="Current Password"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="UsernameRegisterField">
+            <Component class="javax.swing.JTextField" name="EditUsernameField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -288,7 +281,7 @@
                 <Property name="text" type="java.lang.String" value="Username"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="GenderRegisterField">
+            <Component class="javax.swing.JTextField" name="EditGenderField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -306,7 +299,7 @@
                 <Property name="text" type="java.lang.String" value="Gender"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="PhoneRegisterField">
+            <Component class="javax.swing.JTextField" name="EditPhoneField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -335,7 +328,14 @@
                 <Property name="text" type="java.lang.String" value="Address"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="AddressRegisterField">
+            <Component class="javax.swing.JTextField" name="EditAddressField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="EditNewPasswordField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
