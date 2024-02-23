@@ -15,15 +15,15 @@ public class LoginRegisterEditUI extends javax.swing.JFrame {
     LoginHandler loginHandler = new LoginHandler();
     RegisterHandler registerHandler = new RegisterHandler();
     EditHandler editHandler = new EditHandler();
-    String UserInputEmailOrPhone;
-    String UserInputPassword;
-    String userUsernameInput;
-    String userGenderInput;
-    String userEmailInput;
-    String userPhoneInput;
-    String userAddressInput;
-    String userRegisterPasswordInput;
-    String userConfirmPasswordInput;
+    private String UserInputEmailOrPhone;
+    private String UserInputPassword;
+    private String userUsernameInput;
+    private String userGenderInput;
+    private String userEmailInput;
+    private String userPhoneInput;
+    private String userAddressInput;
+    private String userRegisterPasswordInput;
+    private String userConfirmPasswordInput;
     private String userEditUsernameInput;
     private String userEditGenderInput;
     private String userEditEmailInput;
@@ -671,7 +671,7 @@ public class LoginRegisterEditUI extends javax.swing.JFrame {
         try {
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecrypt(8);           
             loginHandler.setUserInfo(decryptedData);
             loginHandler.setUserLoginInput(UserInputEmailOrPhone);
             loginHandler.setUserPasswordInput(UserInputPassword);
@@ -703,7 +703,7 @@ public class LoginRegisterEditUI extends javax.swing.JFrame {
         try {
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecrypt(8);
             registerHandler.setUserInfo(decryptedData);
             registerHandler.setUserUsernameInput(userUsernameInput);
             registerHandler.setUserGenderInput(userGenderInput);
@@ -740,7 +740,7 @@ public class LoginRegisterEditUI extends javax.swing.JFrame {
         try {
             SecureFileHandler secureFileHandler = new SecureFileHandler();
             secureFileHandler.setFilePath("userInfo.txt");
-            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecryptLines(8);
+            ArrayList<String[]> decryptedData = secureFileHandler.readAndDecrypt(8);
             editHandler.setUserInfo(decryptedData);
             editHandler.setUserEditUsernameInput(userEditUsernameInput);
             editHandler.setUserEditGenderInput(userEditGenderInput);

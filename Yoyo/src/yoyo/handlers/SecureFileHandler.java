@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.util.Base64;
-import java.util.function.Predicate;
 
 public class SecureFileHandler {
     
     private static String filePath;
     private static String secretKey = "Your16CharKey123";
     
-    public ArrayList<String[]> readAndDecryptLines(int numTokens) throws IOException {
+    public ArrayList<String[]> readAndDecrypt(int numTokens) throws IOException {
         ArrayList<String[]> decryptedDataList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -48,7 +47,7 @@ public class SecureFileHandler {
         return decryptedDataList;
     }
 
-    public void appendEncryptedLine(String userData) throws IOException {
+    public void appendEncrypted(String userData) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             try {
                 Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -72,52 +71,34 @@ public class SecureFileHandler {
             }
         }
     }
-    
-    public void replaceEncryptedLine(String userData, Predicate<String> condition) throws IOException {
-        try {
-            BufferedReader file = new BufferedReader(new FileReader(filePath));
-            StringBuffer inputBuffer = new StringBuffer();
-            String line;
 
-            while ((line = file.readLine()) != null) {
-                if (condition.test(line)) {
-                    Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-                    SecretKey keySpec = new SecretKeySpec(secretKey.getBytes(), "AES");
-                    cipher.init(Cipher.ENCRYPT_MODE, keySpec);
+    public void writeEncrypted(ArrayList<String[]> decryptedData) throws IOException {
+        try (FileOutputStream writer = new FileOutputStream(filePath, false)) { // Open in overwrite mode
+            try {
+                for (String[] innerArray : decryptedData) { // Iterate through each inner array
+                    for (String data : innerArray) { // Iterate through each element in the inner array
+                        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+                        SecretKey keySpec = new SecretKeySpec(secretKey.getBytes(), "AES");
+                        cipher.init(Cipher.ENCRYPT_MODE, keySpec);
 
-                    byte[] ivBytes = cipher.getParameters().getParameterSpec(IvParameterSpec.class).getIV();
-                    byte[] encryptedData = cipher.doFinal(userData.getBytes());
+                        byte[] ivBytes = cipher.getParameters().getParameterSpec(IvParameterSpec.class).getIV();
+                        byte[] encryptedData = cipher.doFinal(data.getBytes());
 
-                    byte[] result = new byte[ivBytes.length + encryptedData.length];
-                    System.arraycopy(ivBytes, 0, result, 0, ivBytes.length);
-                    System.arraycopy(encryptedData, 0, result, ivBytes.length, encryptedData.length);
+                        byte[] result = new byte[ivBytes.length + encryptedData.length];
+                        System.arraycopy(ivBytes, 0, result, 0, ivBytes.length);
+                        System.arraycopy(encryptedData, 0, result, ivBytes.length, encryptedData.length);
 
-                    String encodedResult = Base64.getEncoder().encodeToString(result);
-                    line = encodedResult;
+                        String encodedResult = Base64.getEncoder().encodeToString(result);
+                        writer.write(encodedResult.getBytes());
+                        writer.write('\n'); // Separate encrypted elements with newlines
+                    }
                 }
-
-                inputBuffer.append(line);
-                inputBuffer.append('\n');
+            } catch (Exception e) {
+                throw new IOException("Encryption and write to file error: " + e.getMessage(), e);
             }
-            file.close();
-
-            FileOutputStream fileOut = new FileOutputStream(filePath);
-            fileOut.write(inputBuffer.toString().getBytes());
-            fileOut.close();
-
-        } catch (Exception e) {
-            System.out.println("Problem reading or encrypting file.");
-            throw new IOException("File operation or encryption error: " + e.getMessage(), e);
         }
     }
 
-
-    public void clearFile(String filePath) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("");
-        }
-    }   
-    
     public void setFilePath(String filePath) {
         SecureFileHandler.filePath = filePath;
     }

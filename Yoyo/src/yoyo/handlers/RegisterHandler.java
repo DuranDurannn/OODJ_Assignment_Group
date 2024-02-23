@@ -65,7 +65,7 @@ public class RegisterHandler extends AccountHandler{
                 + customer.getGender() + "!" + customer.getProfileLink();
 
         try {
-            fileHandler.appendEncryptedLine(dataLine);
+            fileHandler.appendEncrypted(dataLine);
             
         } catch (IOException e) {
             System.err.println("Error writing data to file: " + e.getMessage());

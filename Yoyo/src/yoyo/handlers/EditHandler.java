@@ -1,9 +1,9 @@
 package yoyo.handlers;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Predicate;
 import javax.swing.JOptionPane;
+import yoyo.handlers.AccountHandler;
+import yoyo.handlers.SecureFileHandler;
 import yoyo.resources.Validator;
 
 public class EditHandler extends AccountHandler{
@@ -67,20 +67,19 @@ public class EditHandler extends AccountHandler{
             return null;
         }
         
-        String dataLine = editingUser.getID() + "!" + editingUser.getUsername() + "!"
-                + editingUser.getPassword() + "!" + editingUser.getEmail() + "!"
-                + editingUser.getAddress() + "!" + editingUser.getPhoneNumber() + "!"
-                + editingUser.getGender() + "!" + editingUser.getProfileLink();     
+        String dataLine = editingUser.getID() + editingUser.getUsername()
+                + editingUser.getPassword() + editingUser.getEmail()
+                + editingUser.getAddress() + editingUser.getPhoneNumber()
+                + editingUser.getGender() + editingUser.getProfileLink();     
         
         SecureFileHandler fileHandler = new SecureFileHandler();
         fileHandler.setFilePath("userInfo.txt");
-        Predicate<String> condition = line -> line.trim().equals("");
         
-        try {
+        /*try {
             fileHandler.replaceEncryptedLine(dataLine, condition);     
         } catch (IOException e) {
             System.err.println("Error writing data to file: " + e.getMessage());
-        }
+        }*/
 
         JOptionPane.showMessageDialog(null, "Edit successful!");
         return editingUser;

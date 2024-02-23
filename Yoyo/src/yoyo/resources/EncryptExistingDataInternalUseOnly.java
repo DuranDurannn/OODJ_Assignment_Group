@@ -2,7 +2,6 @@ package yoyo.resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Predicate;
 import yoyo.handlers.SecureFileHandler;
 
 public class EncryptExistingDataInternalUseOnly {
@@ -12,14 +11,10 @@ public class EncryptExistingDataInternalUseOnly {
             secureFileHandler.setFilePath("userInfo.txt");
 
             // Encrypt and append the line to the file
-            //secureFileHandler.appendEncryptedLine("C001!DARREN!123!darren@gmail.com!Sabah!0165529979!Male!https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s");
-            
-            // Overwrite line
-            Predicate<String> condition = line -> line.trim().equals("example");
-            secureFileHandler.replaceEncryptedLine("C001!DARREN!123!darren@gmail.com!Sabah!0165529979!Male!https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s", condition);
-            
+            secureFileHandler.appendEncrypted("C001!DARREN!123!darren@gmail.com!Sabah!0165529979!Male!https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s");
+            secureFileHandler.appendEncrypted("C002!123!123!123@123!Sabah!123!Male!https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_74Xvjek9I_SygCJ5IaAiBBsUMDar6wEQt3C66cKug&s");           
             // Reading and decrypting lines from the file
-            ArrayList<String[]> decryptedDataList = secureFileHandler.readAndDecryptLines(8);
+            ArrayList<String[]> decryptedDataList = secureFileHandler.readAndDecrypt(8);
 
             // Printing the decrypted data
             for (String[] tokens : decryptedDataList) {
