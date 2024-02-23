@@ -2,6 +2,7 @@ package yoyo.handlers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 import javax.swing.JOptionPane;
 import yoyo.resources.Validator;
 
@@ -66,14 +67,15 @@ public class EditHandler extends AccountHandler{
             return null;
         }
         
-        SecureFileHandler fileHandler = new SecureFileHandler();
-        fileHandler.setFilePath("userInfo.txt");
-
         String dataLine = editingUser.getID() + "!" + editingUser.getUsername() + "!"
                 + editingUser.getPassword() + "!" + editingUser.getEmail() + "!"
                 + editingUser.getAddress() + "!" + editingUser.getPhoneNumber() + "!"
-                + editingUser.getGender() + "!" + editingUser.getProfileLink();
-
+                + editingUser.getGender() + "!" + editingUser.getProfileLink();     
+        
+        SecureFileHandler fileHandler = new SecureFileHandler();
+        fileHandler.setFilePath("userInfo.txt");
+        Predicate<String> condition = line -> line.trim().equals("");
+        
         try {
             fileHandler.replaceEncryptedLine(dataLine, condition);     
         } catch (IOException e) {
