@@ -320,6 +320,7 @@ public class Dashboard extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         SearchItemsButton7 = new javax.swing.JButton();
         jLabel41 = new javax.swing.JLabel();
+        ModifyQuotationButton2 = new javax.swing.JButton();
         CustomerSummaryCard = new javax.swing.JPanel();
         roundPanel23 = new yoyo.resources.RoundPanel();
         SearchItemsButton = new javax.swing.JButton();
@@ -744,7 +745,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(roundPanel17Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(roundPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(roundPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -946,7 +947,7 @@ public class Dashboard extends javax.swing.JFrame {
             OfficerSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OfficerSummaryCardLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(roundPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(roundPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addComponent(roundPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -1016,7 +1017,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1049, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -1047,7 +1048,7 @@ public class Dashboard extends javax.swing.JFrame {
         SalesOrderCard.setLayout(SalesOrderCardLayout);
         SalesOrderCardLayout.setHorizontalGroup(
             SalesOrderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1128, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
         );
         SalesOrderCardLayout.setVerticalGroup(
             SalesOrderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1067,7 +1068,7 @@ public class Dashboard extends javax.swing.JFrame {
         MonthlyRevenueGraph.setLayout(MonthlyRevenueGraphLayout);
         MonthlyRevenueGraphLayout.setHorizontalGroup(
             MonthlyRevenueGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 505, Short.MAX_VALUE)
         );
         MonthlyRevenueGraphLayout.setVerticalGroup(
             MonthlyRevenueGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1081,7 +1082,7 @@ public class Dashboard extends javax.swing.JFrame {
         MonthlyUnitsSoldGraph.setLayout(MonthlyUnitsSoldGraphLayout);
         MonthlyUnitsSoldGraphLayout.setHorizontalGroup(
             MonthlyUnitsSoldGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 505, Short.MAX_VALUE)
         );
         MonthlyUnitsSoldGraphLayout.setVerticalGroup(
             MonthlyUnitsSoldGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1126,11 +1127,11 @@ public class Dashboard extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(roundPanel3Layout.createSequentialGroup()
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(MonthlyUnitsSoldGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                            .addComponent(MonthlyUnitsSoldGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
                             .addComponent(GenerateClosedSaleReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MonthlyRevenueGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                            .addComponent(MonthlyRevenueGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
                             .addComponent(GenerateWorkDoneReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40))))
         );
@@ -1272,7 +1273,7 @@ public class Dashboard extends javax.swing.JFrame {
         AdministratorSummaryCard.setLayout(AdministratorSummaryCardLayout);
         AdministratorSummaryCardLayout.setHorizontalGroup(
             AdministratorSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 1128, Short.MAX_VALUE)
+            .addComponent(roundPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
         );
         AdministratorSummaryCardLayout.setVerticalGroup(
             AdministratorSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1433,12 +1434,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(roundPanel19Layout.createSequentialGroup()
                 .addGap(112, 112, 112)
-                .addComponent(imageAvatar21, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                .addComponent(imageAvatar21, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addGap(76, 76, 76)
                 .addGroup(roundPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(EditProfileDetailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         roundPanel19Layout.setVerticalGroup(
             roundPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1461,7 +1462,7 @@ public class Dashboard extends javax.swing.JFrame {
         ManagePersonalAccount.setLayout(ManagePersonalAccountLayout);
         ManagePersonalAccountLayout.setHorizontalGroup(
             ManagePersonalAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1128, Short.MAX_VALUE)
+            .addComponent(roundPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
         );
         ManagePersonalAccountLayout.setVerticalGroup(
             ManagePersonalAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1538,7 +1539,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(roundPanel20Layout.createSequentialGroup()
                         .addGroup(roundPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel20Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SearchQuotationButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -1595,7 +1596,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(30, 33, 82));
-        jLabel41.setText("Sale Orders");
+        jLabel41.setText("Quotations");
+
+        ModifyQuotationButton2.setBackground(new java.awt.Color(30, 33, 82));
+        ModifyQuotationButton2.setForeground(new java.awt.Color(255, 255, 255));
+        ModifyQuotationButton2.setText("Save Changes");
+        ModifyQuotationButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyQuotationButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout roundPanel11Layout = new javax.swing.GroupLayout(roundPanel11);
         roundPanel11.setLayout(roundPanel11Layout);
@@ -1605,16 +1615,18 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel41)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(roundPanel11Layout.createSequentialGroup()
                         .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel11Layout.createSequentialGroup()
-                                .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addGroup(roundPanel11Layout.createSequentialGroup()
+                                .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                .addGap(8, 8, 8)
+                                .addComponent(SearchItemsButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SearchItemsButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40))))
+                                .addComponent(ModifyQuotationButton2)))
+                        .addGap(40, 40, 40))
+                    .addGroup(roundPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel41)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         roundPanel11Layout.setVerticalGroup(
             roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1624,9 +1636,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchItemsButton7))
+                    .addComponent(SearchItemsButton7)
+                    .addComponent(ModifyQuotationButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
 
@@ -1635,7 +1648,7 @@ public class Dashboard extends javax.swing.JFrame {
         SalespersonSummaryCardLayout.setHorizontalGroup(
             SalespersonSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SalespersonSummaryCardLayout.createSequentialGroup()
-                .addComponent(roundPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+                .addComponent(roundPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(roundPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1705,7 +1718,7 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addComponent(jTextField3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SearchItemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
                         .addGap(40, 40, 40))))
         );
         roundPanel23Layout.setVerticalGroup(
@@ -1772,7 +1785,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SearchItemsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(40, 40, 40))))
@@ -1796,7 +1809,7 @@ public class Dashboard extends javax.swing.JFrame {
         CustomerSummaryCardLayout.setHorizontalGroup(
             CustomerSummaryCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CustomerSummaryCardLayout.createSequentialGroup()
-                .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+                .addComponent(roundPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1999,6 +2012,10 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchQuotationButton2ActionPerformed
 
+    private void ModifyQuotationButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyQuotationButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModifyQuotationButton2ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdministratorButtons;
@@ -2016,6 +2033,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Menu;
     private javax.swing.JButton ModifyQuotationButton;
     private javax.swing.JButton ModifyQuotationButton1;
+    private javax.swing.JButton ModifyQuotationButton2;
     private javax.swing.JPanel MonthlyRevenueGraph;
     private javax.swing.JPanel MonthlyUnitsSoldGraph;
     private javax.swing.JPanel OfficerButtons;
